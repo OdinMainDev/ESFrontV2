@@ -22,19 +22,19 @@ const SearchBox = ({
   style,
   ...rest
 }: SearchBoxProps) => {
-  return (
-    <div className={classNames('search-box', className)} style={style}>
-      <form className={classNames('position-relative', formClassName)}>
-        <Form.Control
-          type="search"
-          placeholder={placeholder}
-          className={classNames('search-input search', inputClassName)}
-          size={size}
-          {...rest}
-        />
-        <FontAwesomeIcon icon={faSearch} className="search-box-icon" />
-      </form>
-    </div>
+  return (""
+    // <div className={classNames('search-box', className)} style={style}>
+    //   <form className={classNames('position-relative', formClassName)}>
+    //     <Form.Control
+    //       type="search"
+    //       placeholder={placeholder}
+    //       className={classNames('search-input search', inputClassName)}
+    //       size={size}
+    //       {...rest}
+    //     />
+    //     <FontAwesomeIcon icon={faSearch} className="search-box-icon" />
+    //   </form>
+    // </div>
   );
 };
 

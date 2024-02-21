@@ -19,11 +19,6 @@ const NavItemsSlim = () => {
         <ThemeToggler slim />
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link onClick={() => setOpenSearchModal(!openSearchModal)}>
-          <FeatherIcon icon="search" size={12} />
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
         <Dropdown autoClose="outside">
           <Dropdown.Toggle
             as={Link}
@@ -36,35 +31,7 @@ const NavItemsSlim = () => {
           <NotificationDropdownMenu />
         </Dropdown>
       </Nav.Item>
-      <Nav.Item>
-        <Dropdown autoClose="outside">
-          <Dropdown.Toggle
-            as={Link}
-            to="#!"
-            className="dropdown-caret-none nav-link py-0"
-            variant=""
-          >
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
-              <circle cx="2" cy="8" r="2" fill="currentColor"></circle>
-              <circle cx="2" cy="14" r="2" fill="currentColor"></circle>
-              <circle cx="8" cy="8" r="2" fill="currentColor"></circle>
-              <circle cx="8" cy="14" r="2" fill="currentColor"></circle>
-              <circle cx="14" cy="8" r="2" fill="currentColor"></circle>
-              <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
-              <circle cx="8" cy="2" r="2" fill="currentColor"></circle>
-              <circle cx="14" cy="2" r="2" fill="currentColor"></circle>
-            </svg>
-          </Dropdown.Toggle>
-          <NineDotMenu />
-        </Dropdown>
-      </Nav.Item>
+      
       <Nav.Item>
         <Dropdown autoClose="outside">
           <Dropdown.Toggle
@@ -79,7 +46,7 @@ const NavItemsSlim = () => {
         </Dropdown>
       </Nav.Item>
 
-      <Modal
+      {/* <Modal
         show={openSearchModal}
         onHide={() => setOpenSearchModal(false)}
         className="search-box-modal mt-15"
@@ -94,7 +61,7 @@ const NavItemsSlim = () => {
             <SearchResult />
           </DropdownSearchBox>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

@@ -24,7 +24,7 @@ const NavbarDual = () => {
       <div className="w-100">
         <div className="d-flex flex-between-center dual-nav-first-layer">
           <NavbarBrand />
-          <DropdownSearchBox
+          {/* <DropdownSearchBox
             className="navbar-top-search-box"
             inputClassName="rounded-pill"
             searchBoxClassName=" d-none d-lg-block"
@@ -32,7 +32,7 @@ const NavbarDual = () => {
             style={{ width: '25rem' }}
           >
             <SearchResult />
-          </DropdownSearchBox>
+          </DropdownSearchBox> */}
           <NavItems />
         </div>
         <Navbar.Collapse

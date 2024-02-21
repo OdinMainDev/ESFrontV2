@@ -101,7 +101,7 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
           </Navbar.Collapse>
         </Navbar>
       </div>
-      <Modal
+      {/* <Modal
         show={openSearchModal}
         onHide={() => setOpenSearchModal(false)}
         className="search-box-modal mt-15"
@@ -116,7 +116,7 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
             <SearchResult />
           </DropdownSearchBox>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </>
   );
 };

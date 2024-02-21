@@ -64,7 +64,7 @@ const EcommerceTopbar = () => {
                 </Nav.Item>
               </Nav>
             </Col>
-            <Col xs={12} md={6}>
+            {/* <Col xs={12} md={6}>
               <SearchBox
                 placeholder="Search..."
                 className="ecommerce-search-box w-100"
@@ -72,7 +72,7 @@ const EcommerceTopbar = () => {
                 size="sm"
                 // style={{ width: '25rem' }}
               />
-            </Col>
+            </Col> */}
           </Row>
         </Navbar>
       </div>

@@ -29,7 +29,7 @@ const NavbarTopDefault = () => {
 
         {navbarTopShape === 'default' ? (
           <>
-            {breakpoints.up('lg') && (
+            {/* {breakpoints.up('lg') && (
               <DropdownSearchBox
                 className="navbar-top-search-box"
                 inputClassName="rounded-pill"
@@ -38,7 +38,7 @@ const NavbarTopDefault = () => {
               >
                 <SearchResult />
               </DropdownSearchBox>
-            )}
+            )} */}
             <NavItems />
           </>
         ) : (

@@ -53,7 +53,7 @@ const ChatSidebar = ({ className }: { className?: string }) => {
         </Form.Group>
         <ChatFilterTab />
       </Card>
-      <Modal
+      {/* <Modal
         show={openSearchModal}
         onHide={() => setOpenSearchModal(false)}
         className="search-box-modal mt-15"
@@ -66,7 +66,7 @@ const ChatSidebar = ({ className }: { className?: string }) => {
             autoFocus
           />
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </>
   );
 };
