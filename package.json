@@ -1,6 +1,6 @@
 {
-  "name": "phoenix-react",
-  "version": "1.2.0",
+  "name": "esfront-v2",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@changey/react-leaflet-markercluster": "^4.0.0-rc1",
@@ -73,8 +73,6 @@
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc.js",
     "predeploy": "npm run build && cp ./build/index.html ./build/404.html",
     "predeploy:alt": "npm run build && cp ./build/index.html ./build/404.html",
-    "deploy": "echo https://phoenix-react.prium.me > ./build/CNAME && gh-pages -d build",
-    "deploy:alt": "echo phoenix-react-alt.prium.me > ./build/CNAME && gh-pages -d build -r git@github.com:prium/phoenix-react-alt.git",
     "build:css": "webpack --config webpack.config.cjs --mode=production",
     "watch:css": "webpack --config webpack.config.cjs --watch"
   },
