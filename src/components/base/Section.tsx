@@ -1,7 +1,6 @@
 import classNames from 'classnames';
-import PhoenixContainer, { PhoenixContainerProps } from './PhoenixContainer';
 
-interface SectionProps extends Omit<PhoenixContainerProps, 'className'> {
+interface SectionProps extends Omit<null, 'className'> {
   className?: string;
   containerClassName?: string;
 }
@@ -9,7 +8,6 @@ interface SectionProps extends Omit<PhoenixContainerProps, 'className'> {
 const Section = ({ className, containerClassName, ...rest }: SectionProps) => {
   return (
     <section className={classNames(className)}>
-      <PhoenixContainer className={containerClassName} {...rest} />
     </section>
   );
 };

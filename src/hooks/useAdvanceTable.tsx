@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import IndeterminateCheckbox from 'components/base/IndeterminateCheckbox';
 import { PropsWithChildren } from 'react';
 import {
   useReactTable,
@@ -25,25 +24,10 @@ const selectionColumn = {
   id: 'select',
   accessorKey: '',
   header: ({ table }: any) => (
-    <IndeterminateCheckbox
-      className="form-check fs-8 mb-0"
-      {...{
-        checked: table.getIsAllRowsSelected(),
-        indeterminate: table.getIsSomeRowsSelected(),
-        onChange: table.getToggleAllRowsSelectedHandler()
-      }}
-    />
+    ""
   ),
   cell: ({ row }: any) => (
-    <IndeterminateCheckbox
-      className="form-check fs-8 mb-0"
-      {...{
-        checked: row.getIsSelected(),
-        disabled: !row.getCanSelect(),
-        indeterminate: row.getIsSomeSelected(),
-        onChange: row.getToggleSelectedHandler()
-      }}
-    />
+    ""
   ),
   meta: {
     headerProps: { style: { width: '30px' } }
