@@ -5,6 +5,7 @@ import NavbarBrand from 'components/navbars/nav-items/NavbarBrand';
 import NavItems from 'components/navbars/nav-items/NavItems';
 import NavItemsSlim from 'components/navbars/nav-items/NavItemsSlim';
 import { useBreakpoints } from 'providers/BreakpointsProvider';
+import Button from 'components/base/Button';
 
 const NavbarTopDefault = () => {
   const {
@@ -27,16 +28,13 @@ const NavbarTopDefault = () => {
 
         {navbarTopShape === 'default' ? (
           <>
-            {/* {breakpoints.up('lg') && (
-              <DropdownSearchBox
-                className="navbar-top-search-box"
-                inputClassName="rounded-pill"
-                size="sm"
-                style={{ width: '25rem' }}
-              >
-                <SearchResult />
-              </DropdownSearchBox>
-            )} */}
+
+            <Button variant="primary" className=" mb-3">
+              Some btn
+            </Button>
+            <Button variant="primary" className=" mb-3">
+              Some btn
+            </Button>
             <NavItems />
           </>
         ) : (

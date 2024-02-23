@@ -41,6 +41,13 @@ export const routes: RouteItems[] = [
     icon: UilChartPie,
     pages: [
       {
+        name: 'Список пользователей',
+        icon: 'pie-chart',
+        active: true,
+        path: '/auth/sign-in',
+        pathName: 'sign-in',
+      },
+      {
         name: 'Статусы',
         icon: 'pie-chart',
         active: true,
