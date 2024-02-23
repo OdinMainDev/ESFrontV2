@@ -1,6 +1,6 @@
 import Avatar from 'components/base/Avatar';
 import { useState } from 'react';
-import { Card, Dropdown, Form, Nav } from 'react-bootstrap';
+import { Card, Dropdown, Nav } from 'react-bootstrap';
 import avatar from 'assets/imgNew/avatar/placeholder.png';
 import FeatherIcon from 'feather-icons-react';
 import { Link } from 'react-router-dom';
@@ -16,11 +16,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
     {
       label: 'Privacy settings',
       icon: 'help-circle'
-    },
-    // {
-    //   label: 'Help Center',
-    //   icon: 'help-circle'
-    // }
+    }
   ]);
 
   const {
@@ -48,8 +44,6 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
           </div>
           <div style={{ height: '10rem' }}>
             <Nav className="nav flex-column mb-2 pb-1">
-                
-
               {navItems.map(item => (
                 <Nav.Item key={item.label}>
                   <Nav.Link href="#!" className="px-3">
@@ -62,18 +56,16 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
                   </Nav.Link>
                 </Nav.Item>
               ))}
-
-                <Nav.Item key="cusomizerCustom" onClick={handleClick}>
-                  <Nav.Link href="#!" className="px-3">
-                    <FeatherIcon
-                      icon="settings"
-                      size={16}
-                      className="me-2 text-900"
-                    />
-                    <span className="text-1000">Theme customize</span>
-                  </Nav.Link>
-                </Nav.Item>
-
+              <Nav.Item key="cusomizerCustom" onClick={handleClick}>
+                <Nav.Link href="#!" className="px-3">
+                  <FeatherIcon
+                    icon="settings"
+                    size={16}
+                    className="me-2 text-900"
+                  />
+                  <span className="text-1000">Theme customize</span>
+                </Nav.Link>
+              </Nav.Item>
             </Nav>
           </div>
         </Card.Body>

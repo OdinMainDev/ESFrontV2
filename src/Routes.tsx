@@ -1,5 +1,4 @@
 import MainLayout from 'layouts/MainLayout';
-import Starter from 'pages/pages/Starter';
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import MainLayoutProvider from 'providers/MainLayoutProvider';
 import Error404 from 'pages/error/Error404';
@@ -24,11 +23,9 @@ const routes: RouteObject[] = [
           {
             index: true,
             element: <ComingSoon />
-          },
+          }
         ]
       },
-
-      
       {
         path: '/pages/errors/',
         children: [
@@ -52,7 +49,7 @@ const routes: RouteObject[] = [
           {
             path: 'sign-in',
             element: <SimpleSignIn />
-          },
+          }
         ]
       },
 

@@ -4,15 +4,12 @@ import classNames from 'classnames';
 import NavbarBrand from 'components/navbars/nav-items/NavbarBrand';
 import NavItems from 'components/navbars/nav-items/NavItems';
 import NavItemsSlim from 'components/navbars/nav-items/NavItemsSlim';
-import { useBreakpoints } from 'providers/BreakpointsProvider';
 import Button from 'components/base/Button';
 
 const NavbarTopDefault = () => {
   const {
     config: { navbarTopShape, navbarTopAppearance }
   } = useAppContext();
-
-  const { breakpoints } = useBreakpoints();
 
   return (
     <Navbar
@@ -25,10 +22,8 @@ const NavbarTopDefault = () => {
     >
       <div className="navbar-collapse justify-content-between">
         <NavbarBrand />
-
         {navbarTopShape === 'default' ? (
           <>
-
             <Button variant="primary" className=" mb-3">
               Some btn
             </Button>

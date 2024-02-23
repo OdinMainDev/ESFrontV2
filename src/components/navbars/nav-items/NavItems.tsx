@@ -1,19 +1,12 @@
 import Avatar from 'components/base/Avatar';
-import { Dropdown, Modal, Nav } from 'react-bootstrap';
+import { Dropdown, Nav } from 'react-bootstrap';
 import avatar57 from 'assets/imgNew/avatar/placeholder.png';
 import ProfileDropdownMenu from './ProfileDropdownMenu';
-import { useAppContext } from 'providers/AppProvider';
 import FeatherIcon from 'feather-icons-react';
 import { Link } from 'react-router-dom';
 import NotificationDropdownMenu from './NotificationDropdownMenu';
-import { useState } from 'react';
 
 const NavItems = () => {
-  const {
-    config: { navbarPosition }
-  } = useAppContext();
-  const [openSearchModal, setOpenSearchModal] = useState(false);
-
   return (
     <div className="navbar-nav navbar-nav-icons flex-row">
       <Nav.Item>
@@ -29,7 +22,6 @@ const NavItems = () => {
           <NotificationDropdownMenu />
         </Dropdown>
       </Nav.Item>
-      
       <Nav.Item>
         <Dropdown autoClose="outside" className="h-100">
           <Dropdown.Toggle
@@ -43,23 +35,6 @@ const NavItems = () => {
           <ProfileDropdownMenu />
         </Dropdown>
       </Nav.Item>
-
-      {/* <Modal
-        show={openSearchModal}
-        onHide={() => setOpenSearchModal(false)}
-        className="search-box-modal mt-15"
-      >
-        <Modal.Body className="p-0 bg-transparent">
-          <DropdownSearchBox
-            className="navbar-top-search-box"
-            inputClassName="rounded-pill"
-            size="lg"
-            style={{ width: 'auto' }}
-          >
-            <SearchResult />
-          </DropdownSearchBox>
-        </Modal.Body>
-      </Modal> */}
     </div>
   );
 };

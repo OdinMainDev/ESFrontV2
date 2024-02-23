@@ -1,12 +1,11 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faHourglassHalf } from '@fortawesome/free-regular-svg-icons';
 import {
   Icon,
-  UilChartPie,
-  UilCube,
-  UilDocumentLayoutRight,
-  UilFilesLandscapesAlt,
-  UilPuzzlePiece
+  UilChartPie
+  // UilCube,
+  // UilDocumentLayoutRight,
+  // UilFilesLandscapesAlt,
+  // UilPuzzlePiece
 } from '@iconscout/react-unicons';
 
 export interface Route {
@@ -45,7 +44,7 @@ export const routes: RouteItems[] = [
         icon: 'pie-chart',
         active: true,
         path: '/auth/sign-in',
-        pathName: 'sign-in',
+        pathName: 'sign-in'
       },
       {
         name: 'Статусы',
@@ -63,7 +62,7 @@ export const routes: RouteItems[] = [
             path: '/pages/errors/404',
             pathName: 'add',
             active: true
-          },
+          }
         ]
       },
 
@@ -83,10 +82,9 @@ export const routes: RouteItems[] = [
             path: '#',
             pathName: 'add',
             active: true
-          },
+          }
         ]
-      },
-      
+      }
     ]
-  },
+  }
 ];
