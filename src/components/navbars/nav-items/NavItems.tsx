@@ -9,9 +9,6 @@ import { Link } from 'react-router-dom';
 import NotificationDropdownMenu from './NotificationDropdownMenu';
 import ThemeToggler from 'components/common/ThemeToggler';
 import { useState } from 'react';
-import DropdownSearchBox from 'components/common/DropdownSearchBox';
-import SearchResult from 'components/common/SearchResult';
-import classNames from 'classnames';
 
 const NavItems = () => {
   const {

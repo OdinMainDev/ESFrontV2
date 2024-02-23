@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import NavbarBrand from '../nav-items/NavbarBrand';
-import DropdownSearchBox from 'components/common/DropdownSearchBox';
-import SearchResult from 'components/common/SearchResult';
 import NavItems from '../nav-items/NavItems';
 import NavbarTopNav from '../navbar-horizontal/NavbarTopNav';
 import { useAppContext } from 'providers/AppProvider';

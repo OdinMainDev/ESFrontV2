@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ThemeToggler from 'components/common/ThemeToggler';
 import NotificationDropdownMenu from './NotificationDropdownMenu';
 import { useState } from 'react';
-import DropdownSearchBox from 'components/common/DropdownSearchBox';
-import SearchResult from 'components/common/SearchResult';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 const NavItemsSlim = () => {

@@ -4,8 +4,6 @@ import classNames from 'classnames';
 import NavbarBrand from 'components/navbars/nav-items/NavbarBrand';
 import NavItems from 'components/navbars/nav-items/NavItems';
 import NavItemsSlim from 'components/navbars/nav-items/NavItemsSlim';
-import DropdownSearchBox from 'components/common/DropdownSearchBox';
-import SearchResult from 'components/common/SearchResult';
 import { useBreakpoints } from 'providers/BreakpointsProvider';
 
 const NavbarTopDefault = () => {
