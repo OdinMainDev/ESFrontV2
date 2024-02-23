@@ -7,6 +7,7 @@ import Error403 from 'pages/error/Error403';
 import Error500 from 'pages/error/Error500';
 import SimpleSignIn from 'pages/pages/authentication/SignIn';
 import App from 'App';
+import ComingSoon from 'pages/pages/ComingSoon';
 
 const routes: RouteObject[] = [
   {
@@ -22,7 +23,7 @@ const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <Starter />
+            element: <ComingSoon />
           },
         ]
       },
