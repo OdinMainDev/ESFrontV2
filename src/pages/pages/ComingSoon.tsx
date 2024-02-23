@@ -2,8 +2,8 @@ import { Col, Row } from 'react-bootstrap';
 import Lottie from 'lottie-react';
 import comingSoonLight from 'assets/img/animated-icons/coming-soon-light.json';
 import comingSoonDark from 'assets/img/animated-icons/coming-soon-dark.json';
-import comingSoonText from 'assets/img/spot-illustrations/40.png';
-import comingSoonTextDark from 'assets/img/spot-illustrations/dark_40.png';
+import comingSoonText from 'assets/img/spot-illustrations/43.png';
+import comingSoonTextDark from 'assets/img/spot-illustrations/dark_43.png';
 import { useAppContext } from 'providers/AppProvider';
 
 const ComingSoon = () => {
