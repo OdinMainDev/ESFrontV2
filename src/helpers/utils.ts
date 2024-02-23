@@ -50,7 +50,7 @@ export const snakeCase = (string: string) => {
 
 export const getColor = (name: string) => {
   const dom = document.documentElement;
-  return getComputedStyle(dom).getPropertyValue(`--phoenix-${name}`).trim();
+  return getComputedStyle(dom).getPropertyValue(`--esfront-${name}`).trim();
 };
 
 /* get Dates between */

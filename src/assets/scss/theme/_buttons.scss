@@ -174,8 +174,8 @@
 // outline buttons
 @each $color, $value in $button-colors {
   $hover-color: map-get($theme-hover-colors, $color);
-  .btn-outline-phoenix-#{$color} {
-    @include button-outline-phoenix-variant(
+  .btn-outline-esfront-#{$color} {
+    @include button-outline-esfront-variant(
       $color: $value,
       $border-color: $gray-200,
       $active-border: $hover-color,
@@ -200,10 +200,10 @@
   }
 }
 
-//phoenix buttons
+//esfront buttons
 @each $color, $value in $button-colors {
   $hover-color: map-get($theme-hover-colors, $color);
-  .btn-phoenix-#{$color} {
+  .btn-esfront-#{$color} {
     @include button-variant(
       $background: $gray-soft,
       $border: $gray-200,

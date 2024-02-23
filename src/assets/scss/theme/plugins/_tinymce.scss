@@ -127,7 +127,7 @@
 
   .tox-button-secondary {
     @extend .btn;
-    @extend .btn-phoenix-secondary;
+    @extend .btn-esfront-secondary;
   }
   .tox-dialog {
     border-radius: $border-radius !important;
@@ -141,7 +141,7 @@
     &__footer {
       .tox-button--secondary {
         @extend .btn;
-        @extend .btn-phoenix-secondary;
+        @extend .btn-esfront-secondary;
       }
       .tox-button:last-child {
         @extend .btn;

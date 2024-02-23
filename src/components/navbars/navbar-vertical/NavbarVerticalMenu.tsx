@@ -63,7 +63,7 @@ const NavItem = ({ route, level }: NavItemProps) => {
               <span className="nav-link-text-wrapper">
                 <span className="nav-link-text">{capitalize(route.name)}</span>
                 {route.new && !isNavbarVerticalCollapsed && (
-                  <Badge variant="phoenix" bg="info" className="ms-2">
+                  <Badge variant="esfront" bg="info" className="ms-2">
                     New
                   </Badge>
                 )}
@@ -73,7 +73,7 @@ const NavItem = ({ route, level }: NavItemProps) => {
             <>
               <span className="nav-link-text">{capitalize(route.name)}</span>
               {route.new && (
-                <Badge variant="phoenix" bg="info" className="ms-2">
+                <Badge variant="esfront" bg="info" className="ms-2">
                   New
                 </Badge>
               )}
@@ -161,7 +161,7 @@ const CollapsableNavItem = ({ route, level }: NavItemProps) => {
           >
             {capitalize(route.name)}
             {(!isNavbarVerticalCollapsed || level !== 1) && route.new && (
-              <Badge variant="phoenix" bg="info" className="ms-2">
+              <Badge variant="esfront" bg="info" className="ms-2">
                 New
               </Badge>
             )}
@@ -179,7 +179,7 @@ const CollapsableNavItem = ({ route, level }: NavItemProps) => {
               <div className="collapsed-nav-item-title d-none">
                 {capitalize(route.name)}
                 {isNavbarVerticalCollapsed && route.new && (
-                  <Badge variant="phoenix" bg="info" className="ms-2">
+                  <Badge variant="esfront" bg="info" className="ms-2">
                     New
                   </Badge>
                 )}

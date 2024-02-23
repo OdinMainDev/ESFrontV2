@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { PropsWithChildren, ReactElement } from 'react';
 import { Badge as BsBadge, BadgeProps as BsBadgeProps } from 'react-bootstrap';
 
-export type BadgeVariant = 'phoenix' | 'default' | 'tag';
+export type BadgeVariant = 'esfront' | 'default' | 'tag';
 export type BadgeBg =
   | 'primary'
   | 'secondary'
@@ -33,13 +33,13 @@ const Badge = ({
   return (
     <BsBadge
       className={classNames(className, {
-        [`badge-phoenix badge-phoenix-${bg}`]: variant === 'phoenix',
+        [`badge-esfront badge-esfront-${bg}`]: variant === 'esfront',
         'badge-tag': variant === 'tag'
       })}
-      bg={['phoenix', 'tag'].includes(variant) ? '' : bg}
+      bg={['esfront', 'tag'].includes(variant) ? '' : bg}
       {...rest}
     >
-      {variant === 'phoenix' ? (
+      {variant === 'esfront' ? (
         <>
           {icon ? (
             <>

@@ -1,7 +1,7 @@
 /*-----------------------------------------------
-|   Phoenix buttons
+|   ESFront buttons
 -----------------------------------------------*/
-// $theme-phoenix-btn-colors: (
+// $theme-esfront-btn-colors: (
 //   'primary': $primary,
 //   'success': $success,
 //   'info': $info,
@@ -10,16 +10,16 @@
 //   'default': $dark
 // );
 
-// @each $color, $value in $theme-phoenix-btn-colors {
+// @each $color, $value in $theme-esfront-btn-colors {
 //   .btn-#{$color} {
-//     @include phoenix-button-variant($color);
+//     @include esfront-button-variant($color);
 //   }
 // }
 
 /* -------------------------------------------------------------------------- */
-/*                                Phoenix button                              */
+/*                                ESFront button                              */
 /* -------------------------------------------------------------------------- */
-@mixin phoenix-button-variant($color) {
+@mixin esfront-button-variant($color) {
   --#{$prefix}btn-active-bg: $gray-200;
   --#{$prefix}btn-active-color: $color;
   color: $color;
@@ -38,7 +38,7 @@
   }
 }
 
-@mixin button-outline-phoenix-variant(
+@mixin button-outline-esfront-variant(
   $color,
   $border-color,
   $color-hover: color-contrast($color),

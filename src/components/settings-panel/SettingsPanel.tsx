@@ -59,7 +59,7 @@ const SettingsPanel = () => {
           </button>
         </div>
         <Button
-          variant="phoenix-secondary"
+          variant="esfront-secondary"
           className="w-100"
           onClick={handleResetToDefault}
           disabled={disableResetButton}

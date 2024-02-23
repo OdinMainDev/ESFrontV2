@@ -1,7 +1,7 @@
 /* prettier-ignore */
 @use 'sass:math';
 @import 'colors';
-$prefix: 'phoenix-';
+$prefix: 'esfront-';
 // Grid containers
 //
 // Define the maximum width of `.container` for different screen sizes.
@@ -305,8 +305,8 @@ $btn-pill-border-radius: 1.5rem !default;
 // $btn-padding-y-lg: 0.875rem !default;
 // $btn-font-size-lg: map_get($font-sizes, 0) !default;
 
-/* ----------------------------- Phoenix-buttons ---------------------------- */
-$btn-phoenix-border-color: var(--#{$prefix}gray-200);
+/* ----------------------------- ESFront-buttons ---------------------------- */
+$btn-esfront-border-color: var(--#{$prefix}gray-200);
 
 //*-----------------------------------------------
 //|   Buttons and Forms

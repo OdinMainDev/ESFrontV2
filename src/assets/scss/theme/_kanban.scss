@@ -7,7 +7,7 @@
   right: 0;
   // z-index: -1;
 
-  .phoenix-offcanvas {
+  .esfront-offcanvas {
     width: 100%;
     top: $navbar-top-height;
     padding: 1rem 2rem;
@@ -15,7 +15,7 @@
 
     &.show {
       ~ {
-        .phoenix-offcanvas-backdrop {
+        .esfront-offcanvas-backdrop {
           top: $navbar-top-height;
           height: calc(100vh - $navbar-top-height - $footer-height);
         }
@@ -252,7 +252,7 @@
   border: 1px solid var(--#{$prefix}input-border-color);
   border-radius: var(--#{$prefix}border-radius);
   position: relative;
-  background-image: var(--phoenix-form-select-indicator);
+  background-image: var(--esfront-form-select-indicator);
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 11px 12px;

@@ -287,7 +287,7 @@
 .page-title-sticky-top {
   @include media-breakpoint-up(xl) {
     position: sticky;
-    top: calc(var(--phoenix-navbar-top-height) + 3.725rem);
+    top: calc(var(--esfront-navbar-top-height) + 3.725rem);
   }
 }
 
@@ -318,7 +318,7 @@
 
 .todolist-container {
   @include media-breakpoint-up(sm) {
-    max-height: calc(100vh - var(--phoenix-navbar-top-height) - 309px);
+    max-height: calc(100vh - var(--esfront-navbar-top-height) - 309px);
   }
 }
 
@@ -331,7 +331,7 @@
 }
 .todolist-offcanvas {
   width: 35rem;
-  top: var(--phoenix-navbar-top-height) !important;
+  top: var(--esfront-navbar-top-height) !important;
   border-left: 1px solid var(--#{$prefix}gray-300);
   background: 1px solid var(--#{$prefix}gray-100);
   @include media-breakpoint-up(sm) {
@@ -354,7 +354,7 @@
 }
 
 .pt-navbar {
-  padding-top: var(--phoenix-navbar-top-height);
+  padding-top: var(--esfront-navbar-top-height);
 }
 /*-----------------------------------------------
 |   fontawesome layers icon border color

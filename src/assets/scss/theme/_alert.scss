@@ -74,16 +74,16 @@
 }
 // scss-docs-end alert-outline-modifiers
 
-// scss-docs-start alert-phoenix-modifiers
+// scss-docs-start alert-esfront-modifiers
 @each $state, $value in $theme-colors {
   $alert-background: var(--#{$prefix}white);
   $alert-border: var(--#{$prefix}gray-300);
   $alert-color: $value;
-  .alert-phoenix-#{$state} {
+  .alert-esfront-#{$state} {
     @include alert-variant($alert-background, $alert-border, $alert-color);
   }
 }
-// scss-docs-end alert-phoenix-modifiers
+// scss-docs-end alert-esfront-modifiers
 
 // scss-docs-start alert-solid-modifiers
 @each $state, $value in $theme-colors {

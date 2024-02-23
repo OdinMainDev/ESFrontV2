@@ -267,7 +267,7 @@
   /* ---------------------------------- Badge --------------------------------- */
 
   @each $color, $value in $theme-colors-light {
-    .badge-phoenix-#{$color} {
+    .badge-esfront-#{$color} {
       --#{$prefix}badge-bg: #{map-get($theme-colors-light, $color)};
       --#{$prefix}badge-color: #{map-get($theme-colors-dark, $color)};
       --#{$prefix}badge-border-color: #{map-get($light-badge-borders, $color)};

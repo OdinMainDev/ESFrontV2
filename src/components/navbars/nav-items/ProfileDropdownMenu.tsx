@@ -84,7 +84,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
           <div className="px-3 my-3">
             <Link
               to="#!"
-              className="btn btn-phoenix-secondary d-flex flex-center w-100"
+              className="btn btn-esfront-secondary d-flex flex-center w-100"
             >
               <FeatherIcon icon="log-out" className="me-2" size={16} />
               Sign out

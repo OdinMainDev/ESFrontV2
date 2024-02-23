@@ -7,8 +7,8 @@ Welcome to the ReactJS version of the original Phoenix theme. This document will
 This project is scaffolded using Create React App.
 
 - Install Node.js if you do not already have it installed on your machine.
-- Open the “phoenix-react-{version}” directory with your cmd or terminal and run npm i
-- This command will download all the necessary dependencies for phoenix in the node_modules directory.
+- Open the “esfront-react-{version}” directory with your cmd or terminal and run npm i
+- This command will download all the necessary dependencies for esfront in the node_modules directory.
 - Run npm start. A local web server will start at http://localhost:3000.
 
 ## Creating a Production Build

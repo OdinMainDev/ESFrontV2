@@ -90,25 +90,25 @@ const AvatarDropdown = ({ user, size }: AvatarDropdownInterface) => {
           <div className="p-3 border-bottom">
             <div className="d-flex gap-2">
               <Button
-                variant="phoenix-secondary"
+                variant="esfront-secondary"
                 className="btn-icon btn-icon-lg"
               >
                 <FontAwesomeIcon icon={faPhone} />
               </Button>
               <Button
-                variant="phoenix-secondary"
+                variant="esfront-secondary"
                 className="btn-icon btn-icon-lg"
               >
                 <FontAwesomeIcon icon={faMessage} />
               </Button>
               <Button
-                variant="phoenix-secondary"
+                variant="esfront-secondary"
                 className="btn-icon btn-icon-lg"
               >
                 <FontAwesomeIcon icon={faVideo} />
               </Button>
               <Button
-                variant="phoenix-primary"
+                variant="esfront-primary"
                 startIcon={
                   <FontAwesomeIcon icon={faEnvelope} className="me-2" />
                 }
