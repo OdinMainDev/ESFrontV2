@@ -1,13 +1,11 @@
 import Avatar from 'components/base/Avatar';
 import { Dropdown, Modal, Nav } from 'react-bootstrap';
-import avatar57 from 'assets/img/team/40x40/57.webp';
+import avatar57 from 'assets/imgNew/avatar/placeholder.png';
 import ProfileDropdownMenu from './ProfileDropdownMenu';
-import NineDotMenu from './NineDotMenu';
 import { useAppContext } from 'providers/AppProvider';
 import FeatherIcon from 'feather-icons-react';
 import { Link } from 'react-router-dom';
 import NotificationDropdownMenu from './NotificationDropdownMenu';
-import ThemeToggler from 'components/common/ThemeToggler';
 import { useState } from 'react';
 
 const NavItems = () => {
