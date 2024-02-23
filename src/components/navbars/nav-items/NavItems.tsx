@@ -19,9 +19,6 @@ const NavItems = () => {
   return (
     <div className="navbar-nav navbar-nav-icons flex-row">
       <Nav.Item>
-        <ThemeToggler className="px-2" />
-      </Nav.Item>
-      <Nav.Item>
         <Dropdown autoClose="outside" className="h-100">
           <Dropdown.Toggle
             as={Link}

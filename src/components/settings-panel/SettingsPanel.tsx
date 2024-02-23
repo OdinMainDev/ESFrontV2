@@ -70,20 +70,18 @@ const SettingsPanel = () => {
       </Offcanvas.Header>
       <Offcanvas.Body className="px-card scrollbar">
         <ColorScheme />
-        <RTLMode />
         <ChatWidgetVisibility />
         <NavigationType />
         <VerticalNavbarAppearance />
         <HorizontalNavbarShape />
         <TopNavbarAppearance className="mb-5" />
+        <RTLMode />
         <Button
-          as="a"
-          target="_blank"
-          href={`${process.env.REACT_APP_PURCHASE_LINK}`}
+          onClick={handleClose}
           className="w-100 mb-3 text-white dark__text-100"
           variant="primary"
         >
-          Purchase template
+          Save and close
         </Button>
       </Offcanvas.Body>
     </Offcanvas>

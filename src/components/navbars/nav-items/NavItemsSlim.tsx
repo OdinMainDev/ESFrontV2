@@ -14,9 +14,6 @@ const NavItemsSlim = () => {
   return (
     <div className="navbar-nav navbar-nav-icons flex-row">
       <Nav.Item>
-        <ThemeToggler slim />
-      </Nav.Item>
-      <Nav.Item>
         <Dropdown autoClose="outside">
           <Dropdown.Toggle
             as={Link}

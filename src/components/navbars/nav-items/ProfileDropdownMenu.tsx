@@ -21,10 +21,6 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
     {
       label: 'Help Center',
       icon: 'help-circle'
-    },
-    {
-      label: 'Language',
-      icon: 'globe'
     }
   ]);
 
