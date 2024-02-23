@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from 'assets/img/icons/logo.png';
+import logo from 'assets/imgNew/logo/o1.svg';
 import classNames from 'classnames';
 
 interface LogoProps {
