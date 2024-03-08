@@ -1,3 +1,4 @@
 import TablePagination from './ui/TablePagination';
 import TableHeader from './ui/TableHeader';
-export { TablePagination, TableHeader };
+import TableFilter from './ui/TableFilter';
+export { TablePagination, TableHeader, TableFilter };

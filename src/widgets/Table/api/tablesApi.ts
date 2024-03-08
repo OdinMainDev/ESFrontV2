@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { ITableResponseData } from '../models/interface';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
+import { ITableResponseData } from '@/shared/models/interfaces/table';
 
 export const getTableApi = async <T>(
   url: string,

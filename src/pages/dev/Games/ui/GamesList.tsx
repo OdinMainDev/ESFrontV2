@@ -1,41 +1,51 @@
 import { GamesTable } from '@/widgets/Table';
-import { faAngleDown, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ButtonGroup, Dropdown, FloatingLabel, Form } from 'react-bootstrap';
-import { providersList } from '../constants/providers';
-const GamesList = () => {
-  return (
-    <div>
-      <h2 className="mb-4">Игры</h2>
-      <div className="flex items-center mb-3">
-        <div className="w-[30%]">
-          <FloatingLabel controlId="search" label="Поиск">
-            <Form.Control placeholder="Поиск" className="input-with-icon" />
-            <FontAwesomeIcon icon={faSearch} className="input-icon" />
-          </FloatingLabel>
-        </div>
-        <div className="scrollbar overflow-hidden-y">
-          <ButtonGroup className="position-static">
-            <Dropdown className="position-static" as={ButtonGroup}>
-              <Dropdown.Toggle
-                variant="phoenix-secondary"
-                className="px-7 flex-shrink-0 dropdown-caret-none"
-              >
-                Провайдеры
-                <FontAwesomeIcon icon={faAngleDown} className="ms-2" transform="down-2" />
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {providersList.map((item, subIndex) => (
-                  <Dropdown.Item key={subIndex}>{item}</Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-          </ButtonGroup>
-        </div>
-      </div>
+import ContentLayout from '@/shared/layout/ContentLayout';
+import { useEffect, useState } from 'react';
+import { IGame } from '@/shared/models/interfaces/games';
+import { getTableApi } from '@/widgets/Table/api/tablesApi';
+import { gamesListApi } from '@/widgets/Table/api/gamesListApi';
+import { IFilterParams } from '@/shared/models/interfaces/filter';
+import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
+import { gamesTableHeader } from '../constants/games';
+import { ITableResponseData } from '@/shared/models/interfaces/table';
+import { TableFilter } from '@/features/Table';
 
-      <GamesTable />
-    </div>
+const GamesList = () => {
+  const [data, setData] = useState<ITableResponseData<IGame> | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const getData = async (filterParams: IFilterParams) => {
+    setData(await getTableApi<IGame>(gamesListApi(), filterParams));
+  };
+
+  useEffect(() => {
+    if (!Number(searchParams.get('length'))) {
+      setSearchParams({
+        length: 10,
+        start: 0,
+        order_direction: 'asc',
+        order_column: gamesTableHeader[0].value,
+      } as unknown as URLSearchParamsInit);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (Number(searchParams.get('length'))) {
+      const filter = {
+        length: Number(searchParams.get('length')) || 10,
+        start: Number(searchParams.get('start')),
+        order_direction: searchParams.get('order_direction') || 'asc',
+        order_column: searchParams.get('order_column') || gamesTableHeader[0].value,
+      };
+      void getData(filter);
+    }
+  }, [searchParams]);
+
+  return (
+    <ContentLayout title="Игры">
+      <TableFilter<IGame> data={data?.data ?? null} />
+      <GamesTable tableData={data} tableHeader={gamesTableHeader} />
+    </ContentLayout>
   );
 };
 
