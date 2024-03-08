@@ -5,4 +5,7 @@
 // Place your own variable overrides here, these will override any Bootstrap and theme variables.
 :root {
   --esfront-form-invalid-border-color: #ea868f;
+  .table {
+    --esfront-table-bg: #FFF;
+  }
 }

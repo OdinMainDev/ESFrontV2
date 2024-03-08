@@ -36,55 +36,48 @@ export interface RouteItems {
   megaMenu?: boolean;
   active?: boolean;
 }
-
+const pathParts = window.location.pathname.split('/').filter(Boolean);
 export const routes: RouteItems[] = [
   {
-    label: 'пользователи',
+    label: 'Escasino',
     active: true,
     icon: UilChartPie,
     pages: [
       {
-        name: 'Список пользователей',
-        icon: 'pie-chart',
-        active: true,
-        path: '/auth/sign-in',
-        pathName: 'sign-in',
-      },
-      {
-        name: 'Статусы',
+        name: 'Игры',
         icon: 'pie-chart',
         active: true,
         pages: [
           {
             name: 'Список',
-            path: '/auth/sign-in',
-            pathName: 'sign-in',
-            active: true,
-          },
-          {
-            name: 'Добавить',
-            path: '/pages/errors/404',
-            pathName: 'add',
+            path: `/${pathParts[0]}/games`,
+            pathName: 'games-list',
             active: true,
           },
         ],
       },
-
       {
-        name: 'Боты',
+        name: 'Казино',
         icon: 'pie-chart',
         active: true,
         pages: [
           {
             name: 'Список',
-            path: '#',
-            pathName: 'list',
+            path: `/${pathParts[0]}/casino`,
+            pathName: 'casino-list',
             active: true,
           },
+        ],
+      },
+      {
+        name: 'Валюты',
+        icon: 'pie-chart',
+        active: true,
+        pages: [
           {
-            name: 'Добавить',
-            path: '#',
-            pathName: 'add',
+            name: 'Список',
+            path: `/${pathParts[0]}/currencies`,
+            pathName: 'currencies-list',
             active: true,
           },
         ],

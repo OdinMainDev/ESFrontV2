@@ -24,6 +24,7 @@
   "parser": "@typescript-eslint/parser",
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "indent": "off",
     "quotes": [
       "error",

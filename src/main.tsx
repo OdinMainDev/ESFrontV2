@@ -6,9 +6,10 @@ import SettingsPanelProvider from '@/shared/providers/SettingsPanelProvider';
 import BreakpointsProvider from '@/shared/providers/BreakpointsProvider';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './app/Routes';
+import { Providers } from './store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <Providers>
     <AppProvider>
       <SettingsPanelProvider>
         <BreakpointsProvider>
@@ -16,5 +17,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </BreakpointsProvider>
       </SettingsPanelProvider>
     </AppProvider>
-  </React.StrictMode>,
+  </Providers>,
 );

@@ -7,6 +7,11 @@ import Error500 from '@/pages/errors/Error500';
 import { Auth } from '@/pages/Auth';
 import App from './App';
 import { ComingSoon } from '@/pages/ComingSoon';
+import { GamesList } from '@/pages/dev/Games';
+import { CasinoList } from '@/pages/dev/CasinoList';
+import { CurrenciesList } from '@/pages/dev/CurrenciesList';
+import ProtectedRouteProvider from './provider/ProtectedRouteProvider';
+import NotFounded from '@/pages/errors/404';
 
 const routes: RouteObject[] = [
   {
@@ -14,32 +19,64 @@ const routes: RouteObject[] = [
     path: '/:lang',
     children: [
       {
-        element: (
-          <MainLayoutProvider>
-            <MainLayout />
-          </MainLayoutProvider>
-        ),
+        element: <ProtectedRouteProvider />,
         children: [
           {
-            index: true,
-            element: <ComingSoon />,
+            element: (
+              <MainLayoutProvider>
+                <MainLayout />
+              </MainLayoutProvider>
+            ),
+            children: [
+              {
+                index: true,
+                element: <ComingSoon />,
+              },
+              {
+                path: 'games',
+                children: [
+                  {
+                    index: true,
+                    element: <GamesList />,
+                  },
+                ],
+              },
+              {
+                path: 'casino',
+                children: [
+                  {
+                    index: true,
+                    element: <CasinoList />,
+                  },
+                ],
+              },
+              {
+                path: 'currencies',
+                children: [
+                  {
+                    index: true,
+                    element: <CurrenciesList />,
+                  },
+                ],
+              },
+            ],
           },
-        ],
-      },
-      {
-        path: 'errors',
-        children: [
           {
-            path: '404',
-            element: <Error404 />,
-          },
-          {
-            path: '403',
-            element: <Error403 />,
-          },
-          {
-            path: '500',
-            element: <Error500 />,
+            path: 'errors',
+            children: [
+              {
+                path: '404',
+                element: <Error404 />,
+              },
+              {
+                path: '403',
+                element: <Error403 />,
+              },
+              {
+                path: '500',
+                element: <Error500 />,
+              },
+            ],
           },
         ],
       },
@@ -47,14 +84,20 @@ const routes: RouteObject[] = [
         path: 'auth',
         children: [
           {
-            path: 'sign-in/:api_key',
+            path: 'sign-in',
             element: <Auth />,
+            children: [
+              {
+                path: ':api_key',
+                element: <Auth />,
+              },
+            ],
           },
         ],
       },
       {
-        path: '*',
-        element: <Error404 />,
+        path: '404',
+        element: <NotFounded />,
       },
     ],
   },

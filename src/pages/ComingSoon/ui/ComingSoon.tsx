@@ -5,7 +5,6 @@ import comingSoonDark from '@/shared/assets/images/animated-icons/coming-soon-da
 import comingSoonText from '@/shared/assets/images/spot-illustrations/43.png';
 import comingSoonTextDark from '@/shared/assets/images/spot-illustrations/dark_43.png';
 import { useAppContext } from '@/shared/providers/AppProvider';
-import { Profile } from '@/features/Profile';
 
 const ComingSoon = () => {
   const {
@@ -50,7 +49,6 @@ const ComingSoon = () => {
           </Col>
         </Row>
       </Col>
-      <Profile></Profile>
     </Row>
   );
 };

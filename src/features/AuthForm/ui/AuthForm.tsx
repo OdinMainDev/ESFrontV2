@@ -7,14 +7,17 @@ import { loginApi } from '../api/loginApi';
 import { useNavigate, useParams } from 'react-router-dom';
 import { validateLoginData } from '../helpers/validation';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '@/store/hooks/redux';
+import { setIsAuth } from '@/store/slices/userSlice';
 
 const AuthForm = () => {
   const { api_key } = useParams();
   const [validated, setValidated] = useState(false);
-  const { t } = useTranslation();
   const [invalidData, setInvalidData] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const timer = useRef<NodeJS.Timeout | null>(null);
   const [loginData, setLoginData] = useState<ILoginData>({
     email: '',
@@ -30,8 +33,9 @@ const AuthForm = () => {
       axios
         .post<ILoginResponse>(loginApi(), loginData)
         .then((res) => {
+          dispatch(setIsAuth(true));
+          Cookies.set('token', res.data.token);
           navigate('/');
-          Cookies.set('auth_token', res.data.token);
         })
         .catch(() => {
           if (timer.current) {
@@ -41,7 +45,7 @@ const AuthForm = () => {
           setInvalidData(true);
           timer.current = setTimeout(() => {
             setInvalidData(false);
-          }, 1500);
+          }, 15000);
         })
         .finally(() => {
           setLoading(false);

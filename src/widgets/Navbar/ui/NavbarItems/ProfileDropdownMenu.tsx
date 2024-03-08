@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { Card, Dropdown, Nav } from 'react-bootstrap';
 import avatar from '@/shared/assets/images/avatar/placeholder.png';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { useSettingsPanelContext } from '@/shared/providers/SettingsPanelProvider';
+import { useAppDispatch } from '@/store/hooks/redux';
+import { logout } from '@/store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileDropdownMenu = ({ className }: { className?: string }) => {
   const [navItems] = useState([
@@ -18,6 +20,8 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
       icon: 'help-circle',
     },
   ]);
+  const dispatch = useAppDispatch();
+  const navigation = useNavigate();
 
   const {
     settingsPanelConfig: { openSettingPanel },
@@ -26,6 +30,11 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
 
   const handleClick = () => {
     setSettingsPanelConfig({ openSettingPanel: !openSettingPanel });
+  };
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigation('/');
   };
 
   return (
@@ -63,10 +72,13 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
         </Card.Body>
         <Card.Footer className="p-0 border-top">
           <div className="px-3 my-3">
-            <Link to="#!" className="btn btn-esfront-secondary d-flex flex-center w-100">
+            <div
+              onClick={logoutHandler}
+              className="btn btn-esfront-secondary d-flex flex-center w-100"
+            >
               <FeatherIcon icon="log-out" className="me-2" size={16} />
               Sign out
-            </Link>
+            </div>
           </div>
         </Card.Footer>
       </Card>
