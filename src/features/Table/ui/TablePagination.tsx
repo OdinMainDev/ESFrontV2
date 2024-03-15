@@ -2,6 +2,7 @@ import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { useEffect, useState } from 'react';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import { Form } from 'react-bootstrap';
 
 interface IProps {
   recordsTotal: number;
@@ -34,6 +35,11 @@ const TablePagination = ({ recordsTotal }: IProps) => {
     setSearchParams(data as unknown as URLSearchParamsInit);
   }
 
+  const setTableLength = (length: number) => {
+    const data = { ...filterParams, length };
+    setSearchParams(data as unknown as URLSearchParamsInit);
+  };
+
   const nextPage = () => {
     const data = { ...filterParams, start: filterParams.start + filterParams.length };
     setSearchParams(data as unknown as URLSearchParamsInit);
@@ -45,13 +51,24 @@ const TablePagination = ({ recordsTotal }: IProps) => {
   };
 
   return (
-    <div className="align-items-center py-1 row">
+    <div className="flex items-center py-1 row">
       <div className="d-flex fs-9 col">
         <p className="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900">
           {filterParams.start + 1} to {filterParams.length + filterParams.start}{' '}
           <span className="text-600"> items of </span>
           {recordsTotal}
         </p>
+      </div>
+      <div style={{ width: '150px' }}>
+        <Form.Select
+          value={filterParams.length + filterParams.start}
+          onChange={(e) => setTableLength(Number(e.target.value))}
+        >
+          <option value="10">10</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="250">250</option>
+        </Form.Select>
       </div>
       <div className="col-auto">
         <ul className="mb-0 justify-content-center pagination">

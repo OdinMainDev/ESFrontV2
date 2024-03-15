@@ -80,6 +80,12 @@ export const routes: RouteItems[] = [
             pathName: 'currencies-list',
             active: true,
           },
+          {
+            name: 'Добавить',
+            path: `/${pathParts[0]}/currencies/add`,
+            pathName: 'currencies-add',
+            active: true,
+          },
         ],
       },
     ],

@@ -8,11 +8,11 @@ import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import { gamesTableHeader } from '../constants/games';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
-import { TableFilter } from '@/features/Table';
 
 const GamesList = () => {
   const [data, setData] = useState<ITableResponseData<IGame> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const tableHeader = gamesTableHeader;
 
   const getData = async (filterParams: IFilterParams) => {
     setData(await getTableApi<IGame>(gamesListApi(), filterParams));
@@ -24,7 +24,7 @@ const GamesList = () => {
         length: 10,
         start: 0,
         order_direction: 'asc',
-        order_column: gamesTableHeader[0].value,
+        order_column: tableHeader[0].value,
       } as unknown as URLSearchParamsInit);
     }
   }, []);
@@ -35,16 +35,23 @@ const GamesList = () => {
         length: Number(searchParams.get('length')) || 10,
         start: Number(searchParams.get('start')),
         order_direction: searchParams.get('order_direction') || 'asc',
-        order_column: searchParams.get('order_column') || gamesTableHeader[0].value,
+        order_column: searchParams.get('order_column') || tableHeader[0].value,
       };
       void getData(filter);
     }
   }, [searchParams]);
 
+  // const prepareData = (tableData) => {
+  //   return tableData.map(item => ({
+  //     ID: item.id,
+  //     Название: item.name,
+  //     'Дата создания': new Date(item.created_at * 1000).toLocaleDateString()
+  //   }));
+  // };
+
   return (
     <ContentLayout title="Игры">
-      <TableFilter<IGame> data={data?.data ?? null} />
-      <GamesTable tableData={data} tableHeader={gamesTableHeader} />
+      <GamesTable tableData={data} tableHeader={tableHeader} />
     </ContentLayout>
   );
 };

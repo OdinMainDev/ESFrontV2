@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import NavbarBrand from './NavbarItems/NavbarBrand';
 import NavItems from './NavbarItems/NavItems';
 import NavItemsSlim from './NavbarItems/NavItemsSlim';
-import Button from '@/shared/ui/Button';
 
 const NavbarTopDefault = () => {
   const {
@@ -24,12 +23,6 @@ const NavbarTopDefault = () => {
         <NavbarBrand />
         {navbarTopShape === 'default' ? (
           <>
-            <Button variant="primary" className=" mb-3">
-              Some btn
-            </Button>
-            <Button variant="primary" className=" mb-3">
-              Some btn
-            </Button>
             <NavItems />
           </>
         ) : (

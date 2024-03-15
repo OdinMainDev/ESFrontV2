@@ -8,12 +8,20 @@ import { currenciesTableHeader } from '../constants';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ICurrencies } from '@/shared/models/interfaces/currencies';
 import { currenciesListApi } from '@/widgets/Table/api/currenciesListApi';
-import { TableFilter } from '@/features/Table';
+import Button from '@/shared/ui/Button';
+import { useRouter } from '@/shared/hooks/navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FilterButton } from '@/features/FilterModal';
+import { currenciesFilterApi } from '../api/currenciesApi';
+import { DocumentExport } from '@/features/DocumentExport';
+import { fromUnixTime, format } from 'date-fns';
 
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICurrencies> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const tableHeader = currenciesTableHeader;
+  const router = useRouter();
 
   const getData = async (filterParams: IFilterParams) => {
     setTableData(await getTableApi<ICurrencies>(currenciesListApi(), filterParams));
@@ -37,6 +45,8 @@ const CasinoList = () => {
         start: Number(searchParams.get('start')),
         order_direction: searchParams.get('order_direction') || 'asc',
         order_column: searchParams.get('order_column') || tableHeader[0].value,
+        'filter_name[]': searchParams.getAll('filter_name[]') || [],
+        'filter_value[]': searchParams.getAll('filter_value[]') || [],
       };
       void getData(filter);
     }
@@ -44,7 +54,30 @@ const CasinoList = () => {
 
   return (
     <ContentLayout title="Список валют">
-      <TableFilter<ICurrencies> data={tableData?.data ?? null} />
+      <div className="flex justify-between mb-3">
+        <div className="flex">
+          <Button
+            variant="primary"
+            className="mr-[10px]"
+            startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
+            onClick={() => router.push('currencies/add')}
+          >
+            Добавить валюту
+          </Button>
+          <DocumentExport
+            fileName="Currencies_Table"
+            data={
+              tableData?.data.map((item) => ({
+                ...item,
+                created_at: format(fromUnixTime(item.created_at), 'dd MMMM yyyy, HH:mm'),
+              })) ?? []
+            }
+            headers={currenciesTableHeader.slice(0, -1)}
+          />
+        </div>
+
+        <FilterButton url={currenciesFilterApi()} />
+      </div>
       <CurrenciesTable tableData={tableData} tableHeader={currenciesTableHeader} />
     </ContentLayout>
   );

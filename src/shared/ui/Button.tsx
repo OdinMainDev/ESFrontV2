@@ -66,7 +66,7 @@ const Button = ({
       disabled={loading}
       {...rest}
       className={classNames(className, {
-        'btn-loading lh-1 d-flex align-items-center position-relative': loading,
+        'btn-loading lh-1 flex items-center justify-center position-relative': loading,
       })}
     >
       {loading && loadingPosition === 'start' && (

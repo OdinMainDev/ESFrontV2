@@ -9,7 +9,7 @@ import App from './App';
 import { ComingSoon } from '@/pages/ComingSoon';
 import { GamesList } from '@/pages/dev/Games';
 import { CasinoList } from '@/pages/dev/CasinoList';
-import { CurrenciesList } from '@/pages/dev/CurrenciesList';
+import { CurrenciesAdd, CurrenciesEdit, CurrenciesList } from '@/pages/dev/CurrenciesList';
 import ProtectedRouteProvider from './provider/ProtectedRouteProvider';
 import NotFounded from '@/pages/errors/404';
 
@@ -56,6 +56,14 @@ const routes: RouteObject[] = [
                   {
                     index: true,
                     element: <CurrenciesList />,
+                  },
+                  {
+                    path: 'add',
+                    element: <CurrenciesAdd />,
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <CurrenciesEdit />,
                   },
                 ],
               },

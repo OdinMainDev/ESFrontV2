@@ -3,3 +3,9 @@ export interface ITableResponseData<T> {
   recordsTotal: number;
   data: T[];
 }
+
+export interface ITableHeaders {
+  label: string;
+  value: string;
+  sort: boolean;
+}

@@ -8,7 +8,6 @@ import { ICasino } from '@/shared/models/interfaces/casinos';
 import { casinosTableHeader } from '../constants';
 import { casinoListApi } from '@/widgets/Table/api/casinoListApi';
 import { CasinoTable } from '@/widgets/Table';
-import { TableFilter } from '@/features/Table';
 
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICasino> | null>(null);
@@ -41,9 +40,9 @@ const CasinoList = () => {
       void getData(filter);
     }
   }, [searchParams]);
+
   return (
     <ContentLayout title="Список казино">
-      <TableFilter<ICasino> data={tableData?.data ?? null} />
       <CasinoTable tableData={tableData} tableHeader={tableHeader} />
     </ContentLayout>
   );

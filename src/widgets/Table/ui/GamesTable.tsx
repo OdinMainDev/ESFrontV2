@@ -1,7 +1,7 @@
 import { ITableHeader } from '../models/interface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { format } from 'date-fns';
+import { format, fromUnixTime } from 'date-fns';
 import { TableHeader, TablePagination } from '@/features/Table';
 import { IGame } from '@/shared/models/interfaces/games';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
@@ -34,7 +34,7 @@ const GamesTable = ({ tableData, tableHeader }: IProps) => {
                     <span>{item.game_provider}</span>
                   </td>
                   <td className="ps-4">
-                    <span>{format(item.created_at, 'dd MMMM yyyy, HH:mm')}</span>
+                    <span>{format(fromUnixTime(item.created_at), 'dd MMMM yyyy, HH:mm')}</span>
                   </td>
                   <td>
                     <span>
