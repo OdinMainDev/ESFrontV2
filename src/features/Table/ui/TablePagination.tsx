@@ -61,7 +61,7 @@ const TablePagination = ({ recordsTotal }: IProps) => {
       </div>
       <div style={{ width: '150px' }}>
         <Form.Select
-          value={filterParams.length + filterParams.start}
+          value={filterParams.length}
           onChange={(e) => setTableLength(Number(e.target.value))}
         >
           <option value="10">10</option>
