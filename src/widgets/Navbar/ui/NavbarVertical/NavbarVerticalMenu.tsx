@@ -102,7 +102,7 @@ const CollapsableNavItem = ({ route, level }: NavItemProps) => {
   const updateOpenItems = (name: string) => {
     const updatedOpenItems = [...openItems];
     updatedOpenItems[level] = name;
-    updatedOpenItems.forEach((item, index) => {
+    updatedOpenItems.forEach((_, index) => {
       if (index > level) {
         updatedOpenItems[index] = '';
       }

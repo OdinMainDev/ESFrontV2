@@ -53,7 +53,7 @@ export const getDates = (
 ): Date[] => {
   const duration = +endDate - +startDate;
   const steps = duration / interval;
-  return Array.from({ length: steps + 1 }, (v, i) => new Date(startDate.valueOf() + interval * i));
+  return Array.from({ length: steps + 1 }, (_, i) => new Date(startDate.valueOf() + interval * i));
 };
 
 export const getPastDates = (duration: 'week' | 'month' | 'year' | number): Date[] => {
