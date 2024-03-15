@@ -67,6 +67,12 @@ export const routes: RouteItems[] = [
             pathName: 'casino-list',
             active: true,
           },
+          {
+            name: 'Добавить',
+            path: `/${pathParts[0]}/casino/add`,
+            pathName: 'casino-add',
+            active: true,
+          },
         ],
       },
       {

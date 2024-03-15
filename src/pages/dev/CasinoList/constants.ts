@@ -20,7 +20,7 @@ export const casinosTableHeader = [
     sort: true,
   },
   {
-    label: 'Действия',
+    label: '',
     value: 'action',
     sort: false,
   },

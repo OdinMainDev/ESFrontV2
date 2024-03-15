@@ -1,13 +1,12 @@
-import Button from '@/shared/ui/Button';
-import { faFileExport } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 import * as XLSX from 'xlsx';
 import { CSVLink } from 'react-csv';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { ITableHeaders } from '@/shared/models/interfaces/table';
 import { font } from '../font';
+import { ButtonGroup, Dropdown } from 'react-bootstrap';
 
 interface IProps {
   headers: ITableHeaders[];
@@ -46,35 +45,32 @@ const DocumentExport = ({ headers, data, fileName = 'tableData' }: IProps) => {
 
   return (
     <div className="flex gap-[20px]">
-      <Button
-        onClick={() => exportToExcel(data, headers, fileName)}
-        variant="link"
-        className="text-900 px-0"
-        startIcon={<FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />}
-      >
-        Excel export
-      </Button>
-      <Button
-        variant="link"
-        className="text-900 px-0"
-        startIcon={<FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />}
-      >
-        <CSVLink
-          headers={headers.map((item) => ({ label: item.label, key: item.value }))}
-          filename={fileName}
-          data={data}
+      <Dropdown as={ButtonGroup} className="position-static">
+        <Dropdown.Toggle
+          variant="phoenix-secondary"
+          className="px-7 flex-shrink-0 dropdown-caret-none"
         >
-          CSV export
-        </CSVLink>
-      </Button>
-      <Button
-        onClick={() => exportToPdf(data, headers, fileName)}
-        variant="link"
-        className="text-900 px-0"
-        startIcon={<FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />}
-      >
-        PDF export
-      </Button>
+          <FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />
+          Export Document
+          <FontAwesomeIcon icon={faAngleDown} className="ms-2" transform="down-2" />
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => exportToExcel(data, headers, fileName)}>
+            Excel
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => exportToPdf(data, headers, fileName)}>PDF</Dropdown.Item>
+          <Dropdown.Item as="div">
+            <CSVLink
+              data-rr-ui-dropdown-item
+              headers={headers.map((item) => ({ label: item.label, key: item.value }))}
+              filename={fileName}
+              data={data}
+            >
+              CSV export
+            </CSVLink>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 };

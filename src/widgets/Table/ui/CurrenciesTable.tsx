@@ -1,12 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { TableHeader, TablePagination } from '@/features/Table';
-import { format } from 'date-fns/format';
 import { ICurrencies } from '@/shared/models/interfaces/currencies';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ITableHeader } from '../models/interface';
 import { useRouter } from '@/shared/hooks/navigation';
-import { fromUnixTime } from 'date-fns';
 
 interface IProps {
   tableData: ITableResponseData<ICurrencies> | null;
@@ -45,7 +43,7 @@ const CurrenciesTable = ({ tableData, tableHeader }: IProps) => {
                       <span>{item.minor_units}</span>
                     </td>
                     <td className="ps-4">
-                      <span>{format(fromUnixTime(item.created_at), 'dd MMMM yyyy, HH:mm')}</span>
+                      <span>{item.created_at as string}</span>
                     </td>
                     <td>
                       <span onClick={() => editHandler(item)}>

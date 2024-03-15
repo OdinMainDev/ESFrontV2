@@ -1,13 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-
 import { TableHeader, TablePagination } from '@/features/Table';
 import { Form } from 'react-bootstrap';
-import { format } from 'date-fns/format';
 import { ICasino } from '@/shared/models/interfaces/casinos';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ITableHeader } from '../models/interface';
-import { fromUnixTime } from 'date-fns';
 
 interface IProps {
   tableData: ITableResponseData<ICasino> | null;
@@ -38,7 +35,7 @@ const CasinoTable = ({ tableData, tableHeader }: IProps) => {
                       <span>{item.token}</span>
                     </td>
                     <td className="ps-4">
-                      <span>{format(fromUnixTime(item.created_at), 'dd MMMM yyyy, HH:mm')}</span>
+                      <span>{item.created_at as string}</span>
                     </td>
                     <td>
                       <span>

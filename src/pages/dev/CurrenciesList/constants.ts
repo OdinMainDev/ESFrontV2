@@ -25,7 +25,7 @@ export const currenciesTableHeader = [
     sort: true,
   },
   {
-    label: 'Действия',
+    label: '',
     value: 'action',
     sort: false,
   },

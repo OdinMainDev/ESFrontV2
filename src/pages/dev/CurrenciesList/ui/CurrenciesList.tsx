@@ -24,7 +24,17 @@ const CasinoList = () => {
   const router = useRouter();
 
   const getData = async (filterParams: IFilterParams) => {
-    setTableData(await getTableApi<ICurrencies>(currenciesListApi(), filterParams));
+    const data = await getTableApi<ICurrencies>(currenciesListApi(), filterParams);
+    if (data?.data) {
+      setTableData({
+        ...data,
+        data:
+          data.data.map((item) => ({
+            ...item,
+            created_at: format(fromUnixTime(Number(item.created_at)), 'dd MMMM yyyy, HH:mm'),
+          })) || [],
+      });
+    }
   };
 
   useEffect(() => {
@@ -66,12 +76,7 @@ const CasinoList = () => {
           </Button>
           <DocumentExport
             fileName="Currencies_Table"
-            data={
-              tableData?.data.map((item) => ({
-                ...item,
-                created_at: format(fromUnixTime(item.created_at), 'dd MMMM yyyy, HH:mm'),
-              })) ?? []
-            }
+            data={tableData?.data ?? []}
             headers={currenciesTableHeader.slice(0, -1)}
           />
         </div>

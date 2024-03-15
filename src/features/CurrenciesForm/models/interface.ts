@@ -17,3 +17,7 @@ export interface IIsValidData {
   title: boolean;
   code_alpha: boolean;
 }
+
+export interface IResData extends ICurrencyFormData {
+  id: number;
+}

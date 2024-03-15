@@ -1,6 +1,6 @@
 export interface ICasino {
   id: number;
-  created_at: number;
+  created_at: Date | string | number;
   updated_at: number;
   name: string;
   token: string;
