@@ -24,7 +24,7 @@ const CurrenciesTable = ({ tableData, tableHeader }: IProps) => {
     <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
       <div>
         <div className="scrollbar ms-n1 ps-1">
-          <table className="table">
+          <table className="esfront-table table">
             <TableHeader tableHeader={tableHeader} />
             <tbody>
               {tableData &&

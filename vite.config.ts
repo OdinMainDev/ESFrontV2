@@ -1,13 +1,21 @@
 // vite.config.js или vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import { join } from 'path';
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src'),
-    },
+    alias: [
+      {
+        find: /~(.+)/,
+        replacement: join(process.cwd(), 'node_modules/$1'),
+      },
+
+      {
+        find: /@\//,
+        replacement: join(process.cwd(), './src') + '/',
+      },
+    ],
   },
 });

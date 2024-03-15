@@ -7,6 +7,7 @@ import { getCurrencyByIdApiHandler } from '@/shared/api/dev/currencyApi';
 import Button from '@/shared/ui/Button';
 import { AxiosError } from 'axios';
 import { errorValidator } from '../helpers/validator';
+import { useRouter } from '@/shared/hooks/navigation';
 
 interface IProps {
   id: number;
@@ -27,6 +28,7 @@ const CurrenciesForm = ({ id }: IProps) => {
   const [title, setTitle] = useState('');
   const [validated, setValidated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (id > 0) {
@@ -57,8 +59,11 @@ const CurrenciesForm = ({ id }: IProps) => {
     try {
       setValidated(true);
       setLoading(true);
-      await currencyFormApi(id, data);
+      const result = await currencyFormApi(id, data);
       setInvalidData(validData);
+      if (id === 0) {
+        router.push(`currencies/edit/${result.id}`);
+      }
     } catch (e) {
       setValidated(false);
       const error = e as AxiosError<IErrorData>;
