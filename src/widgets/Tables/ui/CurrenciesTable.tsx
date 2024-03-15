@@ -1,10 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { TableHeader, TablePagination } from '@/features/Table';
+import { TableEditButton, TableHeader, TablePagination } from '@/features/Table';
 import { ICurrencies } from '@/shared/models/interfaces/currencies';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ITableHeader } from '../models/interface';
-import { useRouter } from '@/shared/hooks/navigation';
 
 interface IProps {
   tableData: ITableResponseData<ICurrencies> | null;
@@ -12,12 +9,6 @@ interface IProps {
 }
 
 const CurrenciesTable = ({ tableData, tableHeader }: IProps) => {
-  const router = useRouter();
-
-  const editHandler = (currency: ICurrencies) => {
-    router.push(`currencies/edit/${currency.id}`);
-  };
-
   return (
     <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
       <div>
@@ -46,9 +37,10 @@ const CurrenciesTable = ({ tableData, tableHeader }: IProps) => {
                       <span>{item.created_at as string}</span>
                     </td>
                     <td>
-                      <span onClick={() => editHandler(item)}>
-                        <FontAwesomeIcon size="lg" className="cursor-pointer" icon={faEdit} />
-                      </span>
+                      <TableEditButton
+                        editRoute={`currencies/edit/${item.id}`}
+                        deleteUrl={`currencies/delete/${item.id}`}
+                      />
                     </td>
                   </tr>
                 ))}

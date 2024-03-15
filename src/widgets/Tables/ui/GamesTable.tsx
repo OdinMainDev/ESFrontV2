@@ -1,8 +1,6 @@
 import { ITableHeader } from '../models/interface';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { format, fromUnixTime } from 'date-fns';
-import { TableHeader, TablePagination } from '@/features/Table';
+import { TableEditButton, TableHeader, TablePagination } from '@/features/Table';
 import { IGame } from '@/shared/models/interfaces/games';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 
@@ -37,9 +35,10 @@ const GamesTable = ({ tableData, tableHeader }: IProps) => {
                     <span>{format(fromUnixTime(item.created_at), 'dd MMMM yyyy, HH:mm')}</span>
                   </td>
                   <td>
-                    <span>
-                      <FontAwesomeIcon size="lg" className="cursor-pointer" icon={faEdit} />
-                    </span>
+                    <TableEditButton
+                      editRoute={`games/edit/${item.id}`}
+                      deleteUrl={`games/delete/${item.id}`}
+                    />
                   </td>
                 </tr>
               ))}

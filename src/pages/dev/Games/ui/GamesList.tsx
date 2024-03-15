@@ -1,9 +1,9 @@
-import { GamesTable } from '@/widgets/Table';
+import { GamesTable } from '@/widgets/Tables';
 import ContentLayout from '@/shared/layout/ContentLayout';
 import { useEffect, useState } from 'react';
 import { IGame } from '@/shared/models/interfaces/games';
-import { getTableApi } from '@/widgets/Table/api/tablesApi';
-import { gamesListApi } from '@/widgets/Table/api/gamesListApi';
+import { getTableApi } from '@/widgets/Tables/api/tablesApi';
+import { gamesListApi } from '@/widgets/Tables/api/gamesListApi';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import { gamesTableHeader } from '../constants/games';

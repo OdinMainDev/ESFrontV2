@@ -1,13 +1,13 @@
 import ContentLayout from '@/shared/layout/ContentLayout';
 import { useEffect, useState } from 'react';
-import { getTableApi } from '@/widgets/Table/api/tablesApi';
+import { getTableApi } from '@/widgets/Tables/api/tablesApi';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ICasino } from '@/shared/models/interfaces/casinos';
 import { casinosTableHeader } from '../constants';
-import { casinoListApi } from '@/widgets/Table/api/casinoListApi';
-import { CasinoTable } from '@/widgets/Table';
+import { casinoListApi } from '@/widgets/Tables/api/casinoListApi';
+import { CasinoTable } from '@/widgets/Tables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '@/shared/ui/Button';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';

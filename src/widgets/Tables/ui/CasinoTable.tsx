@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { TableHeader, TablePagination } from '@/features/Table';
+import { TableEditButton, TableHeader, TablePagination } from '@/features/Table';
 import { Form } from 'react-bootstrap';
 import { ICasino } from '@/shared/models/interfaces/casinos';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
@@ -38,9 +36,10 @@ const CasinoTable = ({ tableData, tableHeader }: IProps) => {
                       <span>{item.created_at as string}</span>
                     </td>
                     <td>
-                      <span>
-                        <FontAwesomeIcon size="lg" className="cursor-pointer" icon={faEdit} />
-                      </span>
+                      <TableEditButton
+                        editRoute={`casino/edit/${item.id}`}
+                        deleteUrl={`casino/delete/${item.id}`}
+                      />
                     </td>
                   </tr>
                 ))}

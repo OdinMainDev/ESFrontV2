@@ -1,13 +1,13 @@
 import ContentLayout from '@/shared/layout/ContentLayout';
-import { CurrenciesTable } from '@/widgets/Table';
+import { CurrenciesTable } from '@/widgets/Tables';
 import { useEffect, useState } from 'react';
-import { getTableApi } from '@/widgets/Table/api/tablesApi';
+import { getTableApi } from '@/widgets/Tables/api/tablesApi';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import { currenciesTableHeader } from '../constants';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ICurrencies } from '@/shared/models/interfaces/currencies';
-import { currenciesListApi } from '@/widgets/Table/api/currenciesListApi';
+import { currenciesListApi } from '@/widgets/Tables/api/currenciesListApi';
 import Button from '@/shared/ui/Button';
 import { useRouter } from '@/shared/hooks/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
