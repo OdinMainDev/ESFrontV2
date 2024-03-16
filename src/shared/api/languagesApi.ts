@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const languagesApi = () => {
-  return `${import.meta.env.VITE_APP_BASE_URL}/api/get/languages`;
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/get/all-languages`;
 };
 
 export const getLanguagesList = async (): Promise<string[]> => {
