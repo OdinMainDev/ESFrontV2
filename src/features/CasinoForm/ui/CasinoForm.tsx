@@ -83,7 +83,8 @@ const CasinoForm = ({ id }: IProps) => {
     try {
       setValidated(true);
       setLoading(true);
-      const result = await casinoFormApi({ ...data, ...addData });
+      const result = await casinoFormApi(id > 0 ? data : { ...data, ...addData });
+      setData(resDataToState(result));
       setInvalidData(validData);
       if (id === 0) {
         router.push(`casino/edit/${result.id}`);
@@ -96,6 +97,8 @@ const CasinoForm = ({ id }: IProps) => {
       setLoading(false);
     }
   };
+
+  console.log(data);
 
   return (
     <Form noValidate validated={validated} className={styles.container}>
@@ -130,6 +133,13 @@ const CasinoForm = ({ id }: IProps) => {
             </FloatingLabel>
           </div>
         )}
+        <Form.Check
+          type="checkbox"
+          checked={data.is_enabled}
+          onChange={(e) => setData((prev) => ({ ...prev, is_enabled: e.target.checked }))}
+          id="casino-checkbox"
+          label="Включить"
+        />
 
         <FloatingLabel controlId="currency-name" label="Название">
           <Form.Control
