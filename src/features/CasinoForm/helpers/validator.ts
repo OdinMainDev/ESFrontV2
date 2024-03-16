@@ -5,14 +5,22 @@ export const errorValidator = (error: AxiosError<IErrorData>): IIsValidData => {
   if (error.response?.status === 422) {
     const errorData = Object.keys(error.response?.data.errors ?? []);
     return {
-      title: !!errorData.find((item) => item === 'title'),
-      code_alpha: !!errorData.find((item) => item === 'code_alpha'),
-      minor_units: !!errorData.find((item) => item === 'minor_units'),
+      apikey: !!errorData.find((item) => item === 'apikey'),
+      currencies: !!errorData.find((item) => item === 'currencies'),
+      image: !!errorData.find((item) => item === 'image'),
+      languages: !!errorData.find((item) => item === 'image'),
+      name: !!errorData.find((item) => item === 'name'),
+      password: !!errorData.find((item) => item === 'password'),
+      email: !!errorData.find((item) => item === 'email'),
     };
   }
   return {
-    title: false,
-    code_alpha: false,
-    minor_units: false,
+    apikey: false,
+    currencies: false,
+    image: false,
+    languages: false,
+    name: false,
+    password: false,
+    email: false,
   };
 };

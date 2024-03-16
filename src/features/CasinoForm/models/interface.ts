@@ -1,23 +1,36 @@
-export interface ICurrencyFormData {
-  title: string;
-  code_alpha: string;
-  minor_units: number;
+export interface ICasinoFormData extends ICasinoAddData {
+  id: number;
+  name: string;
+  apikey: string;
+  is_enabled: boolean;
+  languages: string[];
+  currencies: string[];
+  image: string;
+}
+
+export interface ICasinoAddData {
+  email?: string;
+  password?: string;
 }
 
 export interface IErrorData {
   errors: {
-    minor_units: string[];
-    title: string[];
-    code_alpha: string[];
+    apikey: string[];
+    currencies: string[];
+    image: string[];
+    languages: string[];
+    name: string[];
+    email: string[];
+    password: string[];
   };
 }
 
 export interface IIsValidData {
-  minor_units: boolean;
-  title: boolean;
-  code_alpha: boolean;
-}
-
-export interface IResData extends ICurrencyFormData {
-  id: number;
+  apikey: boolean;
+  currencies: boolean;
+  image: boolean;
+  languages: boolean;
+  name: boolean;
+  email: boolean;
+  password: boolean;
 }

@@ -1,53 +1,77 @@
 import { FloatingLabel, Form } from 'react-bootstrap';
-import styles from './CurrenciesForm.module.scss';
+import styles from './CasinoForm.module.scss';
 import { useEffect, useState } from 'react';
-import { ICurrencyFormData, IErrorData, IIsValidData } from '../models/interface';
-import { currencyFormApi } from '../api/currenciesApi';
-import { getCurrencyByIdApiHandler } from '@/shared/api/dev/currencyApi';
+import { ICasinoAddData, ICasinoFormData, IErrorData, IIsValidData } from '../models/interface';
+import { casinoFormApi } from '../api/currenciesApi';
 import Button from '@/shared/ui/Button';
 import { AxiosError } from 'axios';
+import { MultiSelect } from 'react-multi-select-component';
 import { errorValidator } from '../helpers/validator';
 import { useRouter } from '@/shared/hooks/navigation';
+import { getCasinoByIdApiHandler } from '@/shared/api/dev/casinosApi';
+import { resDataToState } from '../helpers/mapper';
+import { getLanguagesList } from '@/shared/api/languagesApi';
+import { IOption } from '@/shared/models/interfaces/select';
+import { getCurrenciesList } from '@/shared/api/currenciesApi';
+import { ImageUpload } from '@/entities/ImageUpload';
 
 interface IProps {
   id: number;
 }
 
 const CasinoForm = ({ id }: IProps) => {
-  const [data, setData] = useState<ICurrencyFormData>({
-    title: '',
-    code_alpha: '',
-    minor_units: '' as unknown as number,
+  const [data, setData] = useState<ICasinoFormData>({
+    id: 0,
+    name: '',
+    apikey: '',
+    is_enabled: false,
+    languages: [],
+    currencies: [],
+    image: '',
   });
-  const validData = {
-    title: false,
-    code_alpha: false,
-    minor_units: false,
+  const validData: IIsValidData = {
+    apikey: false,
+    currencies: false,
+    image: false,
+    languages: false,
+    name: false,
+    email: false,
+    password: false,
   };
   const [invalidData, setInvalidData] = useState<IIsValidData>(validData);
   const [title, setTitle] = useState('');
   const [validated, setValidated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [languages, setLanguages] = useState<string[]>([]);
+  const [currencies, setCurrencies] = useState<string[]>([]);
+  const [addData, setAddData] = useState<ICasinoAddData>({
+    email: '',
+    password: '',
+  });
   const router = useRouter();
 
   useEffect(() => {
+    void getLanguages();
+    void getCurrencies();
     if (id > 0) {
-      void getCurrencyById();
+      void getDataById();
     }
   }, []);
 
-  const getCurrencyById = async () => {
+  const getLanguages = async () => {
+    setLanguages(await getLanguagesList());
+  };
+
+  const getCurrencies = async () => {
+    setCurrencies((await getCurrenciesList()).map((item) => item.code_alpha));
+  };
+
+  const getDataById = async () => {
     try {
       setLoading(true);
-      const data = await getCurrencyByIdApiHandler(id);
-      if (data) {
-        setData({
-          title: data.title,
-          code_alpha: data.code_alpha,
-          minor_units: data.minor_units,
-        });
-        setTitle(data.title);
-      }
+      const data = await getCasinoByIdApiHandler(id);
+      setData(resDataToState(data));
+      setTitle(data.name);
     } catch (error) {
       console.error(error);
     } finally {
@@ -59,10 +83,10 @@ const CasinoForm = ({ id }: IProps) => {
     try {
       setValidated(true);
       setLoading(true);
-      const result = await currencyFormApi(id, data);
+      const result = await casinoFormApi({ ...data, ...addData });
       setInvalidData(validData);
       if (id === 0) {
-        router.push(`currencies/edit/${result.id}`);
+        router.push(`casino/edit/${result.id}`);
       }
     } catch (e) {
       setValidated(false);
@@ -76,29 +100,79 @@ const CasinoForm = ({ id }: IProps) => {
   return (
     <Form noValidate validated={validated} className={styles.container}>
       {title && <div className={styles.title}>{title}</div>}
-      <FloatingLabel controlId="currency-name" label="Введите название">
-        <Form.Control
-          required
-          isInvalid={invalidData.title}
-          value={data.title}
-          onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))}
-          placeholder="Введите название"
+      <div className="flex flex-col	gap-[10px] mb-[20px]">
+        <ImageUpload
+          size="5xl"
+          src={data.image}
+          onChange={(image) => setData((prev) => ({ ...prev, image: image }))}
         />
-      </FloatingLabel>
-      <div className={styles.inputs}>
-        <FloatingLabel controlId="currency-minor" label="Введите minor units">
+        {id === 0 && (
+          <div className={styles.inputs}>
+            <Form.Control
+              required
+              className="flex-1"
+              isInvalid={invalidData.email}
+              value={addData.email}
+              onChange={(e) => setAddData((prev) => ({ ...prev, email: e.target.value }))}
+              type="email"
+              placeholder="name@example.com"
+            />
+            <FloatingLabel controlId="password" label="Password" className="form-icon-container">
+              <Form.Control
+                required
+                isInvalid={invalidData.password}
+                className="flex-1"
+                value={addData.password}
+                onChange={(e) => setAddData((prev) => ({ ...prev, password: e.target.value }))}
+                type="password"
+                placeholder="Password"
+              />
+            </FloatingLabel>
+          </div>
+        )}
+
+        <FloatingLabel controlId="currency-name" label="Название">
           <Form.Control
             required
-            isInvalid={invalidData.minor_units}
-            value={data.minor_units}
-            onChange={(e) =>
-              setData((prev) => ({ ...prev, minor_units: e.target.value as unknown as number }))
-            }
-            type="number"
-            placeholder="Введите minor units"
+            isInvalid={invalidData.name}
+            value={data.name}
+            onChange={(e) => setData((prev) => ({ ...prev, name: e.target.value }))}
+            placeholder="Введите название"
           />
         </FloatingLabel>
+        <FloatingLabel controlId="currency-api" label="Api token">
+          <Form.Control
+            required
+            isInvalid={invalidData.apikey}
+            value={data.apikey}
+            placeholder="Api token"
+            onChange={(e) => setData((prev) => ({ ...prev, apikey: e.target.value }))}
+          />
+        </FloatingLabel>
+        <div className={styles.inputs}>
+          <MultiSelect
+            hasSelectAll={false}
+            overrideStrings={{ allItemsAreSelected: data.languages.join(', ') }}
+            options={languages.map((item) => ({ label: item, value: item }))}
+            value={data.languages.map((item) => ({ label: item, value: item }))}
+            onChange={(value: IOption[]) =>
+              setData((prev) => ({ ...prev, languages: value.map((item) => item.value) }))
+            }
+            labelledBy="Select"
+          />
+          <MultiSelect
+            hasSelectAll={false}
+            overrideStrings={{ allItemsAreSelected: data.currencies.join(', ') }}
+            options={currencies.map((item) => ({ label: item, value: item }))}
+            value={data.currencies.map((item) => ({ label: item, value: item }))}
+            onChange={(value: IOption[]) =>
+              setData((prev) => ({ ...prev, currencies: value.map((item) => item.value) }))
+            }
+            labelledBy="Select"
+          />
+        </div>
       </div>
+
       <Button
         variant="primary"
         className="w-[100%]"

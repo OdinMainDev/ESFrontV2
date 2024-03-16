@@ -1,5 +1,5 @@
 import { TableEditButton, TableHeader, TablePagination } from '@/features/Table';
-import { Form } from 'react-bootstrap';
+import { Form, Table } from 'react-bootstrap';
 import { ICasino } from '@/shared/models/interfaces/casinos';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ITableHeader } from '../models/interface';
@@ -14,7 +14,7 @@ const CasinoTable = ({ tableData, tableHeader }: IProps) => {
     <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
       <div>
         <div className="scrollbar ms-n1 ps-1">
-          <table className="table">
+          <Table className="table">
             <TableHeader tableHeader={tableHeader} />
             <tbody>
               {tableData &&
@@ -44,7 +44,7 @@ const CasinoTable = ({ tableData, tableHeader }: IProps) => {
                   </tr>
                 ))}
             </tbody>
-          </table>
+          </Table>
         </div>
         <TablePagination recordsTotal={tableData?.recordsTotal ?? 0} />
       </div>
