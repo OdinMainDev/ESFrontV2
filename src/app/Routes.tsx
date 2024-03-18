@@ -42,7 +42,7 @@ const routes: RouteObject[] = [
                 ],
               },
               {
-                path: 'casino',
+                path: 'casinos',
                 children: [
                   {
                     index: true,

@@ -1,3 +1,4 @@
+import { PageBreadcrumb } from '@/entities/PageBreadcrumbItem';
 import { ReactNode } from 'react';
 
 interface IProps {
@@ -8,6 +9,7 @@ interface IProps {
 const ContentLayout = ({ title, children }: IProps) => {
   return (
     <div>
+      <PageBreadcrumb />
       <h2 className="mb-4">{title}</h2>
       {children}
     </div>

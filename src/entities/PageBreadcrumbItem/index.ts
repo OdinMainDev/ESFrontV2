@@ -1,4 +1,4 @@
 import PageBreadcrumb from './ui/PageBreadcrumbItem';
-import { PageBreadcrumbItem } from './ui/PageBreadcrumbItem';
+import { IPageBreadcrumbItem } from './ui/PageBreadcrumbItem';
 export { PageBreadcrumb };
-export type { PageBreadcrumbItem };
+export type { IPageBreadcrumbItem };

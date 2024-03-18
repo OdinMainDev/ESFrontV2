@@ -1,23 +1,54 @@
 import classNames from 'classnames';
 import { Breadcrumb } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
-export interface PageBreadcrumbItem {
+export interface IPageBreadcrumbItem {
   label: string;
   url?: string;
   active?: boolean;
 }
 
 interface PageBreadcrumbProps {
-  items: PageBreadcrumbItem[];
   className?: string;
 }
 
-const PageBreadcrumb = ({ items, className }: PageBreadcrumbProps) => {
+const PageBreadcrumb = ({ className }: PageBreadcrumbProps) => {
+  const location = useLocation();
+  const pathnames = location.pathname.split('/').filter((x) => x && !['ru', 'en'].includes(x));
+  const { t } = useTranslation();
+  const breadcrumbs: IPageBreadcrumbItem[] = [
+    { url: '/', label: 'home' },
+    ...buildBreadcrumbs(pathnames),
+  ];
+
+  function buildBreadcrumbs(paths: string[]): IPageBreadcrumbItem[] {
+    let basePath = '';
+    const breadcrumbs = paths.map((path, index, arr) => {
+      basePath += index === 0 ? `${path}` : `/${path}`;
+
+      const isLast = index === arr.length - 1;
+
+      const breadcrumb: IPageBreadcrumbItem = {
+        label: path,
+        url: `/${basePath}/`,
+        active: isLast ? true : undefined,
+      };
+
+      if (path === 'edit') {
+        breadcrumb.active = true;
+      }
+
+      return breadcrumb;
+    });
+
+    return breadcrumbs;
+  }
   return (
     <Breadcrumb className={classNames(className, 'mb-2')}>
-      {items.map((item) => (
+      {breadcrumbs.map((item) => (
         <Breadcrumb.Item href={item.url} active={item.active} key={item.label}>
-          {item.label}
+          {t(item.label)}
         </Breadcrumb.Item>
       ))}
     </Breadcrumb>

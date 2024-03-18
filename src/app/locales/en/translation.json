@@ -1,5 +1,11 @@
 {
   "login": "Sign in",
   "GetAccess": "Get access to your account",
-  "loginError": "Login failed"
+  "loginError": "Login failed",
+  "games": "Games",
+  "list": "List",
+  "casinos": "Casinos",
+  "currencies": "Currencies",
+  "add": "Add",
+  "home": "Home"
 }

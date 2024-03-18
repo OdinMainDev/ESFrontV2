@@ -98,8 +98,6 @@ const CasinoForm = ({ id }: IProps) => {
     }
   };
 
-  console.log(data);
-
   return (
     <Form noValidate validated={validated} className={styles.container}>
       {title && <div className={styles.title}>{title}</div>}

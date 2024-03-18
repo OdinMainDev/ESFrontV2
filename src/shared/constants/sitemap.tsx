@@ -37,6 +37,8 @@ export interface RouteItems {
   active?: boolean;
 }
 const pathParts = window.location.pathname.split('/').filter(Boolean);
+console.log(pathParts[0]);
+const lang = pathParts[0] ? `/${pathParts[0]}` : '';
 export const routes: RouteItems[] = [
   {
     label: 'Escasino',
@@ -50,7 +52,7 @@ export const routes: RouteItems[] = [
         pages: [
           {
             name: 'Список',
-            path: `/${pathParts[0]}/games`,
+            path: `${lang}/games`,
             pathName: 'games-list',
             active: true,
           },
@@ -63,14 +65,14 @@ export const routes: RouteItems[] = [
         pages: [
           {
             name: 'Список',
-            path: `/${pathParts[0]}/casino`,
-            pathName: 'casino-list',
+            path: `${lang}/casinos`,
+            pathName: 'casinos-list',
             active: true,
           },
           {
             name: 'Добавить',
-            path: `/${pathParts[0]}/casino/add`,
-            pathName: 'casino-add',
+            path: `${lang}/casinos/add`,
+            pathName: 'casinos-add',
             active: true,
           },
         ],
@@ -82,13 +84,13 @@ export const routes: RouteItems[] = [
         pages: [
           {
             name: 'Список',
-            path: `/${pathParts[0]}/currencies`,
+            path: `${lang}/currencies`,
             pathName: 'currencies-list',
             active: true,
           },
           {
             name: 'Добавить',
-            path: `/${pathParts[0]}/currencies/add`,
+            path: `${lang}/currencies/add`,
             pathName: 'currencies-add',
             active: true,
           },

@@ -41,12 +41,6 @@ export const gamesTableColumns: ITableColumns[] = [
     export: true,
   },
   {
-    label: 'Провайдер',
-    value: 'game_provider',
-    sort: false,
-    export: true,
-  },
-  {
     label: 'Дата создания',
     value: 'created_at',
     sort: true,
