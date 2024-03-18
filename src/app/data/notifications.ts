@@ -1,11 +1,11 @@
-import { PageBreadcrumbItem } from '@/entities/PageBreadcrumbItem';
+import { IPageBreadcrumbItem } from '@/entities/PageBreadcrumbItem';
 import team30 from '@/shared/assets/images/team/40x40/30.webp';
 import team57 from '@/shared/assets/images/team/40x40/57.webp';
 import team59 from '@/shared/assets/images/team/40x40/59.webp';
 import team58 from '@/shared/assets/images/team/40x40/58.webp';
 import team60 from '@/shared/assets/images/team/40x40/60.webp';
 import team34 from '@/shared/assets/images/team/40x40/34.webp';
-export const notificationsBreadcrumbItems: PageBreadcrumbItem[] = [
+export const notificationsBreadcrumbItems: IPageBreadcrumbItem[] = [
   {
     label: 'Pages',
     url: '#!',
