@@ -43,8 +43,8 @@ export const casinosTableColumns: ITableColumns[] = [
     render: (item: ICasino) => {
       return (
         <TableEditButton
-          editRoute={`casino/edit/${item.id}`}
-          deleteUrl={`casino/delete/${item.id}`}
+          editRoute={`casinos/edit/${item.id}`}
+          deleteUrl={`casinos/delete/${item.id}`}
         />
       );
     },
