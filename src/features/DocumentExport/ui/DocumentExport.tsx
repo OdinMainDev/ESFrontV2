@@ -66,7 +66,7 @@ const DocumentExport = ({ headers, data, fileName = 'tableData' }: IProps) => {
               filename={fileName}
               data={data}
             >
-              CSV export
+              CSV
             </CSVLink>
           </Dropdown.Item>
         </Dropdown.Menu>

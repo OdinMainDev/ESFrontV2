@@ -1,13 +1,13 @@
 import classNames from 'classnames';
-import { ITableHeader } from '../models/table';
+import { ITableColumns } from '../models/table';
 import { useEffect, useState } from 'react';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 
 interface IProps {
-  tableHeader: ITableHeader[];
+  tableColumns: ITableColumns[];
 }
-const TableHeader = ({ tableHeader }: IProps) => {
+const TableHeader = ({ tableColumns }: IProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterParams, setFilterParams] = useState<IFilterParams>({
     length: Number(searchParams.get('length')) || 10,
@@ -51,7 +51,7 @@ const TableHeader = ({ tableHeader }: IProps) => {
   return (
     <thead>
       <tr>
-        {tableHeader.map((item) => (
+        {tableColumns.map((item) => (
           <th
             onClick={() => item.sort && toggleFilter(item.value)}
             key={item.value}

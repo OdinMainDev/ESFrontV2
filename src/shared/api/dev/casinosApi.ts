@@ -6,6 +6,10 @@ const getCasinoByIdApi = (id: number) => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/dev/casinos/get/${id}`;
 };
 
+export const casinoListApi = () => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/dev/casinos/list`;
+};
+
 export const getCasinoByIdApiHandler = async (id: number): Promise<ICasino> => {
   const { data } = await axios.get<{ data: ICasino }>(getCasinoByIdApi(id), {
     headers: {

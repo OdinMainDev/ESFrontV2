@@ -1,13 +1,10 @@
 import ContentLayout from '@/shared/layout/ContentLayout';
-import { CurrenciesTable } from '@/widgets/Tables';
 import { useEffect, useState } from 'react';
-import { getTableApi } from '@/widgets/Tables/api/tablesApi';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
-import { currenciesTableHeader } from '../constants';
+import { currenciesTableColumns } from '../constants';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ICurrencies } from '@/shared/models/interfaces/currencies';
-import { currenciesListApi } from '@/widgets/Tables/api/currenciesListApi';
 import Button from '@/shared/ui/Button';
 import { useRouter } from '@/shared/hooks/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,11 +13,13 @@ import { FilterButton } from '@/features/FilterModal';
 import { currenciesFilterApi } from '../api/currenciesApi';
 import { DocumentExport } from '@/features/DocumentExport';
 import { fromUnixTime, format } from 'date-fns';
+import { Table, getTableApi } from '@/features/Table';
+import { currenciesListApi } from '@/shared/api/dev/currencyApi';
 
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICurrencies> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const tableHeader = currenciesTableHeader;
+  const tableColumns = currenciesTableColumns;
   const router = useRouter();
 
   const getData = async (filterParams: IFilterParams) => {
@@ -43,7 +42,7 @@ const CasinoList = () => {
         length: 10,
         start: 0,
         order_direction: 'asc',
-        order_column: tableHeader[0].value,
+        order_column: tableColumns[0].value,
       } as unknown as URLSearchParamsInit);
     }
   }, []);
@@ -54,7 +53,7 @@ const CasinoList = () => {
         length: Number(searchParams.get('length')) || 10,
         start: Number(searchParams.get('start')),
         order_direction: searchParams.get('order_direction') || 'asc',
-        order_column: searchParams.get('order_column') || tableHeader[0].value,
+        order_column: searchParams.get('order_column') || tableColumns[0].value,
         'filter_name[]': searchParams.getAll('filter_name[]') || [],
         'filter_value[]': searchParams.getAll('filter_value[]') || [],
       };
@@ -77,13 +76,17 @@ const CasinoList = () => {
           <DocumentExport
             fileName="Currencies_Table"
             data={tableData?.data ?? []}
-            headers={currenciesTableHeader.slice(0, -1)}
+            headers={tableColumns.filter((item) => item.export)}
           />
         </div>
 
         <FilterButton url={currenciesFilterApi()} />
       </div>
-      <CurrenciesTable tableData={tableData} tableHeader={currenciesTableHeader} />
+      <Table
+        tableColumns={tableColumns}
+        tableData={tableData?.data || []}
+        recordsTotal={tableData?.recordsTotal ?? 0}
+      />
     </ContentLayout>
   );
 };

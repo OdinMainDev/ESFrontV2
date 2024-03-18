@@ -15,6 +15,7 @@ const TablePagination = ({ recordsTotal }: IProps) => {
     order_direction: searchParams.get('order_direction') ?? '',
     order_column: searchParams.get('order_column') ?? '',
   });
+
   const paginationNumbers = Math.ceil(recordsTotal / (filterParams.length ?? 0));
 
   useEffect(() => {

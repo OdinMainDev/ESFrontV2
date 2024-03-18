@@ -1,6 +1,6 @@
 export interface IGame {
   id: number;
-  created_at: number;
+  created_at: Date | string | number;
   updated_at: number;
   name: string;
   system_name: string;
