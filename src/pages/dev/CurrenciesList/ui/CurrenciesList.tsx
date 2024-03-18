@@ -15,12 +15,14 @@ import { DocumentExport } from '@/features/DocumentExport';
 import { fromUnixTime, format } from 'date-fns';
 import { Table, getTableApi } from '@/features/Table';
 import { currenciesListApi } from '@/shared/api/dev/currencyApi';
+import { useTranslation } from 'react-i18next';
 
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICurrencies> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const tableColumns = currenciesTableColumns;
   const router = useRouter();
+  const { t } = useTranslation();
 
   const getData = async (filterParams: IFilterParams) => {
     const data = await getTableApi<ICurrencies>(currenciesListApi(), filterParams);
@@ -58,7 +60,7 @@ const CasinoList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title="Список валют">
+    <ContentLayout title={t('currencies')}>
       <div className="flex justify-between mb-3">
         <div className="flex">
           <Button

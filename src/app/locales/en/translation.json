@@ -7,5 +7,12 @@
   "casinos": "Casinos",
   "currencies": "Currencies",
   "add": "Add",
-  "home": "Home"
+  "home": "Home",
+  "casinos-list": "Casinos List",
+  "casinos-edit": "Edit casino",
+  "casinos-add": "Add casino",
+  "currencies-edit": "Edit currency",
+  "currencies-add": "Add currency"
+
+
 }

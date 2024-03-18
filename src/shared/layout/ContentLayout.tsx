@@ -9,7 +9,9 @@ interface IProps {
 const ContentLayout = ({ title, children }: IProps) => {
   return (
     <div>
-      <PageBreadcrumb />
+      <div className="pb-[15px]">
+        <PageBreadcrumb />
+      </div>
       <h2 className="mb-4">{title}</h2>
       {children}
     </div>

@@ -1,5 +1,5 @@
 import { Nav, Navbar } from 'react-bootstrap';
-import { routes } from '@/shared/constants/sitemap';
+import { useGenerateRoutes } from '@/shared/constants/sitemap';
 import { capitalize } from '@/shared/helpers/utils';
 import NavbarVerticalMenu from './NavbarVerticalMenu';
 import { UilArrowFromRight, UilLeftArrowToLeft } from '@iconscout/react-unicons';
@@ -22,6 +22,7 @@ const NavbarVerical = () => {
   } = useAppContext();
 
   const { breakpoints } = useBreakpoints();
+  const routes = useGenerateRoutes();
 
   return (
     <NavbarVerticalCollapseProvider>

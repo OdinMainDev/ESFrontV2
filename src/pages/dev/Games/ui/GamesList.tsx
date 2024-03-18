@@ -10,11 +10,13 @@ import { DocumentExport } from '@/features/DocumentExport';
 import { FilterButton } from '@/features/FilterModal';
 import { format, fromUnixTime } from 'date-fns';
 import { gamesFilterApi, gamesListApi } from '@/shared/api/dev/gamesApi';
+import { useTranslation } from 'react-i18next';
 
 const GamesList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<IGame> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const tableColumns = gamesTableColumns;
+  const { t } = useTranslation();
 
   const getData = async (filterParams: IFilterParams) => {
     const data = await getTableApi<IGame>(gamesListApi(), filterParams);
@@ -31,17 +33,6 @@ const GamesList = () => {
   };
 
   useEffect(() => {
-    if (!Number(searchParams.get('length'))) {
-      setSearchParams({
-        length: 10,
-        start: 0,
-        order_direction: 'asc',
-        order_column: tableColumns[0].value,
-      } as unknown as URLSearchParamsInit);
-    }
-  }, []);
-
-  useEffect(() => {
     if (Number(searchParams.get('length'))) {
       const filter = {
         length: Number(searchParams.get('length')) || 10,
@@ -50,11 +41,18 @@ const GamesList = () => {
         order_column: searchParams.get('order_column') || tableColumns[0].value,
       };
       void getData(filter);
+    } else {
+      setSearchParams({
+        length: 10,
+        start: 0,
+        order_direction: 'asc',
+        order_column: tableColumns[0].value,
+      } as unknown as URLSearchParamsInit);
     }
   }, [searchParams]);
 
   return (
-    <ContentLayout title="Игры">
+    <ContentLayout title={t('games')}>
       <div className="flex justify-between mb-3">
         <div className="flex">
           <DocumentExport

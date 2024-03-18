@@ -8,6 +8,7 @@ import {
   // UilFilesLandscapesAlt,
   // UilPuzzlePiece
 } from '@iconscout/react-unicons';
+import { useTranslation } from 'react-i18next';
 
 type NewType = 'font-awesome';
 
@@ -39,63 +40,69 @@ export interface RouteItems {
 const pathParts = window.location.pathname.split('/').filter(Boolean);
 console.log(pathParts[0]);
 const lang = pathParts[0] ? `/${pathParts[0]}` : '';
-export const routes: RouteItems[] = [
-  {
-    label: 'Escasino',
-    active: true,
-    icon: UilChartPie,
-    pages: [
-      {
-        name: 'Игры',
-        icon: 'pie-chart',
-        active: true,
-        pages: [
-          {
-            name: 'Список',
-            path: `${lang}/games`,
-            pathName: 'games-list',
-            active: true,
-          },
-        ],
-      },
-      {
-        name: 'Казино',
-        icon: 'pie-chart',
-        active: true,
-        pages: [
-          {
-            name: 'Список',
-            path: `${lang}/casinos`,
-            pathName: 'casinos-list',
-            active: true,
-          },
-          {
-            name: 'Добавить',
-            path: `${lang}/casinos/add`,
-            pathName: 'casinos-add',
-            active: true,
-          },
-        ],
-      },
-      {
-        name: 'Валюты',
-        icon: 'pie-chart',
-        active: true,
-        pages: [
-          {
-            name: 'Список',
-            path: `${lang}/currencies`,
-            pathName: 'currencies-list',
-            active: true,
-          },
-          {
-            name: 'Добавить',
-            path: `${lang}/currencies/add`,
-            pathName: 'currencies-add',
-            active: true,
-          },
-        ],
-      },
-    ],
-  },
-];
+
+export const useGenerateRoutes = () => {
+  const { t } = useTranslation();
+  const routes: RouteItems[] = [
+    {
+      label: 'Escasino',
+      active: true,
+      icon: UilChartPie,
+      pages: [
+        {
+          name: t('games'),
+          icon: 'pie-chart',
+          active: true,
+          pages: [
+            {
+              name: t('list'),
+              path: `${lang}/games`,
+              pathName: 'games-list',
+              active: true,
+            },
+          ],
+        },
+        {
+          name: t('casinos'),
+          icon: 'pie-chart',
+          active: true,
+          pages: [
+            {
+              name: t('list'),
+              path: `${lang}/casinos`,
+              pathName: 'casinos-list',
+              active: true,
+            },
+            {
+              name: t('add'),
+              path: `${lang}/casinos/add`,
+              pathName: 'casinos-add',
+              active: true,
+            },
+          ],
+        },
+        {
+          name: t('currencies'),
+          icon: 'pie-chart',
+          active: true,
+          pages: [
+            {
+              name: t('list'),
+              path: `${lang}/currencies`,
+              pathName: 'currencies-list',
+              active: true,
+            },
+            {
+              name: t('add'),
+              path: `${lang}/currencies/add`,
+              pathName: 'currencies-add',
+              active: true,
+            },
+          ],
+        },
+      ],
+    },
+  ];
+
+  return routes;
+};

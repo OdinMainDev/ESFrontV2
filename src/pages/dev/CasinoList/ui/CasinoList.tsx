@@ -15,12 +15,14 @@ import { casinosFilterApi } from '../api/casinosApi';
 import { fromUnixTime, format } from 'date-fns';
 import { Table, getTableApi } from '@/features/Table';
 import { casinoListApi } from '@/shared/api/dev/casinosApi';
+import { useTranslation } from 'react-i18next';
 
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICasino> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const tableColumns = casinosTableColumns;
   const router = useRouter();
+  const { t } = useTranslation();
 
   const getData = async (filterParams: IFilterParams) => {
     const data = await getTableApi<ICasino>(casinoListApi(), filterParams);
@@ -58,7 +60,7 @@ const CasinoList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title="Список казино">
+    <ContentLayout title={t('casinos-list')}>
       <div className="flex justify-between mb-3">
         <div className="flex">
           <Button

@@ -2,13 +2,14 @@
 import { capitalize } from '@/shared/helpers/utils';
 import { useEffect, useState } from 'react';
 import { Dropdown, Nav } from 'react-bootstrap';
-import { RouteItems, routes } from '@/shared/constants/sitemap';
+import { RouteItems, useGenerateRoutes } from '@/shared/constants/sitemap';
 import TopNavMegaMenu from './TopNavMegaMenu';
 import TopNavItem from './TopNavItem';
 import { useBreakpoints } from '@/shared/providers/BreakpointsProvider';
 import { useLocation } from 'react-router-dom';
 
 const NavbarTopNav = () => {
+  const routes = useGenerateRoutes();
   return (
     <Nav className="navbar-nav-top pb-4 pb-lg-0 scrollbar">
       {routes.map((route) => (

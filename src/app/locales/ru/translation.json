@@ -7,6 +7,10 @@
   "casinos": "Казино",
   "currencies": "Валюты",
   "add": "Добавить",
-  "home": "Главная"
-  
+  "home": "Главная",
+  "casinos-list": "Список казино",
+  "casinos-edit": "Изменить казино",
+  "casinos-add": "Добавить казино",
+  "currencies-edit": "Изменить валюту",
+  "currencies-add": "Добавить валюту"
 }
