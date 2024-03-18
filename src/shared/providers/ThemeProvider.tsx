@@ -19,11 +19,11 @@ const ThemeContext = createContext<ThemeContextType>(defaultValue);
 const getTheme = (): themeType => {
   const theme = localStorage.getItem('theme') as themeType;
   if (!theme) {
-    document.body.classList.add('light');
+    document.documentElement.classList.add('light');
     localStorage.setItem('theme', 'light');
     return 'light';
   } else {
-    document.body.classList.add(theme);
+    document.documentElement.classList.add(theme);
     return theme;
   }
 };
@@ -45,12 +45,12 @@ const ThemeProvider = ({ children }: IProps) => {
   const toggleTheme = () => {
     const selectedTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(selectedTheme);
-    document.body.classList.add(selectedTheme);
+    document.documentElement.classList.add(selectedTheme);
   };
 
   const selectTheme = (theme: themeType) => {
     setTheme(theme);
-    document.body.classList.add(theme);
+    document.documentElement.classList.add(theme);
   };
 
   return (

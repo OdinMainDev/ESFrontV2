@@ -5,10 +5,14 @@ import ProfileDropdownMenu from './ProfileDropdownMenu';
 import FeatherIcon from 'feather-icons-react';
 import { Link } from 'react-router-dom';
 import NotificationDropdownMenu from './NotificationDropdownMenu';
+import { ThemeToggler } from '@/features/ThemeToggler';
 
 const NavItems = () => {
   return (
     <div className="navbar-nav navbar-nav-icons flex-row">
+      <Nav.Item>
+        <ThemeToggler />
+      </Nav.Item>
       <Nav.Item>
         <Dropdown autoClose="outside" className="h-100">
           <Dropdown.Toggle

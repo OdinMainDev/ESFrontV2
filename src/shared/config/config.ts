@@ -18,7 +18,7 @@ export interface Config {
 export const initialConfig: Config = {
   isNavbarVerticalCollapsed: false,
   openNavbarVertical: false, // for responsive
-  theme: 'light',
+  theme: (localStorage.getItem('theme') as ThemeVariant) ?? 'light',
   navbarTopAppearance: 'default',
   navbarVerticalAppearance: 'default',
   navbarPosition: 'vertical',

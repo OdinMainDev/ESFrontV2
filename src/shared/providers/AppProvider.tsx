@@ -74,6 +74,12 @@ const AppProvider = ({ children }: PropsWithChildren) => {
       document.documentElement.classList.remove('navbar-combo');
     }
 
+    if (config.theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
     if (config.navbarPosition === 'dual') {
       setConfig({
         navbarTopShape: 'default',

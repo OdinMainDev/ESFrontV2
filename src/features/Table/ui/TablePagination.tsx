@@ -51,7 +51,7 @@ const TablePagination = ({ recordsTotal }: IProps) => {
   };
 
   return (
-    <div className="flex items-center py-1 row">
+    <div className="flex items-center py-[20px] row">
       <div className="d-flex fs-9 col">
         <p className="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900">
           {filterParams.start + 1} to {filterParams.length + filterParams.start}{' '}
