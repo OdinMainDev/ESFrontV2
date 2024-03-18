@@ -23,6 +23,14 @@
   cursor: pointer;
 }
 
+.dropdown-container {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.8rem;
+  background-color: var(--esfront-input-bg) !important;
+  border: 1px solid var(--esfront-input-border-color) !important;
+}
+
 .input-with-icon {
   padding-right: calc(1rem + 20px) !important;
 }
