@@ -7,7 +7,7 @@ import Error500 from '@/pages/errors/Error500';
 import { Auth } from '@/pages/Auth';
 import App from './App';
 import { ComingSoon } from '@/pages/ComingSoon';
-import { GamesList } from '@/pages/dev/Games';
+import { GamesEdit, GamesList } from '@/pages/dev/Games';
 import { CasinoAdd, CasinoEdit, CasinoList } from '@/pages/dev/CasinoList';
 import { CurrenciesAdd, CurrenciesEdit, CurrenciesList } from '@/pages/dev/CurrenciesList';
 import ProtectedRouteProvider from './provider/ProtectedRouteProvider';
@@ -38,6 +38,10 @@ const routes: RouteObject[] = [
                   {
                     index: true,
                     element: <GamesList />,
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <GamesEdit />,
                   },
                 ],
               },

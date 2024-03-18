@@ -1,7 +1,7 @@
 import { TableEditButton } from '@/features/Table';
 import { ITableColumns } from '@/features/Table/models/table';
 import { ICasino } from '@/shared/models/interfaces/casinos';
-import { Form } from 'react-bootstrap';
+import Badge from '@/shared/ui/Badge';
 
 export const casinosTableColumns: ITableColumns[] = [
   {
@@ -17,8 +17,14 @@ export const casinosTableColumns: ITableColumns[] = [
     render: (item: ICasino) => {
       return (
         <div className="flex">
-          <Form.Check type="checkbox" checked={item.is_enabled} disabled />
-          <span>{item.is_enabled}</span>
+          <Badge
+            bg={item.is_enabled ? 'success' : 'danger'}
+            variant="esfront"
+            iconPosition="end"
+            className="fs-10"
+          >
+            {item.is_enabled ? 'on' : 'off'}
+          </Badge>
         </div>
       );
     },

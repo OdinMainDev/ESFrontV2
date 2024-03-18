@@ -67,7 +67,7 @@ const CasinoList = () => {
             variant="primary"
             className="mr-[10px]"
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
-            onClick={() => router.push('casino/add')}
+            onClick={() => router.push('casinos/add')}
           >
             Добавить Казино
           </Button>

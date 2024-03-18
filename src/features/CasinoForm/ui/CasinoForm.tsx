@@ -14,6 +14,7 @@ import { getLanguagesList } from '@/shared/api/languagesApi';
 import { IOption } from '@/shared/models/interfaces/select';
 import { getCurrenciesList } from '@/shared/api/currenciesApi';
 import { ImageUpload } from '@/entities/ImageUpload';
+import { v4 as uuidv4 } from 'uuid';
 
 interface IProps {
   id: number;
@@ -23,7 +24,7 @@ const CasinoForm = ({ id }: IProps) => {
   const [data, setData] = useState<ICasinoFormData>({
     id: 0,
     name: '',
-    apikey: '',
+    apikey: uuidv4(),
     is_enabled: false,
     languages: [],
     currencies: [],

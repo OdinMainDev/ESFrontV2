@@ -14,10 +14,7 @@ const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
 
   return (
     <Dropdown as={ButtonGroup} className="position-static">
-      <Dropdown.Toggle
-        variant="phenix-secondary"
-        className="px-7 flex-shrink-0 dropdown-caret-none"
-      >
+      <Dropdown.Toggle variant="phenix-secondary" className="flex-shrink-0 dropdown-caret-none">
         ...
       </Dropdown.Toggle>
       <Dropdown.Menu>
@@ -32,8 +29,8 @@ const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
           </Button>
         </Dropdown.Item>
         <Dropdown.Item onClick={() => console.log(deleteUrl)}>
-          <Button size="sm">
-            <span className="text-[#f48270]">Delete customer</span>
+          <Button size="sm" className="w-100">
+            <span className="text-[#f48270]">Delete</span>
           </Button>
         </Dropdown.Item>
       </Dropdown.Menu>

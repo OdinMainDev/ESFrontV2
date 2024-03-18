@@ -1,3 +1,4 @@
 import GamesList from './ui/GamesList';
+import GamesEdit from './ui/GamesEdit';
 
-export { GamesList };
+export { GamesList, GamesEdit };
