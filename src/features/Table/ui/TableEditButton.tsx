@@ -1,6 +1,6 @@
 import { useRouter } from '@/shared/hooks/navigation';
 import Button from '@/shared/ui/Button';
-import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonGroup, Dropdown } from 'react-bootstrap';
 
@@ -25,17 +25,15 @@ const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
           <Button
             variant="outline-light"
             className="w-100"
+            size="sm"
             startIcon={<FontAwesomeIcon icon={faEdit} className="me-2" />}
           >
             Edit
           </Button>
         </Dropdown.Item>
         <Dropdown.Item onClick={() => console.log(deleteUrl)}>
-          <Button
-            variant="outline-danger"
-            startIcon={<FontAwesomeIcon icon={faTrashAlt} className="me-2" />}
-          >
-            Delete customer
+          <Button size="sm">
+            <span className="text-[#f48270]">Delete customer</span>
           </Button>
         </Dropdown.Item>
       </Dropdown.Menu>
