@@ -37,17 +37,6 @@ const CasinoList = () => {
   };
 
   useEffect(() => {
-    if (!Number(searchParams.get('length'))) {
-      setSearchParams({
-        length: 10,
-        start: 0,
-        order_direction: 'asc',
-        order_column: tableColumns[0].value,
-      } as unknown as URLSearchParamsInit);
-    }
-  }, []);
-
-  useEffect(() => {
     if (Number(searchParams.get('length'))) {
       const filter = {
         length: Number(searchParams.get('length')) || 10,
@@ -56,6 +45,15 @@ const CasinoList = () => {
         order_column: searchParams.get('order_column') || tableColumns[0].value,
       };
       void getData(filter);
+    } else {
+      if (!Number(searchParams.get('length'))) {
+        setSearchParams({
+          length: 10,
+          start: 0,
+          order_direction: 'asc',
+          order_column: tableColumns[0].value,
+        } as unknown as URLSearchParamsInit);
+      }
     }
   }, [searchParams]);
 
