@@ -5,7 +5,6 @@ import ProfileDropdownMenu from './ProfileDropdownMenu';
 import FeatherIcon from 'feather-icons-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import NotificationDropdownMenu from './NotificationDropdownMenu';
-import { ThemeToggler } from '@/features/ThemeToggler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLanguage } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
@@ -40,9 +39,6 @@ const NavItems = () => {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-      </Nav.Item>
-      <Nav.Item>
-        <ThemeToggler />
       </Nav.Item>
       <Nav.Item>
         <Dropdown autoClose="outside" className="h-100">

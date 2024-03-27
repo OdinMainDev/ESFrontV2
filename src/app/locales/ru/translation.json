@@ -12,5 +12,6 @@
   "casinos-edit": "Изменить казино",
   "casinos-add": "Добавить казино",
   "currencies-edit": "Изменить валюту",
-  "currencies-add": "Добавить валюту"
+  "currencies-add": "Добавить валюту",
+  "export-button": "Экспортировать"
 }
