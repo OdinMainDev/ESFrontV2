@@ -12,7 +12,8 @@
   "casinos-edit": "Edit casino",
   "casinos-add": "Add casino",
   "currencies-edit": "Edit currency",
-  "currencies-add": "Add currency"
+  "currencies-add": "Add currency",
+  "export-button": "Export"
 
 
 }

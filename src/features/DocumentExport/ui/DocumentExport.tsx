@@ -7,6 +7,7 @@ import autoTable from 'jspdf-autotable';
 import { ITableHeaders } from '@/shared/models/interfaces/table';
 import { font } from '../font';
 import { ButtonGroup, Dropdown } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   headers: ITableHeaders[];
@@ -15,6 +16,7 @@ interface IProps {
 }
 
 const DocumentExport = ({ headers, data, fileName = 'tableData' }: IProps) => {
+  const { t } = useTranslation();
   const exportToExcel = (data: any[], headers: ITableHeaders[], fileName: string) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
     const transformData = data.map((item) => headers.map((header) => item[header.value]));
@@ -52,7 +54,7 @@ const DocumentExport = ({ headers, data, fileName = 'tableData' }: IProps) => {
           className=" flex-shrink-0 dropdown-caret-none"
         >
           <FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />
-          Export Document
+          {t('export-button')}
           <FontAwesomeIcon icon={faAngleDown} className="ms-2" transform="down-2" />
         </Dropdown.Toggle>
         <Dropdown.Menu>
