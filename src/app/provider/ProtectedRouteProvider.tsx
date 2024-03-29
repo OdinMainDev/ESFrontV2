@@ -8,7 +8,7 @@ import { ITokenData } from '@/shared/models/interfaces/token';
 
 const ProtectedRouteProvider = () => {
   const dispatch = useAppDispatch();
-  const { isAuth } = useAppSelector((state) => state.userReducer);
+  const { isAuth, role } = useAppSelector((state) => state.userReducer);
 
   useEffect(() => {
     const token = Cookies.get('token');
@@ -16,7 +16,9 @@ const ProtectedRouteProvider = () => {
     if (token) {
       const tokenData = jwtDecode<ITokenData>(token);
       if (tokenData.hsr) {
-        dispatch(setRole(tokenData.hsdr ? 1 : 2));
+        const role = tokenData.hsdr ? 1 : 2;
+        dispatch(setRole(role));
+        Cookies.set('role', role.toString());
         void dispatch(getMeUser());
       } else {
         dispatch(logout());
@@ -26,6 +28,10 @@ const ProtectedRouteProvider = () => {
 
   if (!isAuth) {
     return <Navigate to="/404" replace />;
+  }
+
+  if (role === 2) {
+    return <Navigate to="/admin" replace />;
   }
 
   return <Outlet />;

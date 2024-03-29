@@ -65,6 +65,7 @@ const CasinoList = () => {
         <div className="flex">
           <Button
             variant="primary"
+            size="sm"
             className="mr-[10px]"
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
             onClick={() => router.push('casinos/add')}

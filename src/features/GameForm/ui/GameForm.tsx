@@ -97,7 +97,7 @@ const GameForm = ({ id }: IProps) => {
             type="checkbox"
             checked={data.has_freerounds}
             onChange={(e) => setData((prev) => ({ ...prev, has_freerounds: e.target.checked }))}
-            id="casino-checkbox"
+            id="casino-has"
             label="Has Freerounds"
           />
           <div className={styles.inputs}>
@@ -105,14 +105,14 @@ const GameForm = ({ id }: IProps) => {
               type="checkbox"
               checked={data.mobile_enabled}
               onChange={(e) => setData((prev) => ({ ...prev, mobile_enabled: e.target.checked }))}
-              id="casino-checkbox"
+              id="casino-mobile"
               label="Mobile Enable"
             />
             <Form.Check
               type="checkbox"
               checked={data.desktop_enabled}
               onChange={(e) => setData((prev) => ({ ...prev, desktop_enabled: e.target.checked }))}
-              id="casino-checkbox"
+              id="casino-desktop"
               label="Desktop Enable"
             />
           </div>

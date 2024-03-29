@@ -8,7 +8,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { validateLoginData } from '../helpers/validation';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '@/store/hooks/redux';
-import { setIsAuth } from '@/store/slices/userSlice';
+import { setIsAuth, setRole } from '@/store/slices/userSlice';
+import { jwtDecode } from 'jwt-decode';
+import { ITokenData } from '@/shared/models/interfaces/token';
 
 const AuthForm = () => {
   const { api_key } = useParams();
@@ -25,6 +27,17 @@ const AuthForm = () => {
     api_key: api_key ?? '',
   });
 
+  const errorCall = () => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    setValidated(false);
+    setInvalidData(true);
+    timer.current = setTimeout(() => {
+      setInvalidData(false);
+    }, 15000);
+  };
+
   const loginHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setValidated(true);
@@ -33,19 +46,21 @@ const AuthForm = () => {
       axios
         .post<ILoginResponse>(loginApi(), loginData)
         .then((res) => {
-          dispatch(setIsAuth(true));
-          Cookies.set('token', res.data.token);
-          navigate('/');
+          const token = res.data.token;
+          const tokenData = jwtDecode<ITokenData>(token);
+          if (tokenData.hsr) {
+            const role = tokenData.hsdr ? 1 : 2;
+            dispatch(setRole(role));
+            dispatch(setIsAuth(true));
+            Cookies.set('token', token);
+            Cookies.set('role', role.toString());
+            navigate('/');
+          } else {
+            errorCall();
+          }
         })
         .catch(() => {
-          if (timer.current) {
-            clearTimeout(timer.current);
-          }
-          setValidated(false);
-          setInvalidData(true);
-          timer.current = setTimeout(() => {
-            setInvalidData(false);
-          }, 15000);
+          errorCall();
         })
         .finally(() => {
           setLoading(false);

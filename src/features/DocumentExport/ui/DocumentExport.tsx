@@ -47,8 +47,9 @@ const DocumentExport = ({ headers, data, fileName = 'tableData' }: IProps) => {
     <div className="flex gap-[20px]">
       <Dropdown as={ButtonGroup} className="position-static">
         <Dropdown.Toggle
+          size="sm"
           variant="esfront-secondary"
-          className="px-7 flex-shrink-0 dropdown-caret-none"
+          className=" flex-shrink-0 dropdown-caret-none"
         >
           <FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />
           Export Document

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { getMeUserApi } from '@/shared/api/userApi';
-import { IInitialUser } from '../models/user';
+import { IInitialUser, roleType } from '../models/user';
 import { IUser } from '@/shared/models/interfaces/user';
 
 import Cookies from 'js-cookie';
@@ -10,7 +10,7 @@ const initialState: IInitialUser = {
   isError: false,
   isAuth: !!Cookies.get('token'),
   user: null,
-  role: 0,
+  role: Number(Cookies.get('role')) as roleType,
 };
 
 export const getMeUser = createAsyncThunk('getMeUserApi', async () => {
