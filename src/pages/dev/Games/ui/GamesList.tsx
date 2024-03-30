@@ -11,6 +11,7 @@ import { FilterButton } from '@/features/FilterModal';
 import { format, fromUnixTime } from 'date-fns';
 import { gamesFilterApi, gamesListApi } from '@/shared/api/dev/gamesApi';
 import { useTranslation } from 'react-i18next';
+import { getAllQueryParams } from '@/shared/helpers/getAllQueryParams';
 
 const GamesList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<IGame> | null>(null);
@@ -34,12 +35,7 @@ const GamesList = () => {
 
   useEffect(() => {
     if (Number(searchParams.get('length'))) {
-      const filter = {
-        length: Number(searchParams.get('length')) || 10,
-        start: Number(searchParams.get('start')),
-        order_direction: searchParams.get('order_direction') || 'asc',
-        order_column: searchParams.get('order_column') || tableColumns[0].value,
-      };
+      const filter = getAllQueryParams();
       void getData(filter);
     } else {
       setSearchParams({
@@ -53,7 +49,7 @@ const GamesList = () => {
 
   return (
     <ContentLayout title={t('games')}>
-      <div className="flex justify-between mb-3">
+      <div className="flex items-center	justify-between mb-3">
         <div className="flex">
           <DocumentExport
             fileName="Games_Table"
@@ -67,7 +63,7 @@ const GamesList = () => {
       <Table
         tableColumns={tableColumns}
         tableData={tableData?.data || []}
-        recordsTotal={tableData?.recordsTotal ?? 0}
+        recordsTotal={tableData?.recordsFiltered ?? 0}
       />
     </ContentLayout>
   );

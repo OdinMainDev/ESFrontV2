@@ -60,7 +60,7 @@ const StatusesList = () => {
 
   return (
     <ContentLayout title={t('statuses')}>
-      <div className="flex justify-between mb-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
             variant="primary"

@@ -8,6 +8,7 @@ import NotificationDropdownMenu from './NotificationDropdownMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLanguage } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import Button from '@/shared/ui/Button';
 
 const NavItems = () => {
   const { i18n } = useTranslation();
@@ -31,12 +32,22 @@ const NavItems = () => {
             <FontAwesomeIcon icon={faLanguage} size="xl" />
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => changeLanguage('ru')} className="text-center">
+            <Button
+              size="sm"
+              as={Dropdown.Item}
+              onClick={() => changeLanguage('ru')}
+              className="text-center"
+            >
               RU
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => changeLanguage('en')} className="text-center">
+            </Button>
+            <Button
+              size="sm"
+              as={Dropdown.Item}
+              onClick={() => changeLanguage('en')}
+              className="text-center"
+            >
               EN
-            </Dropdown.Item>
+            </Button>
           </Dropdown.Menu>
         </Dropdown>
       </Nav.Item>

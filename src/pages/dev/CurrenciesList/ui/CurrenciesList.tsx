@@ -16,6 +16,7 @@ import { fromUnixTime, format } from 'date-fns';
 import { Table, getTableApi } from '@/features/Table';
 import { currenciesListApi } from '@/shared/api/dev/currencyApi';
 import { useTranslation } from 'react-i18next';
+import { getAllQueryParams } from '@/shared/helpers/getAllQueryParams';
 
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICurrencies> | null>(null);
@@ -40,14 +41,7 @@ const CasinoList = () => {
 
   useEffect(() => {
     if (Number(searchParams.get('length'))) {
-      const filter = {
-        length: Number(searchParams.get('length')) || 10,
-        start: Number(searchParams.get('start')),
-        order_direction: searchParams.get('order_direction') || 'asc',
-        order_column: searchParams.get('order_column') || tableColumns[0].value,
-        'filter_name[]': searchParams.getAll('filter_name[]') || [],
-        'filter_value[]': searchParams.getAll('filter_value[]') || [],
-      };
+      const filter = getAllQueryParams();
       void getData(filter);
     } else {
       setSearchParams({
@@ -61,7 +55,7 @@ const CasinoList = () => {
 
   return (
     <ContentLayout title={t('currencies')}>
-      <div className="flex justify-between mb-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
             variant="primary"
@@ -84,7 +78,7 @@ const CasinoList = () => {
       <Table
         tableColumns={tableColumns}
         tableData={tableData?.data || []}
-        recordsTotal={tableData?.recordsTotal ?? 0}
+        recordsTotal={tableData?.recordsFiltered ?? 0}
       />
     </ContentLayout>
   );

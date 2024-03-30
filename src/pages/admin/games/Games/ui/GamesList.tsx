@@ -55,7 +55,7 @@ const GamesList = () => {
 
   return (
     <ContentLayout title={t('games')}>
-      <div className="flex justify-between mb-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <DocumentExport
             fileName="Currencies_Table"

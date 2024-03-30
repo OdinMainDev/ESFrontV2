@@ -60,7 +60,7 @@ const CasinoUrlList = () => {
 
   return (
     <ContentLayout title={t('casino api')}>
-      <div className="flex justify-between mb-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
             variant="primary"

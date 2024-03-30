@@ -18,21 +18,18 @@ const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
         ...
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item onClick={() => router.push(editRoute)}>
-          <Button
-            variant="outline-light"
-            className="w-100"
-            size="sm"
-            startIcon={<FontAwesomeIcon icon={faEdit} className="me-2" />}
-          >
-            Edit
-          </Button>
-        </Dropdown.Item>
-        <Dropdown.Item onClick={() => console.log(deleteUrl)}>
-          <Button size="sm" className="w-100">
-            <span className="text-[#f48270]">Delete</span>
-          </Button>
-        </Dropdown.Item>
+        <Button
+          as={Dropdown.Item}
+          variant="outline-light"
+          size="sm"
+          onClick={() => router.push(editRoute)}
+          startIcon={<FontAwesomeIcon icon={faEdit} className="me-2" />}
+        >
+          Edit
+        </Button>
+        <Button as={Dropdown.Item} size="sm" onClick={() => router.push(deleteUrl)}>
+          <span className="text-[#f48270]">Delete</span>
+        </Button>
       </Dropdown.Menu>
     </Dropdown>
   );

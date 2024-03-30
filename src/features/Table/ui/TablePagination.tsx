@@ -3,28 +3,19 @@ import { useEffect, useState } from 'react';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { Form } from 'react-bootstrap';
+import { getAllQueryParams } from '@/shared/helpers/getAllQueryParams';
 
 interface IProps {
   recordsTotal: number;
 }
 const TablePagination = ({ recordsTotal }: IProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [filterParams, setFilterParams] = useState<IFilterParams>({
-    length: Number(searchParams.get('length')) || 10,
-    start: Number(searchParams.get('start')),
-    order_direction: searchParams.get('order_direction') ?? '',
-    order_column: searchParams.get('order_column') ?? '',
-  });
+  const [filterParams, setFilterParams] = useState<IFilterParams>(getAllQueryParams());
 
   const paginationNumbers = Math.ceil(recordsTotal / (filterParams.length ?? 0));
 
   useEffect(() => {
-    setFilterParams({
-      length: Number(searchParams.get('length')) || 10,
-      start: Number(searchParams.get('start')),
-      order_direction: searchParams.get('order_direction') ?? '',
-      order_column: searchParams.get('order_column') ?? '',
-    });
+    setFilterParams(getAllQueryParams());
   }, [searchParams]);
 
   function calculateCurrentPage(start: number, length: number) {

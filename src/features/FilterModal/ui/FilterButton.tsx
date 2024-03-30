@@ -27,8 +27,18 @@ const FilterButton = ({ url }: IProps) => {
             Authorization: 'Bearer ' + Cookies.get('token'),
           },
         });
-        setFilterContent(data.data);
-        getQuery(data.data);
+        setFilterContent(
+          data.data.map((item) => ({
+            ...item,
+            values: '',
+          })),
+        );
+        getQuery(
+          data.data.map((item) => ({
+            ...item,
+            values: '',
+          })),
+        );
       } catch (e) {
         console.log(e);
       }

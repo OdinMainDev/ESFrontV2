@@ -55,7 +55,7 @@ const VerificationAwait = () => {
 
   return (
     <ContentLayout title={t('verification Await')}>
-      <div className="flex justify-between mb-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <DocumentExport
             fileName="Currencies_Table"

@@ -60,7 +60,7 @@ const MediasList = () => {
 
   return (
     <ContentLayout title={t('medias')}>
-      <div className="flex justify-between mb-3">
+      <div className="flex items-center	justify-between mb-3">
         <div className="flex">
           <Button
             variant="primary"

@@ -60,7 +60,7 @@ const PaymentGatewaysList = () => {
 
   return (
     <ContentLayout title={t('payment gateway')}>
-      <div className="flex justify-between mb-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
             variant="primary"
