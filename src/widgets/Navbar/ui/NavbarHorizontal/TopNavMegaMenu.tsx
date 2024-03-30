@@ -42,7 +42,7 @@ const TopNavMegaMenu = ({ route }: { route: RouteItems }) => {
                 {column.map((page, index) => (
                   <Fragment key={page.name}>
                     <div
-                      className={classNames('dropdown-item-group', {
+                      className={classNames('dropdown-item-group flex items-center', {
                         'mt-5': index > 0,
                       })}
                     >

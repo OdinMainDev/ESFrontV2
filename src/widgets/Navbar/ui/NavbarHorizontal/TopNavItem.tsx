@@ -76,7 +76,7 @@ const TopNavLooper = ({ page }: { page: Route }) => {
           })}
         >
           <UilAngleRight className="lh-1 dropdown-indicator-icon" size={16} />
-          <span>
+          <span className="flex items-center">
             {page.icon && <FeatherIcon icon={page.icon} size={16} className="me-2" />}
             {capitalize(page.name)}
           </span>
