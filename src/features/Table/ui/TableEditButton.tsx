@@ -1,6 +1,5 @@
 import { useRouter } from '@/shared/hooks/navigation';
-import Button from '@/shared/ui/Button';
-import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faEdit, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonGroup, Dropdown } from 'react-bootstrap';
 
@@ -17,19 +16,15 @@ const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
       <Dropdown.Toggle variant="phenix-secondary" className="flex-shrink-0 dropdown-caret-none">
         ...
       </Dropdown.Toggle>
-      <Dropdown.Menu>
-        <Button
-          as={Dropdown.Item}
-          variant="outline-light"
-          size="sm"
-          onClick={() => router.push(editRoute)}
-          startIcon={<FontAwesomeIcon icon={faEdit} className="me-2" />}
-        >
+      <Dropdown.Menu className="min-w-10	px-[0.5rem]">
+        <Dropdown.Item className="" onClick={() => router.push(editRoute)}>
+          <FontAwesomeIcon icon={faEdit} className="me-2" />
           Edit
-        </Button>
-        <Button as={Dropdown.Item} size="sm" onClick={() => router.push(deleteUrl)}>
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => router.push(deleteUrl)}>
+          <FontAwesomeIcon color="#f48270" icon={faTrashCan} className="me-2" />
           <span className="text-[#f48270]">Delete</span>
-        </Button>
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

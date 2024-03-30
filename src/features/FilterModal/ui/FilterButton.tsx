@@ -92,6 +92,7 @@ const FilterButton = ({ url }: IProps) => {
             <FloatingLabel controlId={item.name} label={item.name} className="form-icon-container">
               <Form.Control
                 required
+                size="sm"
                 value={item.values ?? ''}
                 onChange={(e) => changeHandler(e.target.value, item.name)}
                 type={item.type}

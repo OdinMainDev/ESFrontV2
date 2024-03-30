@@ -73,7 +73,7 @@ const CategoriesList = () => {
       <Table
         tableColumns={tableColumns}
         tableData={tableData?.data || []}
-        recordsTotal={tableData?.recordsTotal ?? 0}
+        recordsTotal={tableData?.recordsFiltered ?? 0}
       />
     </ContentLayout>
   );
