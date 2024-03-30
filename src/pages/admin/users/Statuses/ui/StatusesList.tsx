@@ -49,7 +49,7 @@ const StatusesList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('statuses')}>
+    <ContentLayout title={t('Statuses')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
@@ -59,7 +59,7 @@ const StatusesList = () => {
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
             onClick={() => router.push('currencies/add')}
           >
-            Добавить
+            {t('add')}
           </Button>
           <DocumentExport
             fileName="Currencies_Table"

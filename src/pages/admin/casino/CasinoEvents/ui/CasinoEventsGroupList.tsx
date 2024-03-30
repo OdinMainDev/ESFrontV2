@@ -48,7 +48,7 @@ const CasinoUrlList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('casino api')}>
+    <ContentLayout title={t('EventGroups')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
@@ -58,7 +58,7 @@ const CasinoUrlList = () => {
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
             onClick={() => router.push('currencies/add')}
           >
-            Добавить
+            {t('add')}
           </Button>
           <DocumentExport
             fileName="Currencies_Table"

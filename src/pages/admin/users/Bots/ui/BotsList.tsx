@@ -48,7 +48,7 @@ const BotsList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('bots')}>
+    <ContentLayout title={t('Bots')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
@@ -58,7 +58,7 @@ const BotsList = () => {
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
             onClick={() => router.push('currencies/add')}
           >
-            Добавить
+            {t('add')}
           </Button>
           <DocumentExport
             fileName="Currencies_Table"

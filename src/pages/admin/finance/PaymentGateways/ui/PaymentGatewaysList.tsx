@@ -49,7 +49,7 @@ const PaymentGatewaysList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('payment gateway')}>
+    <ContentLayout title={t('PaymentGateways')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
@@ -59,7 +59,7 @@ const PaymentGatewaysList = () => {
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
             onClick={() => router.push('currencies/add')}
           >
-            Добавить
+            {t('add')}
           </Button>
           <DocumentExport
             fileName="Currencies_Table"

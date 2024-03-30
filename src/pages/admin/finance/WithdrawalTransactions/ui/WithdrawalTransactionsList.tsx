@@ -49,7 +49,7 @@ const WithdrawalTransactionsList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('withdrawal transactions')}>
+    <ContentLayout title={t('WithdrawalTransactions')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button
