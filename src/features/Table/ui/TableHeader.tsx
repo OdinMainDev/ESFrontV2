@@ -3,19 +3,18 @@ import { ITableColumns } from '../models/table';
 import { useEffect, useState } from 'react';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
-import { getAllQueryParams } from '@/shared/helpers/getAllQueryParams';
+import { useGetAllQueryParams } from '@/shared/hooks/useGetAllQueryParams';
 
 interface IProps {
   tableColumns: ITableColumns[];
 }
 const TableHeader = ({ tableColumns }: IProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [filterParams, setFilterParams] = useState<IFilterParams>(getAllQueryParams());
-
-  console.log();
+  const { getAllQuery } = useGetAllQueryParams();
+  const [filterParams, setFilterParams] = useState<IFilterParams>(getAllQuery());
 
   useEffect(() => {
-    setFilterParams(getAllQueryParams());
+    setFilterParams(getAllQuery());
   }, [searchParams]);
 
   const toggleFilter = (order_column: string) => {

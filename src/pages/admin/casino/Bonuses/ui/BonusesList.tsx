@@ -11,12 +11,14 @@ import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { format, fromUnixTime } from 'date-fns';
 import { getTableApi, Table } from '@/features/Table';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
+import { useGetAllQueryParams } from '@/shared/hooks/useGetAllQueryParams';
 
 const BonusesList = () => {
   const { t } = useTranslation();
   const tableColumns = useGenerateTableCulumns();
   const [searchParams, setSearchParams] = useSearchParams();
   const [tableData, setTableData] = useState<ITableResponseData<IData> | null>(null);
+  const { getAllQuery } = useGetAllQueryParams();
 
   const getData = async (filterParams: IFilterParams) => {
     const data = await getTableApi<IData>(dataListApi(), filterParams);
@@ -33,23 +35,11 @@ const BonusesList = () => {
   };
 
   useEffect(() => {
+    const filter = getAllQuery(tableColumns[0].value);
     if (Number(searchParams.get('length'))) {
-      const filter = {
-        length: Number(searchParams.get('length')) || 10,
-        start: Number(searchParams.get('start')),
-        order_direction: searchParams.get('order_direction') || 'asc',
-        order_column: searchParams.get('order_column') || tableColumns[0].value,
-        'filter_name[]': searchParams.getAll('filter_name[]') || [],
-        'filter_value[]': searchParams.getAll('filter_value[]') || [],
-      };
       void getData(filter);
     } else {
-      setSearchParams({
-        length: 10,
-        start: 0,
-        order_direction: 'asc',
-        order_column: tableColumns[0].value,
-      } as unknown as URLSearchParamsInit);
+      setSearchParams(filter as unknown as URLSearchParamsInit);
     }
   }, [searchParams]);
 

@@ -16,12 +16,13 @@ import { fromUnixTime, format } from 'date-fns';
 import { Table, getTableApi } from '@/features/Table';
 import { casinoListApi } from '@/shared/api/dev/casinosApi';
 import { useTranslation } from 'react-i18next';
-import { getAllQueryParams } from '@/shared/helpers/getAllQueryParams';
+import { useGetAllQueryParams } from '@/shared/hooks/useGetAllQueryParams';
 
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICasino> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const tableColumns = casinosTableColumns;
+  const { getAllQuery } = useGetAllQueryParams();
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -40,18 +41,11 @@ const CasinoList = () => {
   };
 
   useEffect(() => {
+    const filter = getAllQuery(tableColumns[0].value);
     if (Number(searchParams.get('length'))) {
-      const filter = getAllQueryParams();
       void getData(filter);
     } else {
-      if (!Number(searchParams.get('length'))) {
-        setSearchParams({
-          length: 10,
-          start: 0,
-          order_direction: 'asc',
-          order_column: tableColumns[0].value,
-        } as unknown as URLSearchParamsInit);
-      }
+      setSearchParams(filter as unknown as URLSearchParamsInit);
     }
   }, [searchParams]);
 
@@ -79,7 +73,7 @@ const CasinoList = () => {
       <Table
         tableColumns={tableColumns}
         tableData={tableData?.data || []}
-        recordsTotal={tableData?.recordsFiltered ?? 0}
+        recordsTotal={tableData?.recordsTotal ?? 0}
       />
     </ContentLayout>
   );

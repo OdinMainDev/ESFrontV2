@@ -11,11 +11,11 @@ import { FilterButton } from '@/features/FilterModal';
 import { format, fromUnixTime } from 'date-fns';
 import { gamesFilterApi, gamesListApi } from '@/shared/api/dev/gamesApi';
 import { useTranslation } from 'react-i18next';
-import { getAllQueryParams } from '@/shared/helpers/getAllQueryParams';
-
+import { useGetAllQueryParams } from '@/shared/hooks/useGetAllQueryParams';
 const GamesList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<IGame> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { getAllQuery } = useGetAllQueryParams();
   const tableColumns = gamesTableColumns;
   const { t } = useTranslation();
 
@@ -34,16 +34,11 @@ const GamesList = () => {
   };
 
   useEffect(() => {
+    const filter = getAllQuery(tableColumns[0].value);
     if (Number(searchParams.get('length'))) {
-      const filter = getAllQueryParams();
       void getData(filter);
     } else {
-      setSearchParams({
-        length: 10,
-        start: 0,
-        order_direction: 'asc',
-        order_column: tableColumns[0].value,
-      } as unknown as URLSearchParamsInit);
+      setSearchParams(filter as unknown as URLSearchParamsInit);
     }
   }, [searchParams]);
 
