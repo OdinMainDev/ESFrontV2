@@ -47,6 +47,7 @@ const WithdrawalTransactionsList = () => {
       setSearchParams(filter as unknown as URLSearchParamsInit);
     }
   }, [searchParams]);
+
   return (
     <ContentLayout title={t('withdrawal transactions')}>
       <div className="flex items-center justify-between mb-3">
