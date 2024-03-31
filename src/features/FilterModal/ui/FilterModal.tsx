@@ -1,10 +1,11 @@
 import Button from '@/shared/ui/Button';
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FloatingLabel, Form, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { IFilterItem } from '../models/filter';
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Input from '@/shared/ui/Input';
 
 interface IProps {
   show: boolean;
@@ -78,15 +79,15 @@ const FilterModal = ({ show, handleClose, filterContent, setFilterContent }: IPr
       <Modal.Body className="pt-4 pb-2 px-4">
         {filterContent.map((item, key) => (
           <div className="mb-3" key={key}>
-            <FloatingLabel controlId={item.name} label={item.name} className="form-icon-container">
-              <Form.Control
-                required
-                value={item.values ?? ''}
-                onChange={(e) => changeHandler(e.target.value, item.name)}
-                type={item.type}
-                placeholder={item.name}
-              />
-            </FloatingLabel>
+            <Input
+              controlId={item.name}
+              required
+              size="sm"
+              value={item.values ?? ''}
+              onChange={(e) => changeHandler(e.target.value, item.name)}
+              type={item.type}
+              placeholder={item.name}
+            />
           </div>
         ))}
       </Modal.Body>

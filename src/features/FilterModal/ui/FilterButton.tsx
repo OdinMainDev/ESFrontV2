@@ -8,7 +8,7 @@ import axios from 'axios';
 import { IFilterItem } from '../models/filter';
 import { useSearchParams } from 'react-router-dom';
 import { updateFiltersWithValues } from '../helpers/updateFiltersWithValues';
-import { FloatingLabel, Form } from 'react-bootstrap';
+import Input from '@/shared/ui/Input';
 
 interface IProps {
   url: string;
@@ -89,16 +89,14 @@ const FilterButton = ({ url }: IProps) => {
       {filterContent.slice(0, 3).map((item, key) => (
         <div key={key}>
           {item.name !== 'id' && (
-            <FloatingLabel controlId={item.name} label={item.name} className="form-icon-container">
-              <Form.Control
-                required
-                size="sm"
-                value={item.values ?? ''}
-                onChange={(e) => changeHandler(e.target.value, item.name)}
-                type={item.type}
-                placeholder={item.name}
-              />
-            </FloatingLabel>
+            <Input
+              controlId={item.name}
+              size="sm"
+              value={item.values ?? ''}
+              onChange={(e) => changeHandler(e.target.value, item.name)}
+              type={item.type}
+              placeholder={item.name}
+            />
           )}
         </div>
       ))}
