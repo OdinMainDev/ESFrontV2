@@ -2,7 +2,7 @@ import ContentLayout from '@/shared/layout/ContentLayout';
 import { useEffect, useState } from 'react';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
-import { currenciesTableColumns } from '../constants';
+import { useGenerateTableColumns } from '../constants';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ICurrencies } from '@/shared/models/interfaces/currencies';
 import Button from '@/shared/ui/Button';
@@ -21,7 +21,7 @@ import { useGetAllQueryParams } from '@/shared/hooks/useGetAllQueryParams';
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICurrencies> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const tableColumns = currenciesTableColumns;
+  const tableColumns = useGenerateTableColumns();
   const router = useRouter();
   const { getAllQuery } = useGetAllQueryParams();
   const { t } = useTranslation();
@@ -60,7 +60,7 @@ const CasinoList = () => {
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
             onClick={() => router.push('currencies/add')}
           >
-            Добавить валюту
+            {t('currencies-add')}
           </Button>
           <DocumentExport
             fileName="Currencies_Table"

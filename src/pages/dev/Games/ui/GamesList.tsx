@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { IGame } from '@/shared/models/interfaces/games';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
-import { gamesTableColumns } from '../constants';
+import { useGenerateTableColums } from '../constants';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { Table, getTableApi } from '@/features/Table';
 import { DocumentExport } from '@/features/DocumentExport';
@@ -16,7 +16,7 @@ const GamesList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<IGame> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const { getAllQuery } = useGetAllQueryParams();
-  const tableColumns = gamesTableColumns;
+  const tableColumns = useGenerateTableColums();
   const { t } = useTranslation();
 
   const getData = async (filterParams: IFilterParams) => {

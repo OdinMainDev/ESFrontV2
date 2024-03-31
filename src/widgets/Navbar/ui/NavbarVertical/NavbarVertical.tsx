@@ -9,6 +9,7 @@ import Button from '@/shared/ui/Button';
 import NavbarTopNav from '../NavbarHorizontal/NavbarTopNav';
 import { useBreakpoints } from '@/shared/providers/BreakpointsProvider';
 import NavbarVerticalCollapseProvider from './NavbarVerticalCollapseProvider';
+import { useTranslation } from 'react-i18next';
 
 const NavbarVerical = () => {
   const {
@@ -23,7 +24,7 @@ const NavbarVerical = () => {
 
   const { breakpoints } = useBreakpoints();
   const routes = useGenerateRoutes();
-
+  const { t } = useTranslation();
   return (
     <NavbarVerticalCollapseProvider>
       <Navbar
@@ -73,7 +74,7 @@ const NavbarVerical = () => {
             ) : (
               <>
                 <UilLeftArrowToLeft size={16} className="mb-1" />
-                <span className="ms-2">Collapsed View</span>
+                <span className="ms-2">{t('collapsed-view')}</span>
               </>
             )}
           </Button>

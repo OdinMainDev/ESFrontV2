@@ -4,11 +4,13 @@ import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { Form } from 'react-bootstrap';
 import { useGetAllQueryParams } from '@/shared/hooks/useGetAllQueryParams';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   recordsTotal: number;
 }
 const TablePagination = ({ recordsTotal }: IProps) => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const { getAllQuery } = useGetAllQueryParams();
   const [filterParams, setFilterParams] = useState<IFilterParams>(getAllQuery());
@@ -47,8 +49,8 @@ const TablePagination = ({ recordsTotal }: IProps) => {
     <div className="flex items-center py-[20px] row">
       <div className="d-flex fs-9 col">
         <p className="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900">
-          {filterParams.start + 1} to {filterParams.length + filterParams.start}{' '}
-          <span className="text-600"> items of </span>
+          {filterParams.start + 1} {t('to')} {filterParams.length + filterParams.start}{' '}
+          <span className="text-600"> {t('items-of')} </span>
           {recordsTotal}
         </p>
       </div>
