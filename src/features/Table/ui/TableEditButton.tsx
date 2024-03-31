@@ -3,6 +3,7 @@ import Button from '@/shared/ui/Button';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonGroup, Dropdown } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   editRoute: string;
@@ -11,6 +12,7 @@ interface IProps {
 
 const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <Dropdown as={ButtonGroup} className="position-static">
@@ -25,10 +27,10 @@ const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
           onClick={() => router.push(editRoute)}
           startIcon={<FontAwesomeIcon icon={faEdit} className="me-2" />}
         >
-          Edit
+          {t('edit')}
         </Button>
         <Button as={Dropdown.Item} size="sm" onClick={() => router.push(deleteUrl)}>
-          <span className="text-[#f48270]">Delete</span>
+          <span className="text-[#f48270]">{t('delete')}</span>
         </Button>
       </Dropdown.Menu>
     </Dropdown>

@@ -84,6 +84,7 @@ const FilterButton = ({ url }: IProps) => {
       applyFilter(filter);
     }, 1000);
   };
+
   return (
     <div className="flex gap-[10px]">
       {filterContent.slice(0, 3).map((item, key) => (

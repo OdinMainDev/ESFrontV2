@@ -1,6 +1,8 @@
 import { ITableBody } from '../models/table';
+import { useTranslation } from 'react-i18next';
 
 const TableBody = ({ tableData, tableColumns }: ITableBody) => {
+  const { t } = useTranslation();
   return (
     <tbody>
       {tableData.length > 0 ? (
@@ -16,7 +18,7 @@ const TableBody = ({ tableData, tableColumns }: ITableBody) => {
       ) : (
         <tr>
           <td colSpan={tableColumns.length} align="center" className="py-4">
-            Записей не найдено
+            {t('no-records-found')}
           </td>
         </tr>
       )}

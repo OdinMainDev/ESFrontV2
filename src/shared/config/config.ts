@@ -21,7 +21,7 @@ export const initialConfig: Config = {
   theme: (localStorage.getItem('theme') as ThemeVariant) ?? 'light',
   navbarTopAppearance: 'default',
   navbarVerticalAppearance: 'default',
-  navbarPosition: 'horizontal',
+  navbarPosition: 'vertical',
   navbarTopShape: 'default',
   isRTL: false,
   isChatWidgetVisible: true,

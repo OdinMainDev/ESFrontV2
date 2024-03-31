@@ -4,7 +4,7 @@ import { IFilterParams } from '@/shared/models/interfaces/filter';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { ICasino } from '@/shared/models/interfaces/casinos';
-import { casinosTableColumns } from '../constants';
+import { useGenerateTableColumns } from '../constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '@/shared/ui/Button';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +21,7 @@ import { useGetAllQueryParams } from '@/shared/hooks/useGetAllQueryParams';
 const CasinoList = () => {
   const [tableData, setTableData] = useState<ITableResponseData<ICasino> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const tableColumns = casinosTableColumns;
+  const tableColumns = useGenerateTableColumns();
   const { getAllQuery } = useGetAllQueryParams();
   const router = useRouter();
   const { t } = useTranslation();
@@ -60,12 +60,12 @@ const CasinoList = () => {
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
             onClick={() => router.push('casinos/add')}
           >
-            Добавить Казино
+            {t('casinos-add')}
           </Button>
           <DocumentExport
             fileName="Casinos_Table"
             data={tableData?.data ?? []}
-            headers={casinosTableColumns.filter((item) => item.export)}
+            headers={tableColumns.filter((item) => item.export)}
           />
         </div>
         <FilterButton url={casinosFilterApi()} />
