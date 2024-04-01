@@ -12,9 +12,11 @@ import { useSettingsPanelContext } from '@/shared/providers/SettingsPanelProvide
 import { faArrowsRotate, faPalette, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ChatWidgetVisibility from './ChatWidgetVisibility';
 import { RESET } from '@/shared/reducers/ConfigReducer';
+import { useTranslation } from 'react-i18next';
 
 const SettingsPanel = () => {
   const { configDispatch } = useAppContext();
+  const { t } = useTranslation();
 
   const {
     settingsPanelConfig: { openSettingPanel, disableResetButton },
@@ -44,9 +46,9 @@ const SettingsPanel = () => {
           <div>
             <h5 className="mb-2 me-2 lh-sm">
               <FontAwesomeIcon icon={faPalette} className="me-2 fs-8" />
-              Theme Customizer
+              {t('theme-customizer')}
             </h5>
-            <p className="mb-0 fs-9">Explore different styles according to your preferences</p>
+            <p className="mb-0 fs-9">{t('theme-customizer-description')}</p>
           </div>
           <button className="btn p-1 fw-bolder" onClick={handleClose}>
             <FontAwesomeIcon icon={faTimes} className="fs-8" />
@@ -59,7 +61,7 @@ const SettingsPanel = () => {
           disabled={disableResetButton}
         >
           <FontAwesomeIcon icon={faArrowsRotate} className="me-2 fs-10" />
-          Reset to default
+          {t('reset-to-default')}
         </Button>
       </Offcanvas.Header>
       <Offcanvas.Body className="px-card scrollbar">
@@ -75,7 +77,7 @@ const SettingsPanel = () => {
           className="w-100 mb-3 text-white dark__text-100"
           variant="primary"
         >
-          Save and close
+          {t('save-and-close')}
         </Button>
       </Offcanvas.Body>
     </Offcanvas>

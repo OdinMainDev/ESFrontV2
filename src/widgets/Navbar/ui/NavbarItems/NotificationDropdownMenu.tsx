@@ -6,9 +6,11 @@ import { notifications as notificationData } from '@/app/data/notifications';
 import { NotificationItem } from '@/entities/NotificationItem';
 import classNames from 'classnames';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const NotificationDropdownMenu = ({ className }: { className?: string }) => {
   const [notifications] = useState(notificationData.slice(0, 6));
+  const { t } = useTranslation();
   return (
     <Dropdown.Menu
       align="end"
@@ -20,9 +22,9 @@ const NotificationDropdownMenu = ({ className }: { className?: string }) => {
       <Card className="position-relative border-0">
         <Card.Header className="p-2">
           <div className="d-flex justify-content-between align-items-center">
-            <h5 className="text-black mb-0">Notifications</h5>
+            <h5 className="text-black mb-0">{t('notifications')}</h5>
             <Button variant="link" className="p-0 fs-9 fw-normal">
-              Mark all as read
+              {t('mark-all-as-read')}
             </Button>
           </div>
         </Card.Header>
@@ -43,7 +45,7 @@ const NotificationDropdownMenu = ({ className }: { className?: string }) => {
         <Card.Footer className="p-0 border-top">
           <div className="my-2 text-center fw-bold fs-10 text-600">
             <Link to="/pages/notifications" className="fw-bolder">
-              Notification history
+              {t('notification-history')}
             </Link>
           </div>
         </Card.Footer>

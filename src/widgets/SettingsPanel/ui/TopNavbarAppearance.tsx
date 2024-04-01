@@ -10,12 +10,14 @@ import { NavbarAppearanceVariant } from '@/shared/config/config';
 import classNames from 'classnames';
 import { WarningMessage } from '@/entities/WarningMessage';
 import { useSettingsPanelContext } from '@/shared/providers/SettingsPanelProvider';
+import { useTranslation } from 'react-i18next';
 
 interface TopNavbarAppearanceProps {
   className?: string;
 }
 
 const TopNavbarAppearance = ({ className }: TopNavbarAppearanceProps) => {
+  const { t } = useTranslation();
   const {
     config: { theme, navbarTopAppearance },
     setConfig,
@@ -34,11 +36,11 @@ const TopNavbarAppearance = ({ className }: TopNavbarAppearanceProps) => {
 
   return (
     <div className={classNames(className, 'setting-panel-item')}>
-      <h5 className="setting-panel-item-title">Horizontal Navbar Appearance</h5>
+      <h5 className="setting-panel-item-title">{t('horizontal-navbar-appearance')}</h5>
       <Row className="gx-2">
         <Col xs={6}>
           <RadioItem
-            label="Default"
+            label={t('default')}
             name="top-navbar-appearance"
             value="default"
             thumb={theme === 'light' ? topDefault : topDefaultDarker}
@@ -49,7 +51,7 @@ const TopNavbarAppearance = ({ className }: TopNavbarAppearanceProps) => {
         </Col>
         <Col xs={6}>
           <RadioItem
-            label={theme === 'light' ? 'Darker' : 'Lighter'}
+            label={theme === 'light' ? t('dark') : t('light')}
             name="top-navbar-appearance"
             value="darker"
             thumb={theme === 'light' ? navTopLight : navTopLighter}
