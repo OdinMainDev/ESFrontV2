@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const CaasinoUrlAdd = () => {
-  return (
-    <div>CaasinoUrlAdd</div>
-  )
-}
+  return <div>CaasinoUrlAdd</div>;
+};
 
-export default CaasinoUrlAdd
+export default CaasinoUrlAdd;

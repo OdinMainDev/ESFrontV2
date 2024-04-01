@@ -167,7 +167,7 @@ export const useGenerateRoutes = () => {
       icon: UilChartPie,
       pages: [
         {
-          name: t('CasinoUrls'),
+          name: t('casino-urls'),
           active: true,
           pages: [
             {
@@ -185,7 +185,7 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('Events'),
+          name: t('events'),
           active: true,
           pages: [
             {
@@ -201,7 +201,7 @@ export const useGenerateRoutes = () => {
               icon: 'plus-square',
             },
             {
-              name: t('EventGroups'),
+              name: t('event-groups'),
               active: true,
               pages: [
                 {
@@ -221,19 +221,19 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('Bonuses'),
+          name: t('bonuses'),
           active: true,
           path: `${lang}/admin/casino/bonuses`,
         },
       ],
     },
     {
-      label: t('Affiliate'),
+      label: t('affiliate'),
       active: true,
       icon: UilChartPie,
       pages: [
         {
-          name: t('AffiliateMedias'),
+          name: t('affiliate-medias'),
           active: true,
           pages: [
             {
@@ -251,7 +251,7 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('AffiliateOffers'),
+          name: t('affiliate-offers'),
           active: true,
           pages: [
             {
@@ -271,7 +271,7 @@ export const useGenerateRoutes = () => {
       ],
     },
     {
-      label: t('Games'),
+      label: t('games'),
       active: true,
       icon: UilChartPie,
       pages: [
@@ -282,7 +282,7 @@ export const useGenerateRoutes = () => {
           icon: 'list',
         },
         {
-          name: t('GameProviders'),
+          name: t('game-providers'),
           active: true,
           pages: [
             {
@@ -300,7 +300,7 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('GameCategories'),
+          name: t('categories'),
           active: true,
           pages: [
             {
@@ -318,7 +318,7 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('GameVendors'),
+          name: t('vendors'),
           active: true,
           pages: [
             {
@@ -338,69 +338,69 @@ export const useGenerateRoutes = () => {
       ],
     },
     {
-      label: t('Settings'),
+      label: t('settings'),
       active: true,
       icon: UilChartPie,
       pages: [
         {
-          name: t('SettingsGeneral'),
+          name: t('general'),
           path: `${lang}/admin/settings`,
           active: true,
         },
         {
-          name: t('SettingsAuth'),
+          name: t('auth'),
           path: `${lang}/admin/settings/auth`,
           active: true,
         },
         {
-          name: t('SettingsProfile'),
+          name: t('profile'),
           path: `${lang}/admin/settings/profile`,
           active: true,
         },
         {
-          name: t('SettingsAffiliate'),
+          name: t('affiliate'),
           path: `${lang}/admin/settings/affiliate`,
           active: true,
         },
         {
-          name: t('SettingsFinances'),
+          name: t('finances'),
           path: `${lang}/admin/settings/finances`,
           active: true,
         },
         {
-          name: t('SettingsVerification'),
+          name: t('verifications'),
           path: `${lang}/admin/settings/verification`,
           active: true,
         },
         {
-          name: t('SettingsBots'),
+          name: t('bots'),
           path: `${lang}/admin/settings/bots`,
           active: true,
         },
         {
-          name: t('SettingsApi'),
+          name: 'API',
           path: `${lang}/admin/settings/api`,
           active: true,
         },
         {
-          name: t('SettingsCurrencyConversion'),
+          name: t('currency-converstion'),
           path: `${lang}/admin/settings/currency-conversion`,
           active: true,
         },
         {
-          name: t('SettingsNotifications'),
+          name: t('notifications'),
           path: `${lang}/admin/settings/notifications`,
           active: true,
         },
       ],
     },
     {
-      label: t('Other'),
+      label: t('other'),
       active: true,
       icon: UilChartPie,
       pages: [
         {
-          name: t('Slider'),
+          name: t('slider'),
           active: true,
           pages: [
             {
@@ -418,12 +418,12 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('Email'),
+          name: t('email'),
           path: `${lang}/admin/other/email`,
           active: true,
         },
         {
-          name: t('SupportChat'),
+          name: t('support-chat'),
           path: `${lang}/admin/other/support-chat`,
           active: true,
         },

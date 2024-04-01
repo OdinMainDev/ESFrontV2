@@ -49,7 +49,7 @@ const CategoriesList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('GameCategories')}>
+    <ContentLayout title={t('categories')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

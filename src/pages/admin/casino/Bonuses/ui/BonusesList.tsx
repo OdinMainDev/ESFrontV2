@@ -44,7 +44,7 @@ const BonusesList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('Bonuses')}>
+    <ContentLayout title={t('bonuses')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <DocumentExport

@@ -49,7 +49,7 @@ const OffersList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('AffiliateOffers')}>
+    <ContentLayout title={t('affiliate-offers')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

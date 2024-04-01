@@ -49,7 +49,7 @@ const MediasList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('AffiliateMedias')}>
+    <ContentLayout title={t('affiliate-medias')}>
       <div className="flex items-center	justify-between mb-3">
         <div className="flex">
           <Button

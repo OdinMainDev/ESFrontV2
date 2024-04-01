@@ -1,7 +1,9 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IData } from './models/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const useGenerateTableCulumns = () => {
+  const { t } = useTranslation();
   const columns: ITableColumns[] = [
     {
       label: 'ID',
@@ -10,13 +12,13 @@ export const useGenerateTableCulumns = () => {
       export: true,
     },
     {
-      label: 'Название',
+      label: t('name'),
       value: 'name',
       sort: true,
       export: true,
     },
     {
-      label: 'Дата создания',
+      label: t('created-at'),
       value: 'created_at',
       sort: true,
       export: true,
@@ -39,6 +41,7 @@ export const useGenerateTableCulumns = () => {
 };
 
 export const useGroupGenerateTableCulumns = () => {
+  const { t } = useTranslation();
   const columns: ITableColumns[] = [
     {
       label: 'ID',
@@ -47,19 +50,19 @@ export const useGroupGenerateTableCulumns = () => {
       export: true,
     },
     {
-      label: 'Название',
+      label: t('name'),
       value: 'name',
       sort: true,
       export: true,
     },
     {
-      label: 'Api Name',
+      label: t('api-name'),
       value: 'api_name',
       sort: true,
       export: true,
     },
     {
-      label: 'Дата создания',
+      label: t('created-at'),
       value: 'created_at',
       sort: true,
       export: true,

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const CategoriesAdd = () => {
-  return (
-    <div>CategoriesAdd</div>
-  )
-}
+  return <div>CategoriesAdd</div>;
+};
 
-export default CategoriesAdd
+export default CategoriesAdd;

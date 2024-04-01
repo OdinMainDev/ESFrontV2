@@ -49,7 +49,7 @@ const CasinoUrlList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('CasinoUrls')}>
+    <ContentLayout title={t('casino-urls')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

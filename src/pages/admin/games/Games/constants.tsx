@@ -18,13 +18,13 @@ export const useGenerateTableCulumns = () => {
       export: true,
     },
     {
-      label: 'Провайдер',
+      label: t('game-provider'),
       value: 'game_provider',
       sort: true,
       export: true,
     },
     {
-      label: 'Дата создания',
+      label: t('created-at'),
       value: 'created_at',
       sort: true,
       export: true,
