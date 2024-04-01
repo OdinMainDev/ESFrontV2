@@ -49,12 +49,12 @@ export const useGenerateRoutes = () => {
 
   const adminRoutes: RouteItems[] = [
     {
-      label: t('Users'),
+      label: t('users'),
       active: true,
       icon: UilUsersAlt,
       pages: [
         {
-          name: t('Statuses'),
+          name: t('statuses'),
           active: true,
           icon: 'activity',
           pages: [
@@ -73,7 +73,7 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('Bots'),
+          name: t('bots'),
           active: true,
           pages: [
             {
@@ -91,16 +91,16 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('Verifications'),
+          name: t('verifications'),
           active: true,
           pages: [
             {
-              name: t('VerificationAwait'),
+              name: t('verification-await'),
               path: `${lang}/admin/verification/await`,
               active: true,
             },
             {
-              name: t('VerificationClosed'),
+              name: t('verification-closed'),
               path: `${lang}/admin/verification/closed`,
               active: true,
             },
@@ -109,12 +109,12 @@ export const useGenerateRoutes = () => {
       ],
     },
     {
-      label: t('Finances'),
+      label: t('finances'),
       active: true,
       icon: UilChartPie,
       pages: [
         {
-          name: t('PaymentGateways'),
+          name: t('payment-gateways'),
           active: true,
           pages: [
             {
@@ -132,7 +132,7 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('WithdrawalGateways'),
+          name: t('withdrawal-gateways'),
           active: true,
           pages: [
             {
@@ -150,19 +150,19 @@ export const useGenerateRoutes = () => {
           ],
         },
         {
-          name: t('PaymentsTransactions'),
+          name: t('payments-transactions'),
           active: true,
           path: `${lang}/admin/finances/payments-transactions`,
         },
         {
-          name: t('WithdrawalTransactions'),
+          name: t('withdrawal-transactions'),
           active: true,
           path: `${lang}/admin/finances/withdrawal-transactions`,
         },
       ],
     },
     {
-      label: t('Casino'),
+      label: t('casinos'),
       active: true,
       icon: UilChartPie,
       pages: [

@@ -1,7 +1,9 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IData } from './models/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const useGenerateTableCulumns = () => {
+  const { t } = useTranslation();
   const columns: ITableColumns[] = [
     {
       label: 'ID',
@@ -10,13 +12,13 @@ export const useGenerateTableCulumns = () => {
       export: true,
     },
     {
-      label: 'User ID',
+      label: t('user-id'),
       value: 'user_id',
       sort: true,
       export: true,
     },
     {
-      label: 'Дата создания',
+      label: t('created-at'),
       value: 'created_at',
       sort: true,
       export: true,
@@ -28,8 +30,8 @@ export const useGenerateTableCulumns = () => {
       render: (item: IData) => {
         return (
           <TableEditButton
-            editRoute={`admin/finances/withdrawal-transactions/edit/${item.id}`}
-            deleteUrl={`admin/finances/withdrawal-transactions/delete/${item.id}`}
+            editRoute={`admin/finances/payments-transactions/edit/${item.id}`}
+            deleteUrl={`admin/finances/payments-transactions/delete/${item.id}`}
           />
         );
       },

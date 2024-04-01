@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const WithdrawalGatewaysAdd = () => {
-  return (
-    <div>WithdrawalGatewaysAdd</div>
-  )
-}
+  return <div>WithdrawalGatewaysAdd</div>;
+};
 
-export default WithdrawalGatewaysAdd
+export default WithdrawalGatewaysAdd;

@@ -49,7 +49,7 @@ const PaymentGatewaysList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('PaymentGateways')}>
+    <ContentLayout title={t('payment-gateways')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

@@ -79,7 +79,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
               className="btn btn-esfront-secondary d-flex flex-center w-100"
             >
               <FeatherIcon icon="log-out" className="me-2" size={16} />
-              Sign out
+              {t('sign-out')}
             </div>
           </div>
         </Card.Footer>

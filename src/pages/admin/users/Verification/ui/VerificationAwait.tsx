@@ -44,7 +44,7 @@ const VerificationAwait = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('VerificationAwait')}>
+    <ContentLayout title={t('verification-await')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <DocumentExport

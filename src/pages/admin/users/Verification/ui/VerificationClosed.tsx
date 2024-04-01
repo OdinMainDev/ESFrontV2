@@ -44,7 +44,7 @@ const VerificationClosed = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('VerificationClosed')}>
+    <ContentLayout title={t('verification-closed')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <DocumentExport

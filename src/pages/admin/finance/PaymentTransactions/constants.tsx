@@ -1,7 +1,9 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IData } from './models/interfaces';
+import { useTranslation } from 'react-i18next';
 
 export const useGenerateTableCulumns = () => {
+  const { t } = useTranslation();
   const columns: ITableColumns[] = [
     {
       label: 'ID',
@@ -10,13 +12,13 @@ export const useGenerateTableCulumns = () => {
       export: true,
     },
     {
-      label: 'User Id',
+      label: t('user-id'),
       value: 'user_id',
       sort: true,
       export: true,
     },
     {
-      label: 'Дата создания',
+      label: t('created-at'),
       value: 'created_at',
       sort: true,
       export: true,

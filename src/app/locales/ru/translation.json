@@ -4,6 +4,17 @@
   "loginError": "Ошибка входа",
   "games": "Игры",
   "list": "Список",
+  "users": "Пользователи",
+  "statuses": "Статусы",
+  "bots": "Боты",
+  "verifications": "Верификация",
+  "verification-await": "Ожидание верификаций",
+  "verification-closed": "Верификация закрыта",
+  "finances": "Финансы",
+  "payment-gateways": "Платежные шлюзы",
+  "withdrawal-gateways": "Шлюзы для вывода средств",
+  "payments-transactions": "Платежные операции",
+  "withdrawal-transactions": "Операции по выводу средств",
   "casinos": "Казино",
   "currencies": "Валюты",
   "add": "Добавить",
@@ -64,5 +75,9 @@
   "horizontal-navbar-shape": "Форма горизонтальной панели навигации",
   "slim": "Тонкая",
   "horizontal-navbar-appearance": "Внешний вид горизонтальной панели навигации",
-  "change-text-direction": "Изменение направления текста"
+  "change-text-direction": "Изменение направления текста",
+  "sign-out": "Выйти",
+  "coming-soon-title": "Эта страница все еще в разработке",
+  "coming-soon-description": " Она будет реализована в самые кратчайшие сроки ( вероятно )",
+  "user-id": "ID Пользователя"
 }
