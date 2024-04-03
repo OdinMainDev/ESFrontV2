@@ -28,8 +28,8 @@ export const useGenerateTableCulumns = () => {
       render: (item: IStatus) => {
         return (
           <TableEditButton
-            editRoute={`currencies/edit/${item.id}`}
-            deleteUrl={`currencies/delete/${item.id}`}
+            editRoute={`admin/statuses/edit/${item.id}`}
+            deleteUrl={`admin/statuses/delete/${item.id}`}
           />
         );
       },

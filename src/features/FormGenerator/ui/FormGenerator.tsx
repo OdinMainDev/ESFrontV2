@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { IFormItem } from '../models/interfaces';
 import Button from '@/shared/ui/Button';
 import { FloatingLabel, Form } from 'react-bootstrap';
@@ -9,17 +9,24 @@ import Cookies from 'js-cookie';
 import { useRouter } from '@/shared/hooks/navigation';
 import { errorMapper } from '@/shared/mapper/errorMapper';
 
-interface IItemProps extends IFormItem {
+interface IItemProps {
   invalidData: string[];
+  formItem: IFormItem;
 }
 
-const ItemByType = (formItem: IItemProps) => {
+const ItemByType = ({ invalidData, formItem }: IItemProps) => {
+  const [value, setValue] = useState<string>(formItem.value as string);
+  useEffect(() => {
+    setValue(formItem.value as string);
+  }, [formItem]);
+
   if (formItem.type === 'switch' || formItem.type === 'checkbox') {
     return (
       <Form.Check
         required={formItem.required}
         type={formItem.type}
-        checked={formItem.value as boolean}
+        isInvalid={!!invalidData.find((item) => item === formItem.name)}
+        defaultChecked={formItem.value as boolean}
         label={formItem.label}
         name={formItem.name}
       />
@@ -32,7 +39,9 @@ const ItemByType = (formItem: IItemProps) => {
         <Form.Select
           required={formItem.required}
           name={formItem.name}
-          value={formItem.value as string}
+          value={value}
+          isInvalid={!!invalidData.find((item) => item === formItem.name)}
+          onChange={(e) => setValue(e.target.value)}
         >
           {formItem.options &&
             formItem.options.map((item, index) => (
@@ -50,8 +59,9 @@ const ItemByType = (formItem: IItemProps) => {
       controlId={formItem.name}
       name={formItem.name}
       type={formItem.type}
+      isInvalid={!!invalidData.find((item) => item === formItem.name)}
       required={formItem.required}
-      value={formItem.value as string}
+      defaultValue={formItem.value as string}
       placeholder={formItem.placeholder}
       label={formItem.label}
     />
@@ -87,8 +97,7 @@ const FormGenerator = ({ formItems, api, title, navigateTo }: IProps) => {
       setValidated(true);
       setLoading(true);
       const formData = new FormData(event.currentTarget);
-      const formDataObj = Object.fromEntries(formData.entries());
-      console.log(formDataObj);
+      // const formDataObj = Object.fromEntries(formData.entries());
       const data = await sendData(formData);
       if (navigateTo && data.id) {
         router.push(navigateTo + data.id);
@@ -109,10 +118,9 @@ const FormGenerator = ({ formItems, api, title, navigateTo }: IProps) => {
       onSubmit={(e) => void submitHandler(e)}
     >
       {title && <div className={styles.title}>{title}</div>}
-      {formItems.map((item, index) => {
-        const data: IItemProps = { ...item, invalidData };
-        return <ItemByType key={index} {...data} />;
-      })}
+      {formItems.map((item, index) => (
+        <ItemByType key={index} formItem={item} invalidData={invalidData} />
+      ))}
       <Button
         variant="primary"
         className="w-[100%] mt-[20px]"

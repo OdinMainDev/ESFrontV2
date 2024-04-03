@@ -7,5 +7,9 @@ export const statusesFilterApi = (): string => {
 };
 
 export const statusesEditApi = (id: number): string => {
-  return `${import.meta.env.VITE_APP_BASE_URL}/users/statuses/edit/${id}`;
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/users/statuses/edit/${id}`;
+};
+
+export const getStatusByIdApi = (id: number): string => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/users/statuses/get/${id}`;
 };

@@ -57,7 +57,7 @@ const StatusesList = () => {
             className="mr-[10px]"
             size="sm"
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
-            onClick={() => router.push('currencies/add')}
+            onClick={() => router.push('admin/statuses/add')}
           >
             {t('add')}
           </Button>

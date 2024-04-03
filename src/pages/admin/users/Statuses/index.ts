@@ -1,4 +1,4 @@
 import StatusesList from './ui/StatusesList';
 import StatusesAdd from './ui/StatusesAdd';
-
-export { StatusesList, StatusesAdd };
+import StatusesEdit from './ui/StatusesEdit';
+export { StatusesList, StatusesAdd, StatusesEdit };

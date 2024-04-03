@@ -27,7 +27,7 @@ const StatusesAdd = () => {
     },
   ]);
   return (
-    <ContentLayout title={t('currencies-add')}>
+    <ContentLayout title={t('statuese add')}>
       <FormGenerator navigateTo="admin/statuses/edit/" api={statusesEditApi(0)} formItems={data} />
     </ContentLayout>
   );
