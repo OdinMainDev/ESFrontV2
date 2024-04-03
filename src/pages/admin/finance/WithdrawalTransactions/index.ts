@@ -1,3 +1,3 @@
 import WithdrawalTransactionsList from './ui/WithdrawalTransactionsList';
-
-export { WithdrawalTransactionsList };
+import WithdrawalTransactionsEdit from './ui/WithdrawalTransactionsEdit';
+export { WithdrawalTransactionsList, WithdrawalTransactionsEdit };

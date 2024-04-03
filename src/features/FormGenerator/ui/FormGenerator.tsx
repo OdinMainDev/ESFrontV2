@@ -8,6 +8,8 @@ import axios, { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 import { useRouter } from '@/shared/hooks/navigation';
 import { errorMapper } from '@/shared/mapper/errorMapper';
+import { MultiSelect } from 'react-multi-select-component';
+import { IOption } from '@/shared/models/interfaces/select';
 
 interface IItemProps {
   invalidData: string[];
@@ -16,8 +18,10 @@ interface IItemProps {
 
 const ItemByType = ({ invalidData, formItem }: IItemProps) => {
   const [value, setValue] = useState<string>(formItem.value as string);
+  const [options, setOptions] = useState<IOption[]>(formItem.selectedOption || []);
   useEffect(() => {
     setValue(formItem.value as string);
+    setOptions(formItem.selectedOption || []);
   }, [formItem]);
 
   if (formItem.type === 'switch' || formItem.type === 'checkbox') {
@@ -51,6 +55,27 @@ const ItemByType = ({ invalidData, formItem }: IItemProps) => {
             ))}
         </Form.Select>
       </FloatingLabel>
+    );
+  }
+
+  if (formItem.type === 'multiSelect') {
+    return (
+      <>
+        <MultiSelect
+          hasSelectAll={false}
+          overrideStrings={{
+            allItemsAreSelected: options.join(', '),
+            selectSomeItems: formItem.label || '',
+          }}
+          options={formItem.options || []}
+          value={options}
+          labelledBy={formItem.label || ''}
+          onChange={(value: IOption[]) => setOptions(value)}
+        />
+        {options.map((item, index) => (
+          <input key={index} name={formItem.name} value={item.value} style={{ display: 'none' }} />
+        ))}
+      </>
     );
   }
 
@@ -97,7 +122,6 @@ const FormGenerator = ({ formItems, api, title, navigateTo }: IProps) => {
       setValidated(true);
       setLoading(true);
       const formData = new FormData(event.currentTarget);
-      // const formDataObj = Object.fromEntries(formData.entries());
       const data = await sendData(formData);
       if (navigateTo && data.id) {
         router.push(navigateTo + data.id);

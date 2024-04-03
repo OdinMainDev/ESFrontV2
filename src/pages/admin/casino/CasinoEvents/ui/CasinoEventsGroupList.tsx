@@ -24,6 +24,7 @@ const CasinoUrlList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [tableData, setTableData] = useState<ITableResponseData<IGroupData> | null>(null);
   const { getAllQuery } = useGetAllQueryParams();
+
   const getData = async (filterParams: IFilterParams) => {
     const data = await getTableApi<IGroupData>(dataGroupListApi(), filterParams);
     if (data?.data) {

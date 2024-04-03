@@ -1,3 +1,3 @@
 import PaymentTransactionsList from './ui/PaymentTransactionsList';
-
-export { PaymentTransactionsList };
+import PaymentTransactionsEdit from './ui/PaymentTransactionsEdit';
+export { PaymentTransactionsList, PaymentTransactionsEdit };

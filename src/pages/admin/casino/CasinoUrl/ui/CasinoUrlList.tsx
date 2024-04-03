@@ -57,7 +57,7 @@ const CasinoUrlList = () => {
             className="mr-[10px]"
             size="sm"
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
-            onClick={() => router.push('currencies/add')}
+            onClick={() => router.push('admin/casino/url/add')}
           >
             {t('add')}
           </Button>

@@ -16,7 +16,11 @@ const WithdrawalGatewaysAdd = () => {
   ]);
   return (
     <ContentLayout title={t('withdrawal gateways add')}>
-      <FormGenerator navigateTo="admin/statuses/edit/" api={dataEditApi(0)} formItems={data} />
+      <FormGenerator
+        navigateTo="admin/finances/withdrawal-gateways/edit/"
+        api={dataEditApi(0)}
+        formItems={data}
+      />
     </ContentLayout>
   );
 };
