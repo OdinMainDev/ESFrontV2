@@ -1,9 +1,24 @@
-import React from 'react'
+import { FormGenerator, IFormItem } from '@/features/FormGenerator';
+import ContentLayout from '@/shared/layout/ContentLayout';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { dataEditApi } from '../api/api';
 
 const WithdrawalGatewaysAdd = () => {
+  const { t } = useTranslation();
+  const [data] = useState<IFormItem[]>([
+    {
+      name: 'name',
+      placeholder: 'name',
+      label: 'name',
+      required: true,
+    },
+  ]);
   return (
-    <div>WithdrawalGatewaysAdd</div>
-  )
-}
+    <ContentLayout title={t('withdrawal gateways add')}>
+      <FormGenerator navigateTo="admin/statuses/edit/" api={dataEditApi(0)} formItems={data} />
+    </ContentLayout>
+  );
+};
 
-export default WithdrawalGatewaysAdd
+export default WithdrawalGatewaysAdd;
