@@ -1,3 +1,5 @@
 import BotsList from './ui/BotsList';
+import BotsAdd from './ui/BotsAdd';
+import BotsEdit from './ui/BotsEdit';
 
-export { BotsList };
+export { BotsList, BotsAdd, BotsEdit };

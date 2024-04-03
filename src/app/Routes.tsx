@@ -13,7 +13,7 @@ import { CurrenciesAdd, CurrenciesEdit, CurrenciesList } from '@/pages/dev/Curre
 import ProtectedRouteProvider from './provider/ProtectedRouteProvider';
 import NotFounded from '@/pages/errors/404';
 import { StatusesAdd, StatusesEdit, StatusesList } from '@/pages/admin/users/Statuses';
-import { BotsList } from '@/pages/admin/users/Bots';
+import { BotsAdd, BotsEdit, BotsList } from '@/pages/admin/users/Bots';
 import { VerificationAwait, VerificationClosed } from '@/pages/admin/users/Verification';
 import { PaymentGatewaysAdd, PaymentGatewaysList } from '@/pages/admin/finance/PaymentGateways';
 import {
@@ -171,6 +171,14 @@ const routes: RouteObject[] = [
               {
                 index: true,
                 element: <BotsList />,
+              },
+              {
+                path: 'add',
+                element: <BotsAdd />,
+              },
+              {
+                path: 'edit/:id',
+                element: <BotsEdit />,
               },
             ],
           },
