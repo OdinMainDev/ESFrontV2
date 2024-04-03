@@ -167,7 +167,7 @@ const CasinoForm = ({ id }: IProps) => {
             onChange={(value: IOption[]) =>
               setData((prev) => ({ ...prev, languages: value.map((item) => item.value) }))
             }
-            labelledBy="Select"
+            labelledBy="Languages"
           />
           <MultiSelect
             hasSelectAll={false}
@@ -177,7 +177,7 @@ const CasinoForm = ({ id }: IProps) => {
             onChange={(value: IOption[]) =>
               setData((prev) => ({ ...prev, currencies: value.map((item) => item.value) }))
             }
-            labelledBy="Select"
+            labelledBy="Currencies"
           />
         </div>
       </div>

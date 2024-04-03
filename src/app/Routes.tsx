@@ -12,7 +12,7 @@ import { CasinoAdd, CasinoEdit, CasinoList } from '@/pages/dev/CasinoList';
 import { CurrenciesAdd, CurrenciesEdit, CurrenciesList } from '@/pages/dev/CurrenciesList';
 import ProtectedRouteProvider from './provider/ProtectedRouteProvider';
 import NotFounded from '@/pages/errors/404';
-import { StatusesList } from '@/pages/admin/users/Statuses';
+import { StatusesAdd, StatusesList } from '@/pages/admin/users/Statuses';
 import { BotsList } from '@/pages/admin/users/Bots';
 import { VerificationAwait, VerificationClosed } from '@/pages/admin/users/Verification';
 import { PaymentGatewaysAdd, PaymentGatewaysList } from '@/pages/admin/finance/PaymentGateways';
@@ -154,6 +154,10 @@ const routes: RouteObject[] = [
               {
                 index: true,
                 element: <StatusesList />,
+              },
+              {
+                path: 'add',
+                element: <StatusesAdd />,
               },
             ],
           },
