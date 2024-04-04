@@ -89,13 +89,12 @@ const TablePagination = ({ recordsTotal }: IProps) => {
               <span className="visually-hidden">Previous</span>
             </span>
           </li>
-
           <ReactPaginate
             breakLabel="..."
             nextLabel={null}
             pageRangeDisplayed={5}
             forcePage={calculateCurrentPage(filterParams.start, filterParams.length) - 1}
-            pageCount={paginationNumbers || 10}
+            pageCount={paginationNumbers || 1}
             containerClassName="flex"
             activeClassName="active"
             onPageChange={(value) => calculateStart(value.selected + 1, filterParams.length)}
