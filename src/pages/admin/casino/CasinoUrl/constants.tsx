@@ -1,5 +1,6 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IData } from './models/interfaces';
+import { deleteDataByIdApi } from './api/api';
 
 export const useGenerateTableCulumns = () => {
   const columns: ITableColumns[] = [
@@ -34,8 +35,9 @@ export const useGenerateTableCulumns = () => {
       render: (item: IData) => {
         return (
           <TableEditButton
+            id={item.id}
             editRoute={`admin/casino/url/edit/${item.id}`}
-            deleteUrl={`admin/casino/url/delete/${item.id}`}
+            deleteUrl={deleteDataByIdApi(item.id)}
           />
         );
       },

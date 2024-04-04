@@ -8,9 +8,10 @@ import { useState } from 'react';
 interface IProps {
   editRoute: string;
   deleteUrl: string;
+  id: number;
 }
 
-const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
+const TableEditButton = ({ editRoute, deleteUrl, id }: IProps) => {
   const router = useRouter();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
@@ -35,6 +36,7 @@ const TableEditButton = ({ editRoute, deleteUrl }: IProps) => {
         show={openDeleteModal}
         handleClose={() => setOpenDeleteModal(false)}
         deleteUrl={deleteUrl}
+        id={id}
       />
     </>
   );

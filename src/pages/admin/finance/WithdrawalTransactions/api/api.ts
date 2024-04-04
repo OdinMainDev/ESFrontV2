@@ -13,3 +13,7 @@ export const dataEditApi = (): string => {
 export const getDataByIdApi = (id: number): string => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/withdraws/transactions/get/${id}`;
 };
+
+export const deleteDataByIdApi = (id: number): string => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/withdraws/transactions/delete/${id}`;
+};

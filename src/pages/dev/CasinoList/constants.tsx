@@ -2,6 +2,7 @@ import { TableEditButton } from '@/features/Table';
 import { ITableColumns } from '@/features/Table/models/table';
 import { ICasino } from '@/shared/models/interfaces/casinos';
 import Badge from '@/shared/ui/Badge';
+import { deleteDataById } from './api/casinosApi';
 
 export const casinosTableColumns: ITableColumns[] = [
   {
@@ -49,8 +50,9 @@ export const casinosTableColumns: ITableColumns[] = [
     render: (item: ICasino) => {
       return (
         <TableEditButton
+          id={item.id}
           editRoute={`casinos/edit/${item.id}`}
-          deleteUrl={`casinos/delete/${item.id}`}
+          deleteUrl={deleteDataById(item.id)}
         />
       );
     },

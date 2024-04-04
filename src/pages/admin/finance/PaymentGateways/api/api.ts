@@ -7,9 +7,13 @@ export const dataFilterApi = (): string => {
 };
 
 export const dataEditApi = (): string => {
-  return `${import.meta.env.VITE_APP_BASE_URL}/api/payments/providers/process}`;
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/payments/providers/process`;
 };
 
 export const getDataByIdApi = (id: number): string => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/payments/providers/get/${id}`;
+};
+
+export const deleteDataByIdApi = (id: number): string => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/payments/providers/delete/${id}`;
 };

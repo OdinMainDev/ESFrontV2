@@ -20,8 +20,9 @@ export const useGenerateAwaitTableCulumns = () => {
       render: (item: IVerificationAwait) => {
         return (
           <TableEditButton
-            editRoute={deleteVerificationAwaitByIdApi(item.id)}
-            deleteUrl={`verification/await/${item.id}`}
+            id={item.id}
+            editRoute={`verification/await/edit/${item.id}`}
+            deleteUrl={deleteVerificationAwaitByIdApi(item.id)}
           />
         );
       },
@@ -45,8 +46,9 @@ export const useGenerateClosedTableCulumns = () => {
       render: (item: IVerificationClosed) => {
         return (
           <TableEditButton
-            editRoute={deleteVerificationClosedByIdApi(item.id)}
-            deleteUrl={`verification/closed/${item.id}`}
+            id={item.id}
+            editRoute={`verification/closed/edit/${item.id}`}
+            deleteUrl={deleteVerificationClosedByIdApi(item.id)}
           />
         );
       },

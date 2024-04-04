@@ -1,5 +1,6 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { ICurrencies } from '@/shared/models/interfaces/currencies';
+import { deleteDataById } from './api/currenciesApi';
 
 export const currenciesTableColumns: ITableColumns[] = [
   {
@@ -39,8 +40,9 @@ export const currenciesTableColumns: ITableColumns[] = [
     render: (item: ICurrencies) => {
       return (
         <TableEditButton
+          id={item.id}
           editRoute={`currencies/edit/${item.id}`}
-          deleteUrl={`currencies/delete/${item.id}`}
+          deleteUrl={deleteDataById(item.id)}
         />
       );
     },

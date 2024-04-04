@@ -28,6 +28,7 @@ export const useGenerateTableCulumns = () => {
       render: (item: IData) => {
         return (
           <TableEditButton
+            id={item.id}
             editRoute={`admin/casino/events/edit/${item.id}`}
             deleteUrl={`admin/casino/events/delete/${item.id}`}
           />
@@ -71,6 +72,7 @@ export const useGroupGenerateTableCulumns = () => {
       render: (item: IData) => {
         return (
           <TableEditButton
+            id={item.id}
             editRoute={`admin/casino/events/group/edit/${item.id}`}
             deleteUrl={`admin/casino/events/group/delete/${item.id}`}
           />

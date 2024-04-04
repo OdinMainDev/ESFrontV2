@@ -29,8 +29,9 @@ export const useGenerateTableCulumns = () => {
       render: (item: IBot) => {
         return (
           <TableEditButton
-            editRoute={deleteBotByIdApi(item.id)}
-            deleteUrl={`admin/bots/delete/${item.id}`}
+            id={item.id}
+            editRoute={`admin/bots/edit/${item.id}`}
+            deleteUrl={deleteBotByIdApi(item.id)}
           />
         );
       },

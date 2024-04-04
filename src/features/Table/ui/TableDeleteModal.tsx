@@ -10,18 +10,25 @@ interface IProps {
   show: boolean;
   handleClose: () => void;
   deleteUrl: string;
+  id: number;
 }
 
-const TableDeleteModal = ({ show, handleClose, deleteUrl }: IProps) => {
+const TableDeleteModal = ({ show, handleClose, deleteUrl, id }: IProps) => {
   const [loading, setLoading] = useState(false);
   const deleteHandler = () => {
     setLoading(true);
     void axios
-      .post(deleteUrl, {
-        headers: {
-          Authorization: 'Bearer ' + Cookies.get('token'),
+      .post(
+        deleteUrl,
+        {
+          id,
         },
-      })
+        {
+          headers: {
+            Authorization: 'Bearer ' + Cookies.get('token'),
+          },
+        },
+      )
       .then(() => {
         handleClose();
         window.location.reload();

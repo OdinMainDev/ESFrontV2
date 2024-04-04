@@ -1,5 +1,6 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IGame } from '@/shared/models/interfaces/games';
+import { deleteDataById } from './api/api';
 
 export const gamesTableColumns: ITableColumns[] = [
   {
@@ -53,8 +54,9 @@ export const gamesTableColumns: ITableColumns[] = [
     render: (item: IGame) => {
       return (
         <TableEditButton
+          id={item.id}
           editRoute={`games/edit/${item.id}`}
-          deleteUrl={`games/delete/${item.id}`}
+          deleteUrl={deleteDataById(item.id)}
         />
       );
     },

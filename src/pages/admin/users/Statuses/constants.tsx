@@ -29,6 +29,7 @@ export const useGenerateTableCulumns = () => {
       render: (item: IStatus) => {
         return (
           <TableEditButton
+            id={item.id}
             editRoute={`admin/statuses/edit/${item.id}`}
             deleteUrl={deleteStatuByIdApi(item.id)}
           />
