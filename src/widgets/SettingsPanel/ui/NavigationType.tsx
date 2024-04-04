@@ -13,8 +13,10 @@ import RadioItem from './RadioItem';
 import { NavPositionVariant } from '@/shared/config/config';
 import { WarningMessage } from '@/entities/WarningMessage';
 import { useSettingsPanelContext } from '@/shared/providers/SettingsPanelProvider';
+import { useTranslation } from 'react-i18next';
 
 const NavigationType = () => {
+  const { t } = useTranslation();
   const {
     config: { theme, navbarPosition },
     setConfig,
@@ -33,11 +35,11 @@ const NavigationType = () => {
 
   return (
     <div className="setting-panel-item">
-      <h5 className="setting-panel-item-title">Navigation Type</h5>
+      <h5 className="setting-panel-item-title">{t('navigation-type')}</h5>
       <Row className="gx-2">
         <Col xs={6}>
           <RadioItem
-            label="Vertical"
+            label={t('vertical')}
             name="nav-type"
             value="vertical"
             thumb={theme === 'light' ? defaultLight : defaultDark}
@@ -48,7 +50,7 @@ const NavigationType = () => {
         </Col>
         <Col xs={6}>
           <RadioItem
-            label="Horizontal"
+            label={t('horizontal')}
             name="nav-type"
             value="horizontal"
             thumb={theme === 'light' ? topDefault : topDefaultDark}
@@ -59,7 +61,7 @@ const NavigationType = () => {
         </Col>
         <Col xs={6}>
           <RadioItem
-            label="Combo"
+            label={t('combo')}
             name="nav-type"
             value="combo"
             thumb={theme === 'light' ? navComboLight : navComboDark}
@@ -70,7 +72,7 @@ const NavigationType = () => {
         </Col>
         <Col xs={6}>
           <RadioItem
-            label="Dual nav"
+            label={t('dual-nav')}
             name="nav-type"
             value="dual"
             thumb={theme === 'light' ? dualLight : dualDark}

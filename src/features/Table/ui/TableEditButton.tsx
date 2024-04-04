@@ -2,6 +2,7 @@ import { useRouter } from '@/shared/hooks/navigation';
 import { faEdit, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonGroup, Dropdown } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import TableDeleteModal from './TableDeleteModal';
 import { useState } from 'react';
 
@@ -13,6 +14,7 @@ interface IProps {
 
 const TableEditButton = ({ editRoute, deleteUrl, id }: IProps) => {
   const router = useRouter();
+  const { t } = useTranslation();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   return (
@@ -24,11 +26,11 @@ const TableEditButton = ({ editRoute, deleteUrl, id }: IProps) => {
         <Dropdown.Menu className="min-w-10	px-[0.5rem]">
           <Dropdown.Item className="" onClick={() => router.push(editRoute)}>
             <FontAwesomeIcon icon={faEdit} className="me-2" />
-            Edit
+            {t('edit')}
           </Dropdown.Item>
           <Dropdown.Item onClick={() => setOpenDeleteModal(true)}>
             <FontAwesomeIcon color="#f48270" icon={faTrashCan} className="me-2" />
-            <span className="text-[#f48270]">Delete</span>
+            <span className="text-[#f48270]">{t('delete')}</span>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

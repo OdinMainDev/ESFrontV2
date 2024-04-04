@@ -8,6 +8,7 @@ import Button from '@/shared/ui/Button';
 import { AxiosError } from 'axios';
 import { errorValidator } from '../helpers/validator';
 import { useRouter } from '@/shared/hooks/navigation';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   id: number;
@@ -29,6 +30,7 @@ const CurrenciesForm = ({ id }: IProps) => {
   const [validated, setValidated] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (id > 0) {
@@ -76,7 +78,7 @@ const CurrenciesForm = ({ id }: IProps) => {
   return (
     <Form noValidate validated={validated} className={styles.container}>
       {title && <div className={styles.title}>{title}</div>}
-      <FloatingLabel controlId="currency-name" label="Введите название">
+      <FloatingLabel controlId="currency-name" label={t('enter-name')}>
         <Form.Control
           required
           isInvalid={invalidData.title}
@@ -86,7 +88,7 @@ const CurrenciesForm = ({ id }: IProps) => {
         />
       </FloatingLabel>
       <div className={styles.inputs}>
-        <FloatingLabel controlId="currency-code" label="Введите Code Alpha">
+        <FloatingLabel controlId="currency-code" label={t('enter-code-alpha')}>
           <Form.Control
             required
             isInvalid={invalidData.code_alpha}
@@ -95,7 +97,7 @@ const CurrenciesForm = ({ id }: IProps) => {
             placeholder="Введите Code Alpha"
           />
         </FloatingLabel>
-        <FloatingLabel controlId="currency-minor" label="Введите minor units">
+        <FloatingLabel controlId="currency-minor" label={t('enter-minor_units')}>
           <Form.Control
             required
             isInvalid={invalidData.minor_units}
@@ -116,7 +118,7 @@ const CurrenciesForm = ({ id }: IProps) => {
         disabled={loading}
         onClick={() => void sendData()}
       >
-        Подтвердить
+        {t('submit')}
       </Button>
     </Form>
   );

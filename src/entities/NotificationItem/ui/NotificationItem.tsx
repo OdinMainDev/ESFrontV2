@@ -5,6 +5,7 @@ import Avatar from '@/shared/ui/Icons/Avatar';
 import RevealDropdown from '@/shared/ui/RevealDropdown';
 import { Notification } from '@/app/data/notifications';
 import { Dropdown } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 export interface NotificationItemProps {
   notification: Notification;
@@ -13,6 +14,7 @@ export interface NotificationItemProps {
 }
 
 const NotificationItem = ({ notification, className, type }: NotificationItemProps) => {
+  const { t } = useTranslation();
   return (
     <div
       className={classNames(className, 'py-3 border-300 notification-card position-relative', {
@@ -57,7 +59,9 @@ const NotificationItem = ({ notification, className, type }: NotificationItemPro
           btnClassName="notification-dropdown-toggle"
           dropdownMenuClassName="mt-2"
         >
-          <Dropdown.Item>Mark as {notification.read ? 'unread' : 'read'}</Dropdown.Item>
+          <Dropdown.Item>
+            {t('mark-as')} {notification.read ? t('unread') : t('read')}
+          </Dropdown.Item>
         </RevealDropdown>
       </div>
     </div>

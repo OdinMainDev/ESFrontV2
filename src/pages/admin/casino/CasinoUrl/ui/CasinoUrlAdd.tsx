@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { FormGenerator, IFormItem } from '@/features/FormGenerator';
 import ContentLayout from '@/shared/layout/ContentLayout';
 import { useEffect, useState } from 'react';

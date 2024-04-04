@@ -1,8 +1,10 @@
 import { useAppContext } from '@/shared/providers/AppProvider';
 import { ChangeEvent } from 'react';
 import { Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const RTLMode = () => {
+  const { t } = useTranslation();
   const {
     config: { isRTL },
     setConfig,
@@ -27,7 +29,7 @@ const RTLMode = () => {
           className="text-end"
         />
       </div>
-      <p className="mb-0 text-700">Change text direction</p>
+      <p className="mb-0 text-700">{t('change-text-direction')}</p>
     </div>
   );
 };

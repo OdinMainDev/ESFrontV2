@@ -49,7 +49,7 @@ const VendorsList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('GameVendors')}>
+    <ContentLayout title={t('vendors')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

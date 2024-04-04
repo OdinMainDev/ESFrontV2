@@ -5,7 +5,9 @@ import { Modal } from 'react-bootstrap';
 import { IFilterItem } from '../models/filter';
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 import Input from '@/shared/ui/Input';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   show: boolean;
@@ -15,6 +17,7 @@ interface IProps {
 }
 
 const FilterModal = ({ show, handleClose, filterContent, setFilterContent }: IProps) => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const changeHandler = (values: string, name: string) => {
@@ -62,7 +65,7 @@ const FilterModal = ({ show, handleClose, filterContent, setFilterContent }: IPr
   return (
     <Modal show={show} onHide={handleClose} className="p-0" centered contentClassName="border">
       <Modal.Header className="flex justify-between border-200 p-4">
-        <h5 className="modal-title text-1000 fs-6 lh-sm">Фильтровать</h5>
+        <h5 className="modal-title text-1000 fs-6 lh-sm">{t('filter')}</h5>
         <Button className="p-1" onClick={handleClose}>
           <svg
             className="svg-inline--fa fa-xmark fs--1"
@@ -84,6 +87,7 @@ const FilterModal = ({ show, handleClose, filterContent, setFilterContent }: IPr
               required
               size="sm"
               value={item.values ?? ''}
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
               onChange={(e) => changeHandler(e.target.value, item.name)}
               type={item.type}
               placeholder={item.name}
@@ -99,10 +103,10 @@ const FilterModal = ({ show, handleClose, filterContent, setFilterContent }: IPr
           onClick={resetHandler}
           startIcon={<FontAwesomeIcon icon={faArrowsRotate} className="me-2 fs-10" />}
         >
-          Reset
+          {t('reset')}
         </Button>
         <Button variant="primary" size="sm" className="px-9 fs-9 my-0" onClick={applyFilter}>
-          Done
+          {t('done')}
         </Button>
       </Modal.Footer>
     </Modal>

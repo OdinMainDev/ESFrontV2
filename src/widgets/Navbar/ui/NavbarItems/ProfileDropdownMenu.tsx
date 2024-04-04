@@ -8,15 +8,17 @@ import { useSettingsPanelContext } from '@/shared/providers/SettingsPanelProvide
 import { useAppDispatch } from '@/store/hooks/redux';
 import { logout } from '@/store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ProfileDropdownMenu = ({ className }: { className?: string }) => {
+  const { t } = useTranslation();
   const [navItems] = useState([
     {
-      label: 'Profile',
+      label: t('profile'),
       icon: 'user',
     },
     {
-      label: 'Privacy settings',
+      label: t('privacy-settings'),
       icon: 'help-circle',
     },
   ]);
@@ -64,7 +66,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
               <Nav.Item key="cusomizerCustom" onClick={handleClick}>
                 <Nav.Link href="#!" className="px-3">
                   <FeatherIcon icon="settings" size={16} className="me-2 text-900" />
-                  <span className="text-1000">Theme customize</span>
+                  <span className="text-1000">{t('theme-customize')}</span>
                 </Nav.Link>
               </Nav.Item>
             </Nav>
@@ -77,7 +79,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
               className="btn btn-esfront-secondary d-flex flex-center w-100"
             >
               <FeatherIcon icon="log-out" className="me-2" size={16} />
-              Sign out
+              {t('sign-out')}
             </div>
           </div>
         </Card.Footer>

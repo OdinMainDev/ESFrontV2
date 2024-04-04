@@ -48,7 +48,7 @@ const PaymentTransactionsList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('payment transactions')}>
+    <ContentLayout title={t('payments-transactions')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

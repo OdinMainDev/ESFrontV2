@@ -48,7 +48,7 @@ const SliderList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('Slider')}>
+    <ContentLayout title={t('slider')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

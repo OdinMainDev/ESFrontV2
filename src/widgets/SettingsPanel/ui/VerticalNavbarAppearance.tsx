@@ -9,8 +9,10 @@ import RadioItem from './RadioItem';
 import { NavbarAppearanceVariant } from '@/shared/config/config';
 import { WarningMessage } from '@/entities/WarningMessage';
 import { useSettingsPanelContext } from '@/shared/providers/SettingsPanelProvider';
+import { useTranslation } from 'react-i18next';
 
 const VerticalNavbarAppearance = () => {
+  const { t } = useTranslation();
   const {
     config: { theme, navbarVerticalAppearance },
     setConfig,
@@ -29,11 +31,11 @@ const VerticalNavbarAppearance = () => {
 
   return (
     <div className="setting-panel-item">
-      <h5 className="setting-panel-item-title">Vertical Navbar Appearance</h5>
+      <h5 className="setting-panel-item-title">{t('vertical-navbar-appearance')}</h5>
       <Row className="gx-2">
         <Col xs={6}>
           <RadioItem
-            label="Default"
+            label={t('default')}
             name="vertical-navbar-appearance"
             value="default"
             thumb={theme === 'light' ? defaultLight : defaultDark}
@@ -44,7 +46,7 @@ const VerticalNavbarAppearance = () => {
         </Col>
         <Col xs={6}>
           <RadioItem
-            label={theme === 'light' ? 'Darker' : 'Lighter'}
+            label={theme === 'light' ? t('dark') : t('light')}
             name="vertical-navbar-appearance"
             value="darker"
             thumb={theme === 'light' ? verticalDarker : verticalLighter}

@@ -1,3 +1,7 @@
+
+import React from 'react';
+
+const PaymentGatewaysAdd = () => {
 import { FormGenerator, IFormItem } from '@/features/FormGenerator';
 import ContentLayout from '@/shared/layout/ContentLayout';
 import { useState } from 'react';

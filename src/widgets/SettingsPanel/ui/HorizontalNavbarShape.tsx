@@ -9,8 +9,10 @@ import RadioItem from './RadioItem';
 import { NavTopShapeVariant } from '@/shared/config/config';
 import { WarningMessage } from '@/entities/WarningMessage';
 import { useSettingsPanelContext } from '@/shared/providers/SettingsPanelProvider';
+import { useTranslation } from 'react-i18next';
 
 const HorizontalNavbarShape = () => {
+  const { t } = useTranslation();
   const {
     config: { theme, navbarTopShape },
     setConfig,
@@ -29,11 +31,11 @@ const HorizontalNavbarShape = () => {
 
   return (
     <div className="setting-panel-item">
-      <h5 className="setting-panel-item-title">Horizontal Navbar Shape</h5>
+      <h5 className="setting-panel-item-title">{t('horizontal-navbar-shape')}</h5>
       <Row className="gx-2">
         <Col xs={6}>
           <RadioItem
-            label="Default"
+            label={t('default')}
             name="top-nav-shape"
             value="default"
             thumb={theme === 'light' ? topDefault : topDefaultDark}
@@ -44,7 +46,7 @@ const HorizontalNavbarShape = () => {
         </Col>
         <Col xs={6}>
           <RadioItem
-            label="Slim"
+            label={t('slim')}
             name="top-nav-shape"
             value="slim"
             thumb={theme === 'light' ? topSlim : topSlimDark}

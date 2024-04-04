@@ -1,8 +1,10 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IStatus } from './models/status';
+import { useTranslation } from 'react-i18next';
 import { deleteStatuByIdApi } from './api/statusesApi';
 
 export const useGenerateTableCulumns = () => {
+  const { t } = useTranslation();
   const columns: ITableColumns[] = [
     {
       label: 'ID',
@@ -11,13 +13,13 @@ export const useGenerateTableCulumns = () => {
       export: true,
     },
     {
-      label: 'Название',
+      label: t('name'),
       value: 'name',
       sort: true,
       export: true,
     },
     {
-      label: 'Дата создания',
+      label: t('created-at'),
       value: 'created_at',
       sort: true,
       export: true,

@@ -15,6 +15,7 @@ import { IOption } from '@/shared/models/interfaces/select';
 import { getCurrenciesList } from '@/shared/api/currenciesApi';
 import { ImageUpload } from '@/entities/ImageUpload';
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   id: number;
@@ -50,6 +51,7 @@ const CasinoForm = ({ id }: IProps) => {
     password: '',
   });
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     void getLanguages();
@@ -119,7 +121,11 @@ const CasinoForm = ({ id }: IProps) => {
               type="email"
               placeholder="name@example.com"
             />
-            <FloatingLabel controlId="password" label="Password" className="form-icon-container">
+            <FloatingLabel
+              controlId="password"
+              label={t('password')}
+              className="form-icon-container"
+            >
               <Form.Control
                 required
                 isInvalid={invalidData.password}
@@ -137,10 +143,10 @@ const CasinoForm = ({ id }: IProps) => {
           checked={data.is_enabled}
           onChange={(e) => setData((prev) => ({ ...prev, is_enabled: e.target.checked }))}
           id="casino-checkbox"
-          label="Включить"
+          label={t('turn-on')}
         />
 
-        <FloatingLabel controlId="currency-name" label="Название">
+        <FloatingLabel controlId="currency-name" label={t('name')}>
           <Form.Control
             required
             isInvalid={invalidData.name}
@@ -149,7 +155,7 @@ const CasinoForm = ({ id }: IProps) => {
             placeholder="Введите название"
           />
         </FloatingLabel>
-        <FloatingLabel controlId="currency-api" label="Api token">
+        <FloatingLabel controlId="currency-api" label={t('api-token')}>
           <Form.Control
             required
             isInvalid={invalidData.apikey}
@@ -196,7 +202,7 @@ const CasinoForm = ({ id }: IProps) => {
         disabled={loading}
         onClick={() => void sendData()}
       >
-        Подтвердить
+        {t('submit')}
       </Button>
     </Form>
   );

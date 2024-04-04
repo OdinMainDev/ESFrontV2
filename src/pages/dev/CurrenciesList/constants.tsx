@@ -2,7 +2,11 @@ import { ITableColumns, TableEditButton } from '@/features/Table';
 import { ICurrencies } from '@/shared/models/interfaces/currencies';
 import { deleteDataById } from './api/currenciesApi';
 
-export const currenciesTableColumns: ITableColumns[] = [
+import { useTranslation } from 'react-i18next';
+export const useGenerateTableColumns = () => {
+  const { t } = useTranslation();
+
+ const currenciesTableColumns: ITableColumns[] = [
   {
     label: 'ID',
     value: 'id',
@@ -10,25 +14,25 @@ export const currenciesTableColumns: ITableColumns[] = [
     export: true,
   },
   {
-    label: 'Название',
+    label: t('name'),
     value: 'title',
     sort: true,
     export: true,
   },
   {
-    label: 'Код валюты',
+    label: t('code_alpha'),
     value: 'code_alpha',
     sort: true,
     export: true,
   },
   {
-    label: 'Знаки валют',
+    label: t('minor_units'),
     value: 'minor_units',
     sort: true,
     export: true,
   },
   {
-    label: 'Дата создания',
+    label: t('created_at'),
     value: 'created_at',
     sort: true,
     export: true,
@@ -46,5 +50,7 @@ export const currenciesTableColumns: ITableColumns[] = [
         />
       );
     },
-  },
-];
+  ];
+
+  return currenciesTableColumns;
+};

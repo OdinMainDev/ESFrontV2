@@ -5,8 +5,10 @@ import defaultLight from '@/shared/assets/images/generic/default-light.png';
 import defaultDark from '@/shared/assets/images/generic/default-dark.png';
 import RadioItem from './RadioItem';
 import { ThemeVariant } from '@/shared/config/config';
+import { useTranslation } from 'react-i18next';
 
 const ColorScheme = () => {
+  const { t } = useTranslation();
   const {
     config: { theme },
     setConfig,
@@ -21,11 +23,11 @@ const ColorScheme = () => {
 
   return (
     <div className="setting-panel-item mt-0">
-      <h5 className="setting-panel-item-title">Color Scheme</h5>
+      <h5 className="setting-panel-item-title">{t('color-scheme')}</h5>
       <Row className="gx-2">
         <Col xs={6}>
           <RadioItem
-            label="Light"
+            label={t('light')}
             name="theme"
             value="light"
             thumb={defaultLight}
@@ -35,7 +37,7 @@ const ColorScheme = () => {
         </Col>
         <Col xs={6}>
           <RadioItem
-            label="Dark"
+            label={t('dark')}
             name="theme"
             value="dark"
             thumb={defaultDark}

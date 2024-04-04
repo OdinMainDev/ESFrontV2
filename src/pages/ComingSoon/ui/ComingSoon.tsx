@@ -5,8 +5,10 @@ import comingSoonDark from '@/shared/assets/images/animated-icons/coming-soon-da
 import comingSoonText from '@/shared/assets/images/spot-illustrations/43.png';
 import comingSoonTextDark from '@/shared/assets/images/spot-illustrations/dark_43.png';
 import { useAppContext } from '@/shared/providers/AppProvider';
+import { useTranslation } from 'react-i18next';
 
 const ComingSoon = () => {
+  const { t } = useTranslation();
   const {
     config: { theme },
   } = useAppContext();
@@ -40,10 +42,8 @@ const ComingSoon = () => {
                   style={{ maxWidth: 415 }}
                 />
 
-                <h2 className="text-gray-800 fs-xl-6 mb-3">Эта страница все еще в разработке:(</h2>
-                <p className="mb-6 w-xxl-75">
-                  Она будет реализована в самые кратчайшие сроки ( вероятно )
-                </p>
+                <h2 className="text-gray-800 fs-xl-6 mb-3">{t('coming-soon-title')}:(</h2>
+                <p className="mb-6 w-xxl-75">{t('coming-soon-description')}</p>
               </div>
             </div>
           </Col>
