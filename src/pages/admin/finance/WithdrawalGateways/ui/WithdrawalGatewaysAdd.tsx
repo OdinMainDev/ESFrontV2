@@ -1,7 +1,5 @@
-
 import React from 'react';
 
-const WithdrawalGatewaysAdd = () => {
 import { FormGenerator, IFormItem } from '@/features/FormGenerator';
 import ContentLayout from '@/shared/layout/ContentLayout';
 import { useState } from 'react';
