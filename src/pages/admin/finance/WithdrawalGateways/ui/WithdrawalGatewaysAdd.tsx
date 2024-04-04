@@ -18,7 +18,8 @@ const WithdrawalGatewaysAdd = () => {
     <ContentLayout title={t('withdrawal gateways add')}>
       <FormGenerator
         navigateTo="admin/finances/withdrawal-gateways/edit/"
-        api={dataEditApi(0)}
+        api={dataEditApi()}
+        id={0}
         formItems={data}
       />
     </ContentLayout>

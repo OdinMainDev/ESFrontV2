@@ -16,7 +16,7 @@ const BotsAdd = () => {
   ]);
   return (
     <ContentLayout title={t('bot add')}>
-      <FormGenerator navigateTo="admin/bots/edit/" api={botsEditApi(0)} formItems={data} />
+      <FormGenerator id={0} navigateTo="admin/bots/edit/" api={botsEditApi()} formItems={data} />
     </ContentLayout>
   );
 };

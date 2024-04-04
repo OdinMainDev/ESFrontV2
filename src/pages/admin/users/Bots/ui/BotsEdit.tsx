@@ -46,7 +46,12 @@ const BotsEdit = () => {
 
   return (
     <ContentLayout title={t('bot edit')}>
-      <FormGenerator title={resData?.name} api={botsEditApi(Number(id))} formItems={formData} />
+      <FormGenerator
+        id={Number(id)}
+        title={resData?.name}
+        api={botsEditApi()}
+        formItems={formData}
+      />
     </ContentLayout>
   );
 };

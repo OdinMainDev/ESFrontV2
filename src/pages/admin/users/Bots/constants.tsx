@@ -1,5 +1,6 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IBot } from './models/interfaces';
+import { deleteBotByIdApi } from './api/api';
 
 export const useGenerateTableCulumns = () => {
   const columns: ITableColumns[] = [
@@ -28,7 +29,7 @@ export const useGenerateTableCulumns = () => {
       render: (item: IBot) => {
         return (
           <TableEditButton
-            editRoute={`admin/bots/edit/${item.id}`}
+            editRoute={deleteBotByIdApi(item.id)}
             deleteUrl={`admin/bots/delete/${item.id}`}
           />
         );

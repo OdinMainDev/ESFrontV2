@@ -1,5 +1,9 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IVerificationAwait, IVerificationClosed } from './models/verification';
+import {
+  deleteVerificationAwaitByIdApi,
+  deleteVerificationClosedByIdApi,
+} from './api/verificationApi';
 
 export const useGenerateAwaitTableCulumns = () => {
   const columns: ITableColumns[] = [
@@ -16,7 +20,7 @@ export const useGenerateAwaitTableCulumns = () => {
       render: (item: IVerificationAwait) => {
         return (
           <TableEditButton
-            editRoute={`verification/await/edit/${item.id}`}
+            editRoute={deleteVerificationAwaitByIdApi(item.id)}
             deleteUrl={`verification/await/${item.id}`}
           />
         );
@@ -41,7 +45,7 @@ export const useGenerateClosedTableCulumns = () => {
       render: (item: IVerificationClosed) => {
         return (
           <TableEditButton
-            editRoute={`verification/closed/edit/${item.id}`}
+            editRoute={deleteVerificationClosedByIdApi(item.id)}
             deleteUrl={`verification/closed/${item.id}`}
           />
         );

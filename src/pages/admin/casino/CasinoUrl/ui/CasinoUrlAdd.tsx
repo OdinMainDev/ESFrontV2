@@ -57,7 +57,12 @@ const CasinoUrlAdd = () => {
   }, []);
   return (
     <ContentLayout title={t('casino url add')}>
-      <FormGenerator navigateTo="admin/casino/url/edit/" api={dataEditApi(0)} formItems={data} />
+      <FormGenerator
+        id={0}
+        navigateTo="admin/casino/url/edit/"
+        api={dataEditApi()}
+        formItems={data}
+      />
     </ContentLayout>
   );
 };

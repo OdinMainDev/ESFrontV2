@@ -46,7 +46,7 @@ const PaymentTransactionsEdit = () => {
 
   return (
     <ContentLayout title={t('payment transactions edit') + ' ' + resData?.user_id}>
-      <FormGenerator api={dataEditApi(Number(id))} formItems={formData} />
+      <FormGenerator api={dataEditApi()} id={Number(id)} formItems={formData} />
     </ContentLayout>
   );
 };

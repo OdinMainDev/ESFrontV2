@@ -46,7 +46,12 @@ const WithdrawalGatewaysEdit = () => {
 
   return (
     <ContentLayout title={t('withdrawal gateways edit')}>
-      <FormGenerator title={resData?.name} api={dataEditApi(Number(id))} formItems={formData} />
+      <FormGenerator
+        title={resData?.name}
+        api={dataEditApi()}
+        id={Number(id)}
+        formItems={formData}
+      />
     </ContentLayout>
   );
 };

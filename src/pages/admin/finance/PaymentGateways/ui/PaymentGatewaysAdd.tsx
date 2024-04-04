@@ -18,7 +18,8 @@ const PaymentGatewaysAdd = () => {
     <ContentLayout title={t('payment gateways add')}>
       <FormGenerator
         navigateTo="admin/finances/payment-gateways/edit/"
-        api={dataEditApi(0)}
+        api={dataEditApi()}
+        id={0}
         formItems={data}
       />
     </ContentLayout>

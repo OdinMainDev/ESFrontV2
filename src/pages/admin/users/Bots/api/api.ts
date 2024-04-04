@@ -6,10 +6,14 @@ export const botsFilterApi = (): string => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/users/bots/list/filters`;
 };
 
-export const botsEditApi = (id: number): string => {
-  return `${import.meta.env.VITE_APP_BASE_URL}/api/users/bots/edit/${id}`;
+export const botsEditApi = (): string => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/users/bots/process`;
 };
 
 export const getBotsByIdApi = (id: number): string => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/users/bots/get/${id}`;
+};
+
+export const deleteBotByIdApi = (id: number): string => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/users/bots/delete/${id}`;
 };

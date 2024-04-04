@@ -46,7 +46,12 @@ const PaymentGatewaysEdit = () => {
 
   return (
     <ContentLayout title={t('payment gateways edit')}>
-      <FormGenerator title={resData?.name} api={dataEditApi(Number(id))} formItems={formData} />
+      <FormGenerator
+        title={resData?.name}
+        api={dataEditApi()}
+        id={Number(id)}
+        formItems={formData}
+      />
     </ContentLayout>
   );
 };
