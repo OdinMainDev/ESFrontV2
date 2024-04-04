@@ -5,3 +5,7 @@ export const dataListApi = (): string => {
 export const dataFilterApi = (): string => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/affiliate/medias/list/filters`;
 };
+
+export const deleteDataById = (id: number): string => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/affiliate/medias/delete/${id}`;
+};

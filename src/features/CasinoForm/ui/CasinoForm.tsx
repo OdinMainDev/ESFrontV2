@@ -167,23 +167,29 @@ const CasinoForm = ({ id }: IProps) => {
         <div className={styles.inputs}>
           <MultiSelect
             hasSelectAll={false}
-            overrideStrings={{ allItemsAreSelected: data.languages.join(', ') }}
+            overrideStrings={{
+              allItemsAreSelected: data.languages.join(', '),
+              selectSomeItems: 'Languages',
+            }}
             options={languages.map((item) => ({ label: item, value: item }))}
             value={data.languages.map((item) => ({ label: item, value: item }))}
             onChange={(value: IOption[]) =>
               setData((prev) => ({ ...prev, languages: value.map((item) => item.value) }))
             }
-            labelledBy="Select"
+            labelledBy="Languages"
           />
           <MultiSelect
             hasSelectAll={false}
-            overrideStrings={{ allItemsAreSelected: data.currencies.join(', ') }}
+            overrideStrings={{
+              allItemsAreSelected: data.currencies.join(', '),
+              selectSomeItems: 'Currencies',
+            }}
             options={currencies.map((item) => ({ label: item, value: item }))}
             value={data.currencies.map((item) => ({ label: item, value: item }))}
             onChange={(value: IOption[]) =>
               setData((prev) => ({ ...prev, currencies: value.map((item) => item.value) }))
             }
-            labelledBy="Select"
+            labelledBy="Currencies"
           />
         </div>
       </div>

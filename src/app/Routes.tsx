@@ -12,17 +12,28 @@ import { CasinoAdd, CasinoEdit, CasinoList } from '@/pages/dev/CasinoList';
 import { CurrenciesAdd, CurrenciesEdit, CurrenciesList } from '@/pages/dev/CurrenciesList';
 import ProtectedRouteProvider from './provider/ProtectedRouteProvider';
 import NotFounded from '@/pages/errors/404';
-import { StatusesList } from '@/pages/admin/users/Statuses';
-import { BotsList } from '@/pages/admin/users/Bots';
+import { StatusesAdd, StatusesEdit, StatusesList } from '@/pages/admin/users/Statuses';
+import { BotsAdd, BotsEdit, BotsList } from '@/pages/admin/users/Bots';
 import { VerificationAwait, VerificationClosed } from '@/pages/admin/users/Verification';
-import { PaymentGatewaysAdd, PaymentGatewaysList } from '@/pages/admin/finance/PaymentGateways';
+import {
+  PaymentGatewaysAdd,
+  PaymentGatewaysEdit,
+  PaymentGatewaysList,
+} from '@/pages/admin/finance/PaymentGateways';
 import {
   WithdrawalGatewaysAdd,
+  WithdrawalGatewaysEdit,
   WithdrawalGatewaysList,
 } from '@/pages/admin/finance/WithdrawalGateways';
-import { PaymentTransactionsList } from '@/pages/admin/finance/PaymentTransactions';
-import { WithdrawalTransactionsList } from '@/pages/admin/finance/WithdrawalTransactions';
-import { CasinoUrlAdd, CasinoUrlList } from '@/pages/admin/casino/CasinoUrl';
+import {
+  PaymentTransactionsEdit,
+  PaymentTransactionsList,
+} from '@/pages/admin/finance/PaymentTransactions';
+import {
+  WithdrawalTransactionsEdit,
+  WithdrawalTransactionsList,
+} from '@/pages/admin/finance/WithdrawalTransactions';
+import { CasinoUrlAdd, CasinoUrlEdit, CasinoUrlList } from '@/pages/admin/casino/CasinoUrl';
 import {
   CasinoEventsAdd,
   CasinoEventsGroupAdd,
@@ -155,6 +166,14 @@ const routes: RouteObject[] = [
                 index: true,
                 element: <StatusesList />,
               },
+              {
+                path: 'add',
+                element: <StatusesAdd />,
+              },
+              {
+                path: 'edit/:id',
+                element: <StatusesEdit />,
+              },
             ],
           },
           {
@@ -163,6 +182,14 @@ const routes: RouteObject[] = [
               {
                 index: true,
                 element: <BotsList />,
+              },
+              {
+                path: 'add',
+                element: <BotsAdd />,
+              },
+              {
+                path: 'edit/:id',
+                element: <BotsEdit />,
               },
             ],
           },
@@ -193,6 +220,10 @@ const routes: RouteObject[] = [
                     path: 'add',
                     element: <PaymentGatewaysAdd />,
                   },
+                  {
+                    path: 'edit/:id',
+                    element: <PaymentGatewaysEdit />,
+                  },
                 ],
               },
               {
@@ -206,6 +237,10 @@ const routes: RouteObject[] = [
                     path: 'add',
                     element: <WithdrawalGatewaysAdd />,
                   },
+                  {
+                    path: 'edit/:id',
+                    element: <WithdrawalGatewaysEdit />,
+                  },
                 ],
               },
               {
@@ -215,6 +250,10 @@ const routes: RouteObject[] = [
                     index: true,
                     element: <PaymentTransactionsList />,
                   },
+                  {
+                    path: 'edit/:id',
+                    element: <PaymentTransactionsEdit />,
+                  },
                 ],
               },
               {
@@ -223,6 +262,10 @@ const routes: RouteObject[] = [
                   {
                     index: true,
                     element: <WithdrawalTransactionsList />,
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <WithdrawalTransactionsEdit />,
                   },
                 ],
               },
@@ -237,6 +280,10 @@ const routes: RouteObject[] = [
                   {
                     index: true,
                     element: <CasinoUrlList />,
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <CasinoUrlEdit />,
                   },
                   {
                     path: 'add',

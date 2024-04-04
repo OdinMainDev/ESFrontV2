@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useGenerateTableCulumns } from '../constants';
 import { FilterButton } from '@/features/FilterModal';
 import { IFilterParams } from '@/shared/models/interfaces/filter';
-import { IBot } from '../models/bots';
-import { botsFilterApi, botsListApi } from '../api/botsApi';
+import { IBot } from '../models/interfaces';
+import { botsFilterApi, botsListApi } from '../api/api';
 import { useEffect, useState } from 'react';
 import { ITableResponseData } from '@/shared/models/interfaces/table';
 import { format, fromUnixTime } from 'date-fns';
@@ -56,7 +56,7 @@ const BotsList = () => {
             className="mr-[10px]"
             size="sm"
             startIcon={<FontAwesomeIcon icon={faPlus} className="me-2" />}
-            onClick={() => router.push('currencies/add')}
+            onClick={() => router.push('admin/bots/add')}
           >
             {t('add')}
           </Button>

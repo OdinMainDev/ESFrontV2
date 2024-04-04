@@ -2,6 +2,7 @@ import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IData } from './models/interfaces';
 import { useTranslation } from 'react-i18next';
 
+import { deleteDataByIdApi } from './api/api';
 export const useGenerateTableCulumns = () => {
   const { t } = useTranslation();
   const columns: ITableColumns[] = [
@@ -30,8 +31,9 @@ export const useGenerateTableCulumns = () => {
       render: (item: IData) => {
         return (
           <TableEditButton
-            editRoute={`admin/finances/payments-transactions/edit/${item.id}`}
-            deleteUrl={`admin/finances/payments-transactions/delete/${item.id}`}
+            id={item.id}
+            editRoute={`admin/finances/withdrawal-transactions/edit/${item.id}`}
+            deleteUrl={deleteDataByIdApi(item.id)}
           />
         );
       },

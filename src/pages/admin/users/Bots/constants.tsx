@@ -1,7 +1,7 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
-import { IBot } from './models/bots';
 import { useTranslation } from 'react-i18next';
-
+import { IBot } from './models/interfaces';
+import { deleteBotByIdApi } from './api/api';
 export const useGenerateTableCulumns = () => {
   const { t } = useTranslation();
   const columns: ITableColumns[] = [
@@ -30,8 +30,9 @@ export const useGenerateTableCulumns = () => {
       render: (item: IBot) => {
         return (
           <TableEditButton
-            editRoute={`currencies/edit/${item.id}`}
-            deleteUrl={`currencies/delete/${item.id}`}
+            id={item.id}
+            editRoute={`admin/bots/edit/${item.id}`}
+            deleteUrl={deleteBotByIdApi(item.id)}
           />
         );
       },

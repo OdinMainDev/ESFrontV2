@@ -1,6 +1,7 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IGame } from '@/shared/models/interfaces/games';
 import { useTranslation } from 'react-i18next';
+import { deleteDataById } from './api/api';
 
 export const useGenerateTableColums = () => {
   const { t } = useTranslation();
@@ -36,7 +37,7 @@ export const useGenerateTableColums = () => {
       render: (item: IGame) => {
         return <a className="fw-semi-bold line-clamp-3 ">{item.name}</a>;
       },
-    },
+  },
     {
       label: t('game-provider'),
       value: 'game_provider',

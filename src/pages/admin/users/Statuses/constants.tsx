@@ -1,6 +1,7 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IStatus } from './models/status';
 import { useTranslation } from 'react-i18next';
+import { deleteStatuByIdApi } from './api/statusesApi';
 
 export const useGenerateTableCulumns = () => {
   const { t } = useTranslation();
@@ -30,8 +31,9 @@ export const useGenerateTableCulumns = () => {
       render: (item: IStatus) => {
         return (
           <TableEditButton
-            editRoute={`currencies/edit/${item.id}`}
-            deleteUrl={`currencies/delete/${item.id}`}
+            id={item.id}
+            editRoute={`admin/statuses/edit/${item.id}`}
+            deleteUrl={deleteStatuByIdApi(item.id)}
           />
         );
       },

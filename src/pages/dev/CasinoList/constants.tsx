@@ -3,7 +3,7 @@ import { ITableColumns } from '@/features/Table/models/table';
 import { ICasino } from '@/shared/models/interfaces/casinos';
 import Badge from '@/shared/ui/Badge';
 import { useTranslation } from 'react-i18next';
-
+import { deleteDataById } from './api/casinosApi';
 export const useGenerateTableColumns = () => {
   const { t } = useTranslation();
   const casinosTableColumns: ITableColumns[] = [
@@ -31,7 +31,31 @@ export const useGenerateTableColumns = () => {
           </div>
         );
       },
-      export: true,
+    export: true,
+  },
+  {
+    label: 'API KEY',
+    value: 'token',
+    sort: false,
+    export: true,
+  },
+  {
+    label: 'Дата создания',
+    value: 'created_at',
+    sort: true,
+    export: true,
+  },
+  {
+    label: '',
+    value: 'action',
+    sort: false,
+    render: (item: ICasino) => {
+      return (
+        <TableEditButton
+          id={item.id}
+          editRoute={`casinos/edit/${item.id}`}
+          deleteUrl={deleteDataById(item.id)}
+        />
     },
     {
       label: t('api-key'),
