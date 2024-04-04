@@ -31,31 +31,33 @@ export const useGenerateTableColumns = () => {
           </div>
         );
       },
-    export: true,
-  },
-  {
-    label: 'API KEY',
-    value: 'token',
-    sort: false,
-    export: true,
-  },
-  {
-    label: 'Дата создания',
-    value: 'created_at',
-    sort: true,
-    export: true,
-  },
-  {
-    label: '',
-    value: 'action',
-    sort: false,
-    render: (item: ICasino) => {
-      return (
-        <TableEditButton
-          id={item.id}
-          editRoute={`casinos/edit/${item.id}`}
-          deleteUrl={deleteDataById(item.id)}
-        />
+      export: true,
+    },
+    {
+      label: 'API KEY',
+      value: 'token',
+      sort: false,
+      export: true,
+    },
+    {
+      label: 'Дата создания',
+      value: 'created_at',
+      sort: true,
+      export: true,
+    },
+    {
+      label: '',
+      value: 'action',
+      sort: false,
+      render: (item: ICasino) => {
+        return (
+          <TableEditButton
+            id={item.id}
+            editRoute={`casinos/edit/${item.id}`}
+            deleteUrl={deleteDataById(item.id)}
+          />
+        );
+      },
     },
     {
       label: t('api-key'),
@@ -76,8 +78,9 @@ export const useGenerateTableColumns = () => {
       render: (item: ICasino) => {
         return (
           <TableEditButton
+            id={item.id}
             editRoute={`casinos/edit/${item.id}`}
-            deleteUrl={`casinos/delete/${item.id}`}
+            deleteUrl={deleteDataById(item.id)}
           />
         );
       },
