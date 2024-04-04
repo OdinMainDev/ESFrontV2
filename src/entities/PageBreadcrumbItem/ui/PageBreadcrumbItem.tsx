@@ -1,3 +1,4 @@
+import { useRouter } from '@/shared/hooks/navigation';
 import classNames from 'classnames';
 import { Breadcrumb } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +18,7 @@ const PageBreadcrumb = ({ className }: PageBreadcrumbProps) => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x && !['ru', 'en'].includes(x));
   const { t } = useTranslation();
+  const router = useRouter();
   const breadcrumbs: IPageBreadcrumbItem[] = [
     { url: '/', label: 'home' },
     ...buildBreadcrumbs(pathnames),
@@ -31,7 +33,7 @@ const PageBreadcrumb = ({ className }: PageBreadcrumbProps) => {
 
       const breadcrumb: IPageBreadcrumbItem = {
         label: path,
-        url: `/${basePath}/`,
+        url: `${basePath}/`,
         active: isLast ? true : undefined,
       };
 
@@ -44,10 +46,17 @@ const PageBreadcrumb = ({ className }: PageBreadcrumbProps) => {
 
     return breadcrumbs;
   }
+  const navigateToPage = (url: string) => {
+    router.push(url);
+  };
   return (
     <Breadcrumb className={classNames(className, 'mb-2')}>
       {breadcrumbs.map((item) => (
-        <Breadcrumb.Item href={item.url} active={item.active} key={item.label}>
+        <Breadcrumb.Item
+          onClick={() => navigateToPage(item?.url || '')}
+          active={item.active}
+          key={item.label}
+        >
           {t(item.label)}
         </Breadcrumb.Item>
       ))}

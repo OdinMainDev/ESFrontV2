@@ -1,5 +1,6 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IStatus } from './models/status';
+import { deleteStatuByIdApi } from './api/statusesApi';
 
 export const useGenerateTableCulumns = () => {
   const columns: ITableColumns[] = [
@@ -29,7 +30,7 @@ export const useGenerateTableCulumns = () => {
         return (
           <TableEditButton
             editRoute={`admin/statuses/edit/${item.id}`}
-            deleteUrl={`admin/statuses/delete/${item.id}`}
+            deleteUrl={deleteStatuByIdApi(item.id)}
           />
         );
       },

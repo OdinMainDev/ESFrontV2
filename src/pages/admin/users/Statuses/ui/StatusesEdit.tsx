@@ -58,7 +58,12 @@ const StatusesEdit = () => {
 
   return (
     <ContentLayout title={t('statuese edit')}>
-      <FormGenerator title={resData?.name} api={statusesEditApi(Number(id))} formItems={formData} />
+      <FormGenerator
+        title={resData?.name}
+        api={statusesEditApi()}
+        id={Number(resData?.id)}
+        formItems={formData}
+      />
     </ContentLayout>
   );
 };

@@ -97,16 +97,18 @@ interface IProps {
   formItems: IFormItem[];
   navigateTo?: string;
   api: string;
+  id: number;
   title?: string;
+  isFormData?: boolean;
 }
 
-const FormGenerator = ({ formItems, api, title, navigateTo }: IProps) => {
+const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IProps) => {
   const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState(false);
   const router = useRouter();
   const [invalidData, setInvalidData] = useState<string[]>([]);
 
-  const sendData = async (formData: FormData) => {
+  const sendData = async (formData: FormData | object) => {
     const { data } = await axios.post<{ data: { id: number } }>(api, formData, {
       headers: {
         Authorization: 'Bearer ' + Cookies.get('token'),
@@ -122,7 +124,11 @@ const FormGenerator = ({ formItems, api, title, navigateTo }: IProps) => {
       setValidated(true);
       setLoading(true);
       const formData = new FormData(event.currentTarget);
-      const data = await sendData(formData);
+      formData.append('id', id.toString());
+      const formDataObj = Object.fromEntries(formData.entries());
+      const data = await sendData(
+        isFormData ? formData : { ...formDataObj, id: Number(formDataObj.id) },
+      );
       if (navigateTo && data.id) {
         router.push(navigateTo + data.id);
       }
