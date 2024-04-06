@@ -16,7 +16,7 @@ const BotsEdit = () => {
     {
       name: 'name',
       placeholder: 'name',
-      label: 'name',
+      label: t('name'),
       required: true,
     },
   ]);
@@ -45,7 +45,7 @@ const BotsEdit = () => {
   }, []);
 
   return (
-    <ContentLayout title={t('bot edit')}>
+    <ContentLayout title={t('bots-edit')}>
       <FormGenerator
         id={Number(id)}
         title={resData?.name}

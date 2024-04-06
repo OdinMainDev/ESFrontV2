@@ -48,7 +48,7 @@ const BotsList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('Bots')}>
+    <ContentLayout title={t('bots')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

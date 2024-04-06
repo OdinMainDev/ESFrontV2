@@ -10,6 +10,7 @@ import { useRouter } from '@/shared/hooks/navigation';
 import { errorMapper } from '@/shared/mapper/errorMapper';
 import { MultiSelect } from 'react-multi-select-component';
 import { IOption } from '@/shared/models/interfaces/select';
+import { useTranslation } from 'react-i18next';
 
 interface IItemProps {
   invalidData: string[];
@@ -19,6 +20,8 @@ interface IItemProps {
 const ItemByType = ({ invalidData, formItem }: IItemProps) => {
   const [value, setValue] = useState<string>(formItem.value as string);
   const [options, setOptions] = useState<IOption[]>(formItem.selectedOption || []);
+  const [isChecked, setIsChecked] = useState<boolean>(formItem.value as boolean);
+
   useEffect(() => {
     setValue(formItem.value as string);
     setOptions(formItem.selectedOption || []);
@@ -30,7 +33,8 @@ const ItemByType = ({ invalidData, formItem }: IItemProps) => {
         required={formItem.required}
         type={formItem.type}
         isInvalid={!!invalidData.find((item) => item === formItem.name)}
-        defaultChecked={formItem.value as boolean}
+        checked={isChecked}
+        onChange={() => setIsChecked(!isChecked)}
         label={formItem.label}
         name={formItem.name}
       />
@@ -107,6 +111,7 @@ const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IP
   const [validated, setValidated] = useState(false);
   const router = useRouter();
   const [invalidData, setInvalidData] = useState<string[]>([]);
+  const { t } = useTranslation();
 
   const sendData = async (formData: FormData | object) => {
     const { data } = await axios.post<{ data: { id: number } }>(api, formData, {
@@ -159,7 +164,7 @@ const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IP
         disabled={loading}
         type="submit"
       >
-        Подтвердить
+        {t('submit')}
       </Button>
     </Form>
   );

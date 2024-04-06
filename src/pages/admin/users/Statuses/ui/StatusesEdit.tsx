@@ -12,19 +12,25 @@ const StatusesEdit = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const [resData, setResData] = useState<IStatus | null>(null);
-  const [options] = useState<string[]>(['danger', 'success', 'warning', 'info', 'primary']);
+  const [options] = useState<string[]>([
+    t('danger'),
+    t('success'),
+    t('warning'),
+    t('info'),
+    t('primary'),
+  ]);
   const [formData, setFormData] = useState<IFormItem[]>([
     {
       name: 'name',
       placeholder: 'name',
-      label: 'name',
+      label: t('name'),
       required: true,
     },
     {
       name: 'color',
       placeholder: 'color',
       type: 'select',
-      label: 'color',
+      label: t('color'),
       required: true,
       options: options.map((item) => ({
         value: item,
@@ -57,7 +63,7 @@ const StatusesEdit = () => {
   }, []);
 
   return (
-    <ContentLayout title={t('statuese edit')}>
+    <ContentLayout title={t('statuses-edit')}>
       <FormGenerator
         title={resData?.name}
         api={statusesEditApi()}
