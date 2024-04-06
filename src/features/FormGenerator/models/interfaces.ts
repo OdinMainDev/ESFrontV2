@@ -8,6 +8,7 @@ export interface IFormItem {
   type?: formItemType;
   required?: boolean;
   label?: string;
+  checked?: boolean;
   value?: string | number | boolean;
   options?: IOption[];
   selectedOption?: IOption[];

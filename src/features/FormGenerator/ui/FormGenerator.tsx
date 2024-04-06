@@ -11,6 +11,7 @@ import { errorMapper } from '@/shared/mapper/errorMapper';
 import { MultiSelect } from 'react-multi-select-component';
 import { IOption } from '@/shared/models/interfaces/select';
 import { useTranslation } from 'react-i18next';
+import { convertFormDataToObject } from '../helpers/convertValueByType';
 
 interface IItemProps {
   invalidData: string[];
@@ -20,7 +21,6 @@ interface IItemProps {
 const ItemByType = ({ invalidData, formItem }: IItemProps) => {
   const [value, setValue] = useState<string>(formItem.value as string);
   const [options, setOptions] = useState<IOption[]>(formItem.selectedOption || []);
-  const [isChecked, setIsChecked] = useState<boolean>(!!formItem.value);
   useEffect(() => {
     setValue(formItem.value as string);
     setOptions(formItem.selectedOption || []);
@@ -32,9 +32,7 @@ const ItemByType = ({ invalidData, formItem }: IItemProps) => {
         required={formItem.required}
         type={formItem.type}
         isInvalid={!!invalidData.find((item) => item === formItem.name)}
-        defaultChecked={isChecked}
-        checked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
+        defaultChecked={formItem.checked}
         label={formItem.label}
         name={formItem.name}
       />
@@ -130,10 +128,8 @@ const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IP
       setLoading(true);
       const formData = new FormData(event.currentTarget);
       formData.append('id', id.toString());
-      const formDataObj = Object.fromEntries(formData.entries());
-      const data = await sendData(
-        isFormData ? formData : { ...formDataObj, id: Number(formDataObj.id) },
-      );
+      const formDataObj = convertFormDataToObject(formData, formItems);
+      const data = await sendData(isFormData ? formData : { ...formDataObj, id: Number(id) });
       if (navigateTo && data.id) {
         router.push(navigateTo + data.id);
       }
