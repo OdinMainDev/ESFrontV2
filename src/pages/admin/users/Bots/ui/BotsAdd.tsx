@@ -13,6 +13,13 @@ const BotsAdd = () => {
       label: 'name',
       required: true,
     },
+    {
+      name: 'name',
+      placeholder: 'name',
+      type: 'checkbox',
+      label: 'name',
+      required: true,
+    },
   ]);
   return (
     <ContentLayout title={t('bot add')}>

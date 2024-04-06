@@ -19,6 +19,8 @@ interface IItemProps {
 const ItemByType = ({ invalidData, formItem }: IItemProps) => {
   const [value, setValue] = useState<string>(formItem.value as string);
   const [options, setOptions] = useState<IOption[]>(formItem.selectedOption || []);
+  const [checked, setChecked] = useState<boolean>(!!formItem.value);
+
   useEffect(() => {
     setValue(formItem.value as string);
     setOptions(formItem.selectedOption || []);
@@ -30,7 +32,9 @@ const ItemByType = ({ invalidData, formItem }: IItemProps) => {
         required={formItem.required}
         type={formItem.type}
         isInvalid={!!invalidData.find((item) => item === formItem.name)}
-        defaultChecked={formItem.value as boolean}
+        defaultChecked={checked}
+        checked={checked}
+        onChange={(e) => setChecked(e.target.checked)}
         label={formItem.label}
         name={formItem.name}
       />
