@@ -6,19 +6,25 @@ import { statusesEditApi } from '../api/statusesApi';
 
 const StatusesAdd = () => {
   const { t } = useTranslation();
-  const [options] = useState<string[]>(['danger', 'success', 'warning', 'info', 'primary']);
+  const [options] = useState<string[]>([
+    t('danger'),
+    t('success'),
+    t('warning'),
+    t('info'),
+    t('primary'),
+  ]);
   const [data] = useState<IFormItem[]>([
     {
       name: 'name',
       placeholder: 'name',
-      label: 'name',
+      label: t('name'),
       required: true,
     },
     {
       name: 'color',
       placeholder: 'color',
       type: 'select',
-      label: 'color',
+      label: t('color'),
       required: true,
       options: options.map((item) => ({
         value: item,
@@ -27,7 +33,7 @@ const StatusesAdd = () => {
     },
   ]);
   return (
-    <ContentLayout title={t('statuese add')}>
+    <ContentLayout title={t('statuses-add')}>
       <FormGenerator
         navigateTo="admin/statuses/edit/"
         api={statusesEditApi()}

@@ -10,19 +10,37 @@ const BotsAdd = () => {
     {
       name: 'name',
       placeholder: 'name',
-      label: 'name',
+      label: t('name'),
       required: true,
     },
     {
-      name: 'name',
-      placeholder: 'name',
-      type: 'checkbox',
-      label: 'name',
+      name: 'enable',
+      placeholder: 'enable',
+      label: t('enable'),
+      type: 'switch',
       required: true,
     },
+    // {
+    //   name: 'api_name',
+    //   placeholder: 'api_name',
+    //   label: t('api_name'),
+    //   required: true,
+    // },
+    // {
+    //   name: 'external_id',
+    //   placeholder: 'external_id',
+    //   label: t('external_id'),
+    //   required: true,
+    // },
+    // {
+    //   name: 'external_key',
+    //   placeholder: 'external_key',
+    //   label: t('external_key'),
+    //   required: true,
+    // },
   ]);
   return (
-    <ContentLayout title={t('bot add')}>
+    <ContentLayout title={t('bots-add')}>
       <FormGenerator id={0} navigateTo="admin/bots/edit/" api={botsEditApi()} formItems={data} />
     </ContentLayout>
   );

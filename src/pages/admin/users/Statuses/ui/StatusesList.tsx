@@ -49,7 +49,7 @@ const StatusesList = () => {
   }, [searchParams]);
 
   return (
-    <ContentLayout title={t('Statuses')}>
+    <ContentLayout title={t('statuses')}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex">
           <Button

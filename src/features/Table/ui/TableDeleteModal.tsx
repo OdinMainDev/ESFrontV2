@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   show: boolean;
@@ -14,6 +15,7 @@ interface IProps {
 }
 
 const TableDeleteModal = ({ show, handleClose, deleteUrl, id }: IProps) => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const deleteHandler = () => {
     setLoading(true);
@@ -40,7 +42,7 @@ const TableDeleteModal = ({ show, handleClose, deleteUrl, id }: IProps) => {
   return (
     <Modal show={show} onHide={handleClose} className="p-0" centered contentClassName="border">
       <Modal.Header className="flex justify-between border-200 p-4">
-        <h5 className="modal-title text-1000 fs-6 lh-sm">Вы точно хотите удалить?</h5>
+        <h5 className="modal-title text-1000 fs-6 lh-sm">{t('sure-delete')}</h5>
         <Button className="p-1" onClick={handleClose}>
           <svg
             className="svg-inline--fa fa-xmark fs--1"
@@ -63,7 +65,7 @@ const TableDeleteModal = ({ show, handleClose, deleteUrl, id }: IProps) => {
           onClick={deleteHandler}
           startIcon={<FontAwesomeIcon icon={faTrashCan} className="me-2 fs-10" />}
         >
-          Delete
+          {t('delete')}
         </Button>
         <Button
           loading={loading}
@@ -72,7 +74,7 @@ const TableDeleteModal = ({ show, handleClose, deleteUrl, id }: IProps) => {
           className="px-8 fs-9 my-0"
           onClick={handleClose}
         >
-          Close
+          {t('close')}
         </Button>
       </Modal.Footer>
     </Modal>

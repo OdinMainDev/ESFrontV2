@@ -58,7 +58,7 @@ const CasinoUrlAdd = () => {
     void getCountries();
   }, []);
   return (
-    <ContentLayout title={t('casino url add')}>
+    <ContentLayout title={t('casino-url-add')}>
       <FormGenerator
         id={0}
         navigateTo="admin/casino/url/edit/"
