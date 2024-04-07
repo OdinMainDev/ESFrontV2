@@ -11,7 +11,7 @@ const AddMedias = () => {
     {
       name: 'name',
       placeholder: 'name',
-      label: 'name',
+      label: t('name'),
       required: true,
     },
     {
@@ -61,7 +61,7 @@ const AddMedias = () => {
     <ContentLayout title={t('affiliate-add-media')}>
       <FormGenerator
         id={0}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/affiliate/medias/edit/"
         api={dataEditApi()}
         formItems={data}
       />

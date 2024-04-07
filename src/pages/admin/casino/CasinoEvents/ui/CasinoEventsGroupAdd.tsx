@@ -12,7 +12,7 @@ const CasinoEventsGroupAdd = () => {
     {
       name: 'name',
       placeholder: 'name',
-      label: 'name',
+      label: t('name'),
       required: true,
     },
     {
@@ -28,7 +28,7 @@ const CasinoEventsGroupAdd = () => {
     <ContentLayout title={t('casino-events-add')}>
       <FormGenerator
         id={0}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/casino/events/group/edit/"
         api={dataGroupEditApi()}
         formItems={data}
       />

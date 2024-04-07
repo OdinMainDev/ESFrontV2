@@ -12,7 +12,21 @@ const CasinoAddEvent = () => {
     {
       name: 'name',
       placeholder: 'name',
-      label: 'name',
+      label: t('name'),
+      required: true,
+    },
+    {
+      name: 'trigger',
+      placeholder: 'trigger',
+      label: t('trigger'),
+      type: 'number',
+      required: true,
+    },
+    {
+      name: 'enable',
+      placeholder: 'enable',
+      label: t('enable'),
+      type: 'switch',
       required: true,
     },
     {
@@ -100,13 +114,6 @@ const CasinoAddEvent = () => {
       required: true,
     },
     {
-      name: 'trigger',
-      placeholder: 'trigger',
-      label: t('trigger'),
-      type: 'switch',
-      required: true,
-    },
-    {
       name: 'use_games_ids_in_specials',
       placeholder: 'use_games_ids_in_specials',
       label: t('use_games_ids_in_specials'),
@@ -119,7 +126,7 @@ const CasinoAddEvent = () => {
     <ContentLayout title={t('casino-events-add')}>
       <FormGenerator
         id={0}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/casino/events/edit/"
         api={dataEditApi()}
         formItems={data}
       />

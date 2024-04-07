@@ -3,7 +3,6 @@ import { IData } from './models/interfaces';
 import { useTranslation } from 'react-i18next';
 import { deleteDataById } from './api/api';
 
-
 export const useGenerateTableCulumns = () => {
   const { t } = useTranslation();
   const columns: ITableColumns[] = [
@@ -39,7 +38,7 @@ export const useGenerateTableCulumns = () => {
         return (
           <TableEditButton
             id={item.id}
-            editRoute={`admin/casino/bonuses/edit/${item.id}`}
+            editRoute={`admin/games/providers/edit/${item.id}`}
             deleteUrl={deleteDataById(item.id)}
           />
         );

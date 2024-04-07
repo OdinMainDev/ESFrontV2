@@ -24,7 +24,7 @@ const ProvidersAdd = () => {
       name: 'position',
       placeholder: 'position',
       label: t('position'),
-      type: 'text',
+      type: 'number',
       required: true,
     },
     {
@@ -37,10 +37,10 @@ const ProvidersAdd = () => {
   ]);
 
   return (
-    <ContentLayout title={t('provider-add')}>
+    <ContentLayout title={t('game-provider-add')}>
       <FormGenerator
         id={0}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/games/providers/edit/"
         api={dataEditApi()}
         formItems={data}
       />

@@ -18,7 +18,7 @@ const CasinoEventsGroupEdit = () => {
     {
       name: 'name',
       placeholder: 'name',
-      label: 'name',
+      label: t('name'),
       required: true,
     },
     {
@@ -55,10 +55,10 @@ const CasinoEventsGroupEdit = () => {
     void getData();
   }, []);
   return (
-    <ContentLayout title={t('casino-events-add' + `${title}`)}>
+    <ContentLayout title={t('casino-events-add') + ` ${title}`}>
       <FormGenerator
         id={Number(id)}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/casino/events/group/edit/"
         api={dataGroupEditApi()}
         formItems={data}
       />

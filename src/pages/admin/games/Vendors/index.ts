@@ -1,4 +1,5 @@
 import VendorsAdd from './ui/VendorsAdd';
 import VendorsList from './ui/VendorsList';
+import VendorsEdit from './ui/VendorsEdit';
 
-export { VendorsAdd, VendorsList };
+export { VendorsAdd, VendorsList,VendorsEdit };

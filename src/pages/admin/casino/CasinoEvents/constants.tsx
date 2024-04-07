@@ -1,6 +1,7 @@
 import { ITableColumns, TableEditButton } from '@/features/Table';
 import { IData } from './models/interfaces';
 import { useTranslation } from 'react-i18next';
+import { dataDeleteApi, dataGroupDeleteApi } from './api/api';
 
 export const useGenerateTableCulumns = () => {
   const { t } = useTranslation();
@@ -32,7 +33,7 @@ export const useGenerateTableCulumns = () => {
           <TableEditButton
             id={item.id}
             editRoute={`admin/casino/events/edit/${item.id}`}
-            deleteUrl={`admin/casino/events/delete/${item.id}`}
+            deleteUrl={dataDeleteApi(item.id)}
           />
         );
       },
@@ -77,7 +78,7 @@ export const useGroupGenerateTableCulumns = () => {
           <TableEditButton
             id={item.id}
             editRoute={`admin/casino/events/group/edit/${item.id}`}
-            deleteUrl={`admin/casino/events/group/delete/${item.id}`}
+            deleteUrl={dataGroupDeleteApi(item.id)}
           />
         );
       },

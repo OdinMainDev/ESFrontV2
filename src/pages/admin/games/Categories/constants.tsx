@@ -38,7 +38,7 @@ export const useGenerateTableCulumns = () => {
         return (
           <TableEditButton
             id={item.id}
-            editRoute={`admin/casino/bonuses/edit/${item.id}`}
+            editRoute={`admin/games/categories/edit/${item.id}`}
             deleteUrl={deleteDataById(item.id)}
           />
         );

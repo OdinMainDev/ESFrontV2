@@ -19,7 +19,6 @@ const BotsAdd = () => {
       label: t('enable'),
       type: 'switch',
       required: true,
-      checked: false,
     },
     // {
     //   name: 'api_name',

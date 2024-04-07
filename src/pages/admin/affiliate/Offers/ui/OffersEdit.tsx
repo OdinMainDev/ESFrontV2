@@ -53,10 +53,10 @@ const EditOffers = () => {
   }, []);
 
   return (
-    <ContentLayout title={t('affiliate-edit-offer') + `${title}`}>
+    <ContentLayout title={t('affiliate-edit-offer') + ` ${title}`}>
       <FormGenerator
         id={0}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/affiliate/offers/edit/"
         api={dataEditApi()}
         formItems={data}
       />

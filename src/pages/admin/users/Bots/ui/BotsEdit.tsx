@@ -19,6 +19,14 @@ const BotsEdit = () => {
       label: t('name'),
       required: true,
     },
+    {
+      name: 'enable',
+      placeholder: 'enable',
+      label: t('enable'),
+      type: 'switch',
+      required: true,
+      checked: false,
+    },
   ]);
 
   useEffect(() => {

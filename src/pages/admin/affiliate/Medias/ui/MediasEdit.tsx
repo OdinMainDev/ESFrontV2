@@ -86,10 +86,10 @@ const EditMedias = () => {
     void getLanguages();
   }, []);
   return (
-    <ContentLayout title={t('affiliate-edit-media') + `${title}`}>
+    <ContentLayout title={t('affiliate-edit-media') + ` ${title}`}>
       <FormGenerator
         id={Number(id)}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/affiliate/medias/edit/"
         api={dataEditApi()}
         formItems={data}
       />

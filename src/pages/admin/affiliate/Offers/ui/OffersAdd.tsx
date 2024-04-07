@@ -26,7 +26,7 @@ const AddOffers = () => {
     <ContentLayout title={t('affiliate-add-offer')}>
       <FormGenerator
         id={0}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/affiliate/offers/edit/"
         api={dataEditApi()}
         formItems={data}
       />

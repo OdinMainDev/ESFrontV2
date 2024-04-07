@@ -14,19 +14,33 @@ const CategoriesAdd = () => {
       required: true,
     },
     {
-      name: 'id',
-      placeholder: 'id',
-      label: 'id',
+      name: 'enable',
+      placeholder: 'enable',
+      label: t('enable'),
+      type: 'switch',
+      required: true,
+    },
+    {
+      name: 'position',
+      placeholder: 'position',
+      label: t('position'),
       type: 'number',
+      required: true,
+    },
+    {
+      name: 'url',
+      placeholder: 'url',
+      label: t('url'),
+      type: 'text',
       required: true,
     },
   ]);
 
   return (
-    <ContentLayout title={t('affiliate-add-offer')}>
+    <ContentLayout title={t('categories-add')}>
       <FormGenerator
         id={0}
-        navigateTo="admin/casino/url/edit/"
+        navigateTo="admin/games/categories/edit/"
         api={dataEditApi()}
         formItems={data}
       />

@@ -39,14 +39,16 @@ import {
   CasinoEventsGroupAdd,
   CasinoEventsGroupList,
   CasinoEventsList,
+  CasinoEventsEdit,
+  CasinoEventsGroupEdit,
 } from '@/pages/admin/casino/CasinoEvents';
 import { BonusesList } from '@/pages/admin/casino/Bonuses';
-import { MediasAdd, MediasList } from '@/pages/admin/affiliate/Medias';
-import { OffersAdd, OffersList } from '@/pages/admin/affiliate/Offers';
-import { AdminGamesList } from '@/pages/admin/games/Games';
-import { ProvidersAdd, ProvidersList } from '@/pages/admin/games/Providers';
-import { CategoriesAdd, CategoriesList } from '@/pages/admin/games/Categories';
-import { VendorsAdd, VendorsList } from '@/pages/admin/games/Vendors';
+import { MediasAdd, MediasList, MediasEdit } from '@/pages/admin/affiliate/Medias';
+import { OffersAdd, OffersEdit, OffersList } from '@/pages/admin/affiliate/Offers';
+import { AdminGamesAdd, AdminGamesList, AdminGamesEdit } from '@/pages/admin/games/Games';
+import { ProvidersAdd, ProvidersEdit, ProvidersList } from '@/pages/admin/games/Providers';
+import { CategoriesAdd, CategoriesEdit, CategoriesList } from '@/pages/admin/games/Categories';
+import { VendorsAdd, VendorsEdit, VendorsList } from '@/pages/admin/games/Vendors';
 import { Main } from '@/pages/admin/settings/Main';
 import { AdminAuth } from '@/pages/admin/settings/Auth';
 import { Profile } from '@/pages/admin/settings/Profile';
@@ -57,7 +59,7 @@ import { Bots } from '@/pages/admin/settings/Bots';
 import { Api } from '@/pages/admin/settings/Api';
 import { CurrencyConversion } from '@/pages/admin/settings/CurrencyConversion';
 import { Notifications } from '@/pages/admin/settings/Notifications';
-import { SliderAdd, SliderList } from '@/pages/admin/other/Slider';
+import { SliderAdd, SliderEdit, SliderList } from '@/pages/admin/other/Slider';
 import { Email } from '@/pages/admin/other/Email';
 import { SupportChat } from '@/pages/admin/other/SupportChat';
 const routes: RouteObject[] = [
@@ -302,6 +304,10 @@ const routes: RouteObject[] = [
                     path: 'add',
                     element: <CasinoEventsAdd />,
                   },
+                  {
+                    path: 'edit/:id',
+                    element: <CasinoEventsEdit />,
+                  },
                 ],
               },
               {
@@ -314,6 +320,10 @@ const routes: RouteObject[] = [
                   {
                     path: 'add',
                     element: <CasinoEventsGroupAdd />,
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <CasinoEventsGroupEdit />,
                   },
                 ],
               },
@@ -342,6 +352,10 @@ const routes: RouteObject[] = [
                     path: 'add',
                     element: <MediasAdd />,
                   },
+                  {
+                    path: 'edit/:id',
+                    element: <MediasEdit />,
+                  },
                 ],
               },
               {
@@ -355,6 +369,10 @@ const routes: RouteObject[] = [
                     path: 'add',
                     element: <OffersAdd />,
                   },
+                  {
+                    path: 'edit/:id',
+                    element: <OffersEdit />,
+                  },
                 ],
               },
             ],
@@ -367,6 +385,14 @@ const routes: RouteObject[] = [
                 element: <AdminGamesList />,
               },
               {
+                path: 'add',
+                element: <AdminGamesAdd />,
+              },
+              {
+                path: 'edit/:id',
+                element: <AdminGamesEdit />,
+              },
+              {
                 path: 'providers',
                 children: [
                   {
@@ -376,6 +402,10 @@ const routes: RouteObject[] = [
                   {
                     path: 'add',
                     element: <ProvidersAdd />,
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <ProvidersEdit />,
                   },
                 ],
               },
@@ -390,6 +420,10 @@ const routes: RouteObject[] = [
                     path: 'add',
                     element: <CategoriesAdd />,
                   },
+                  {
+                    path: 'edit/:id',
+                    element: <CategoriesEdit />,
+                  },
                 ],
               },
               {
@@ -402,6 +436,10 @@ const routes: RouteObject[] = [
                   {
                     path: 'add',
                     element: <VendorsAdd />,
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <VendorsEdit />,
                   },
                 ],
               },
@@ -465,6 +503,10 @@ const routes: RouteObject[] = [
                   {
                     path: 'add',
                     element: <SliderAdd />,
+                  },
+                  {
+                    path: 'edit/:id',
+                    element: <SliderEdit />,
                   },
                 ],
               },
