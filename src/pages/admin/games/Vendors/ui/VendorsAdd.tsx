@@ -3,7 +3,6 @@ import ContentLayout from '@/shared/layout/ContentLayout';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { dataEditApi } from '../api/api';
-
 const VendorsAdd = () => {
   const { t } = useTranslation();
   const [data] = useState<IFormItem[]>([
@@ -37,10 +36,10 @@ const VendorsAdd = () => {
   ]);
 
   return (
-    <ContentLayout title={t('affiliate-add-offer')}>
+    <ContentLayout title={t('vendors-add')}>
       <FormGenerator
         id={0}
-        navigateTo="admin/games/categories/edit/"
+        navigateTo="admin/games/vendors/edit/"
         api={dataEditApi()}
         formItems={data}
       />

@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { IBot } from '../models/interfaces';
+import { getCurrenciesList } from '@/shared/api/currenciesApi';
 
 const BotsEdit = () => {
   const { t } = useTranslation();
@@ -27,9 +28,58 @@ const BotsEdit = () => {
       required: true,
       checked: false,
     },
+    {
+      name: 'email',
+      placeholder: 'email',
+      label: t('email'),
+      type: 'text',
+      required: true,
+      checked: false,
+    },
+    {
+      name: 'full_name',
+      placeholder: 'full_name',
+      label: t('full_name'),
+      type: 'text',
+      required: true,
+      checked: false,
+    },
+    {
+      name: 'username',
+      placeholder: 'username',
+      label: t('username'),
+      type: 'text',
+      required: true,
+      checked: false,
+    },
+    {
+      name: 'currency',
+      placeholder: 'currency',
+      label: t('currency'),
+      type: 'multiSelect',
+      required: true,
+      checked: false,
+    },
   ]);
 
   useEffect(() => {
+    const getCurrencies = async () => {
+      const countriesList = await getCurrenciesList();
+      setFormData((prev) =>
+        prev.map((data) => {
+          if (data.type === 'multiSelect') {
+            return {
+              ...data,
+              options: countriesList.map((item) => ({
+                value: item.title,
+                label: item.title,
+              })),
+            };
+          }
+          return data;
+        }),
+      );
+    };
     const getStatus = async () => {
       try {
         const { data } = await axios.get<{ data: IBot }>(getBotsByIdApi(Number(id)), {
@@ -50,6 +100,7 @@ const BotsEdit = () => {
     };
 
     void getStatus();
+    void getCurrencies();
   }, []);
 
   return (

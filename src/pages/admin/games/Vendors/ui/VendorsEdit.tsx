@@ -1,12 +1,18 @@
 import { FormGenerator, IFormItem } from '@/features/FormGenerator';
 import ContentLayout from '@/shared/layout/ContentLayout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { dataEditApi } from '../api/api';
+import { dataEditApi, getDataByIdApi } from '../api/api';
+import { IData } from '../models/interfaces';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useParams } from 'react-router-dom';
 
 const VendorsEdit = () => {
+  const { id } = useParams();
+  const [title, setTitle] = useState('');
   const { t } = useTranslation();
-  const [data] = useState<IFormItem[]>([
+  const [data, setData] = useState<IFormItem[]>([
     {
       name: 'name',
       placeholder: 'name',
@@ -35,12 +41,36 @@ const VendorsEdit = () => {
       required: true,
     },
   ]);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get<{ data: IData }>(getDataByIdApi(Number(id)), {
+          headers: {
+            Authorization: 'Bearer ' + Cookies.get('token'),
+          },
+        });
+        setData((prev) =>
+          prev.map((item) => {
+            return {
+              ...item,
+              value: data.data[item.name as keyof IData] as string,
+            };
+          }),
+        );
+        setTitle(data.data.name);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    void getData();
+  }, []);
 
   return (
-    <ContentLayout title={t('affiliate-add-offer')}>
+    <ContentLayout title={t('vendors-edit') + ` ${title}`}>
       <FormGenerator
-        id={0}
-        navigateTo="admin/games/categories/edit/"
+        id={Number(id)}
+        navigateTo="admin/games/vendors/edit/"
         api={dataEditApi()}
         formItems={data}
       />
