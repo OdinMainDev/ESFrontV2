@@ -61,7 +61,6 @@ const CasinoUrlAdd = () => {
     <ContentLayout title={t('casino-url-add')}>
       <FormGenerator
         id={0}
-        isFormData
         navigateTo="admin/casino/url/edit/"
         api={dataEditApi()}
         formItems={data}
