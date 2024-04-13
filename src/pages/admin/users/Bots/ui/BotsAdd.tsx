@@ -3,8 +3,8 @@ import ContentLayout from '@/shared/layout/ContentLayout';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { botsEditApi } from '../api/api';
-import { getCurrenciesList } from '@/shared/api/currenciesApi';
 import { getLanguagesList } from '@/shared/api/languagesApi';
+import { getCasinoCurrenciesList } from '@/shared/api/casinoCurrenciesApi';
 
 const BotsAdd = () => {
   const { t } = useTranslation();
@@ -27,23 +27,23 @@ const BotsAdd = () => {
       name: 'currency',
       placeholder: 'currency',
       label: t('currency'),
-      type: 'multiSelect',
+      type: 'select',
       required: true,
       checked: false,
     },
   ]);
   useEffect(() => {
     const getCurrencies = async () => {
-      const countriesList = await getCurrenciesList();
+      const currenciesList = await getCasinoCurrenciesList();
       const langList = await getLanguagesList();
       setData((prev) =>
         prev.map((data) => {
-          if (data.type === 'multiSelect') {
+          if (data.name === 'currency') {
             return {
               ...data,
-              options: countriesList.map((item) => ({
-                value: item.title,
-                label: item.title,
+              options: currenciesList.map((item) => ({
+                value: item.code_alpha,
+                label: item.code_alpha,
               })),
             };
           }

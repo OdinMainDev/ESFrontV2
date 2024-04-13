@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { IBot } from '../models/interfaces';
 import { getCurrenciesList } from '@/shared/api/currenciesApi';
+import { getCasinoCurrenciesList } from '@/shared/api/casinoCurrenciesApi';
 
 const BotsEdit = () => {
   const { t } = useTranslation();
@@ -56,7 +57,7 @@ const BotsEdit = () => {
       name: 'currency',
       placeholder: 'currency',
       label: t('currency'),
-      type: 'multiSelect',
+      type: 'select',
       required: true,
       checked: false,
     },
@@ -64,15 +65,15 @@ const BotsEdit = () => {
 
   useEffect(() => {
     const getCurrencies = async () => {
-      const countriesList = await getCurrenciesList();
+      const currenciesList = await getCasinoCurrenciesList();
       setFormData((prev) =>
         prev.map((data) => {
-          if (data.type === 'multiSelect') {
+          if (data.name === 'currency') {
             return {
               ...data,
-              options: countriesList.map((item) => ({
-                value: item.title,
-                label: item.title,
+              options: currenciesList.map((item) => ({
+                value: item.code_alpha,
+                label: item.code_alpha,
               })),
             };
           }
