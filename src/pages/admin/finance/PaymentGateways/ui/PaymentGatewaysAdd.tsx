@@ -3,9 +3,9 @@ import ContentLayout from '@/shared/layout/ContentLayout';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { dataEditApi } from '../api/api';
-import { getCurrenciesList } from '@/shared/api/currenciesApi';
 import { getPaymentProvidersApi } from '@/shared/api/paymentProviders';
 import { getCountriesApi } from '@/shared/api/countriesApi';
+import { getCasinoCurrenciesList } from '@/shared/api/casinoCurrenciesApi';
 
 const PaymentGatewaysAdd = () => {
   const { t } = useTranslation();
@@ -27,7 +27,7 @@ const PaymentGatewaysAdd = () => {
     {
       name: 'image',
       placeholder: 'image',
-      type: 'text',
+      type: 'image',
       label: t('image'),
       required: true,
     },
@@ -168,7 +168,7 @@ const PaymentGatewaysAdd = () => {
 
   useEffect(() => {
     const getCurrency = async () => {
-      const currenciesList = await getCurrenciesList();
+      const currenciesList = await getCasinoCurrenciesList();
       const paymentProvidersList = await getPaymentProvidersApi();
       const countriesList = await getCountriesApi();
       const verificationsList = ['email', 'phone', 'documents'];
@@ -210,8 +210,8 @@ const PaymentGatewaysAdd = () => {
             return {
               ...data,
               options: currenciesList.map((item) => ({
-                value: item.title,
-                label: item.title,
+                value: item.code_alpha,
+                label: item.code_alpha,
               })),
             };
           }

@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { IData } from '../models/interfaces';
-import { getCurrenciesList } from '@/shared/api/currenciesApi';
 import { getPaymentProvidersApi } from '@/shared/api/paymentProviders';
 import { getCountriesApi } from '@/shared/api/countriesApi';
+import { getCasinoCurrenciesList } from '@/shared/api/casinoCurrenciesApi';
 
 const PaymentGatewaysEdit = () => {
   const { t } = useTranslation();
@@ -32,7 +32,7 @@ const PaymentGatewaysEdit = () => {
     {
       name: 'image',
       placeholder: 'image',
-      type: 'text',
+      type: 'image',
       label: t('image'),
       required: true,
     },
@@ -173,7 +173,7 @@ const PaymentGatewaysEdit = () => {
 
   useEffect(() => {
     const getCurrency = async () => {
-      const currenciesList = await getCurrenciesList();
+      const currenciesList = await getCasinoCurrenciesList();
       const paymentProvidersList = await getPaymentProvidersApi();
       const countriesList = await getCountriesApi();
       const verificationsList = ['email', 'phone', 'documents'];
@@ -215,8 +215,8 @@ const PaymentGatewaysEdit = () => {
             return {
               ...data,
               options: currenciesList.map((item) => ({
-                value: item.title,
-                label: item.title,
+                value: item.code_alpha,
+                label: item.code_alpha,
               })),
             };
           }

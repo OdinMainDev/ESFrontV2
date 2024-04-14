@@ -12,6 +12,7 @@ import { MultiSelect } from 'react-multi-select-component';
 import { IOption } from '@/shared/models/interfaces/select';
 import { useTranslation } from 'react-i18next';
 import { convertFormDataToObject } from '../helpers/convertValueByType';
+import { ImageUpload } from '@/entities/ImageUpload';
 
 interface IItemProps {
   invalidData: string[];
@@ -79,6 +80,10 @@ const ItemByType = ({ invalidData, formItem }: IItemProps) => {
         ))}
       </>
     );
+  }
+
+  if (formItem.type === 'image') {
+    return <ImageUpload size="3xl" src="" onChange={setValue} />;
   }
 
   return (

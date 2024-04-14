@@ -1,6 +1,6 @@
 import { IOption } from '@/shared/models/interfaces/select';
 
-export type formItemType = 'text' | 'number' | 'select' | 'checkbox' | 'switch' | 'multiSelect';
+export type formItemType = 'text' | 'number' | 'select' | 'checkbox' | 'switch' | 'multiSelect' | 'image';
 
 export interface IFormItem {
   name: string;
