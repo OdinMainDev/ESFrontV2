@@ -8,6 +8,7 @@ import { IData } from '../models/interfaces';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { getCountriesApi } from '@/shared/api/countriesApi';
+import { getAllGamesApi } from '@/shared/api/allGamesApi';
 
 const ProvidersAdd = () => {
   const { t } = useTranslation();
@@ -62,10 +63,18 @@ const ProvidersAdd = () => {
       label: t('allowed_countries'),
       required: true,
     },
+    {
+      name: 'games[]',
+      placeholder: 'games',
+      type: 'multiSelect',
+      label: t('games'),
+      required: true,
+    },
   ]);
   useEffect(() => {
     const getCurrency = async () => {
       const countriesList = await getCountriesApi();
+      const gamesList = await getAllGamesApi();
       setData((prev) =>
         prev.map((data) => {
           if (data.name.includes('countries')) {
@@ -74,6 +83,15 @@ const ProvidersAdd = () => {
               options: countriesList.map((item) => ({
                 value: item,
                 label: item,
+              })),
+            };
+          }
+          if (data.placeholder === 'games') {
+            return {
+              ...data,
+              options: gamesList.map((item) => ({
+                value: item.name,
+                label: item.name,
               })),
             };
           }

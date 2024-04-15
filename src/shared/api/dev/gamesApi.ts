@@ -22,3 +22,8 @@ export const getGameByIdApiHandler = async (id: number): Promise<IGame> => {
 export const gamesListApi = () => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/dev/games/list`;
 };
+
+
+export const allGamesListApi = () => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/get/game-api-providers`;
+};
