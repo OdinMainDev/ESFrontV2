@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { IData } from '../models/interfaces';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { getCountriesApi } from '@/shared/api/countriesApi';
 
 const ProvidersAdd = () => {
   const { t } = useTranslation();
@@ -27,6 +28,13 @@ const ProvidersAdd = () => {
       required: true,
     },
     {
+      name: 'image',
+      placeholder: 'image',
+      label: t('image'),
+      type: 'image',
+      required: true,
+    },
+    {
       name: 'position',
       placeholder: 'position',
       label: t('position'),
@@ -40,8 +48,40 @@ const ProvidersAdd = () => {
       type: 'text',
       required: true,
     },
+    {
+      name: 'blocked_countries[]',
+      placeholder: 'blocked_countries',
+      type: 'multiSelect',
+      label: t('blocked_countries'),
+      required: true,
+    },
+    {
+      name: 'allowed_countries[]',
+      placeholder: 'allowed_countries',
+      type: 'multiSelect',
+      label: t('allowed_countries'),
+      required: true,
+    },
   ]);
   useEffect(() => {
+    const getCurrency = async () => {
+      const countriesList = await getCountriesApi();
+      setData((prev) =>
+        prev.map((data) => {
+          if (data.name.includes('countries')) {
+            return {
+              ...data,
+              options: countriesList.map((item) => ({
+                value: item,
+                label: item,
+              })),
+            };
+          }
+          return data;
+        }),
+      );
+    };
+
     const getData = async () => {
       try {
         const { data } = await axios.get<{ data: IData }>(getDataByIdApi(Number(id)), {
@@ -64,10 +104,11 @@ const ProvidersAdd = () => {
     };
 
     void getData();
+    void getCurrency();
   }, []);
 
   return (
-    <ContentLayout title={t('game-provider-add') + ` ${title}`}>
+    <ContentLayout title={t('game-provider-edit') + ` ${title}`}>
       <FormGenerator
         id={Number(id)}
         navigateTo="admin/games/providers/edit/"

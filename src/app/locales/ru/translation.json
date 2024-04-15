@@ -57,6 +57,7 @@
   "name": "Название",
   "game-provider": "Провайдер",
   "game-provider-add":"Добавить провайдера",
+  "game-provider-edit":"Изменить провайдера",
   "game-providers": "Провайдера",
   "created-at": "Дата создания",
   "filter": "Фильтровать",
