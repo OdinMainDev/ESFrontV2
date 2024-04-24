@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { uploadImageFile } from '../api/uploadApi';
+import Loader from '@/shared/ui/Loader';
 
 interface AvatarUploadProps {
   size: Size;
@@ -11,15 +12,26 @@ interface AvatarUploadProps {
   className?: string;
   status?: Status;
   thumbnail?: boolean;
+  name?: string;
   onChange?: (value: string) => void;
 }
 
-const AvatarUpload = ({ size, src, status, thumbnail, onChange, className }: AvatarUploadProps) => {
+const AvatarUpload = ({
+  size,
+  src,
+  status,
+  thumbnail,
+  onChange,
+  className,
+  name,
+}: AvatarUploadProps) => {
   const [image, setImage] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       try {
+        setLoading(true);
         const formData = new FormData();
         formData.append('file', e.target.files[0]);
         setImage(e.target.files[0]);
@@ -31,6 +43,8 @@ const AvatarUpload = ({ size, src, status, thumbnail, onChange, className }: Ava
         if (onChange) {
           onChange('');
         }
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -40,10 +54,11 @@ const AvatarUpload = ({ size, src, status, thumbnail, onChange, className }: Ava
         className="d-none"
         id="avatarFile"
         type="file"
+        name={name}
         accept="image/*"
         onChange={(e) => void handleChange(e)}
       />
-      <label className="cursor-pointer hover-actions-trigger" htmlFor="avatarFile">
+      <label className="cursor-pointer hover-actions-trigger relative" htmlFor="avatarFile">
         <Avatar
           rounded="square"
           size={size}
@@ -57,6 +72,11 @@ const AvatarUpload = ({ size, src, status, thumbnail, onChange, className }: Ava
         >
           <FontAwesomeIcon icon={faCamera} className="text-300 w-30 h-30" />
         </div>
+        {loading && (
+          <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center z-10">
+            <Loader />
+          </div>
+        )}
       </label>
     </div>
   );

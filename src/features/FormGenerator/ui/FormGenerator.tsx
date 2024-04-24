@@ -83,7 +83,12 @@ const ItemByType = ({ invalidData, formItem }: IItemProps) => {
   }
 
   if (formItem.type === 'image') {
-    return <ImageUpload size="3xl" src="" onChange={setValue} />;
+    return (
+      <>
+        <ImageUpload size="5xl" src={value} onChange={setValue} />
+        <input name={formItem.name} value={value} style={{ display: 'none' }} />
+      </>
+    );
   }
 
   return (
@@ -107,9 +112,18 @@ interface IProps {
   id: number;
   title?: string;
   isFormData?: boolean;
+  withoutButton?: boolean;
 }
 
-const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IProps) => {
+const FormGenerator = ({
+  formItems,
+  api,
+  title,
+  navigateTo,
+  id,
+  isFormData,
+  withoutButton,
+}: IProps) => {
   const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState(false);
   const router = useRouter();
@@ -145,7 +159,6 @@ const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IP
       setLoading(false);
     }
   };
-
   return (
     <Form
       noValidate
@@ -157,16 +170,18 @@ const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IP
       {formItems.map((item, index) => (
         <ItemByType key={index} formItem={item} invalidData={invalidData} />
       ))}
-      <Button
-        variant="primary"
-        className="w-[100%] mt-[20px]"
-        loadingPosition="start"
-        loading={loading}
-        disabled={loading}
-        type="submit"
-      >
-        {t('submit')}
-      </Button>
+      {!withoutButton && (
+        <Button
+          variant="primary"
+          className="w-[100%] mt-[20px]"
+          loadingPosition="start"
+          loading={loading}
+          disabled={loading}
+          type="submit"
+        >
+          {t('submit')}
+        </Button>
+      )}
     </Form>
   );
 };
