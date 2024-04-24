@@ -24,6 +24,17 @@ export const gamesListApi = () => {
 };
 
 
-export const allGamesListApi = () => {
+export const gameApiProviderListApi = () => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/get/game-api-providers`;
+};
+
+
+
+export const gamesList = () => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/get/games`;
+};
+
+
+export const gamesProviderList = () => {
+  return `${import.meta.env.VITE_APP_BASE_URL}/api/get/games/providers`;
 };

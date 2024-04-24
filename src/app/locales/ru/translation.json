@@ -55,6 +55,12 @@
   "currencies-add": "Добавить валюту",
   "export-button": "Экспортировать",
   "name": "Название",
+  "texts":"Текста",
+  "conditions":"Условия",
+  "recalculate_fee_percent":"Пересчитет комиссионных процентов",
+  "recalculate_fee_fixed":"Пересчитет фиксированной платы",
+  "provider":"Провайдер",
+
   "game-provider": "Провайдер",
   "game-provider-add":"Добавить провайдера",
   "game-provider-edit":"Изменить провайдера",
@@ -175,5 +181,7 @@
   "key":"ключ",
   "value":"значение",
   "button":"кнопка",
-  "auto_withdraw":"автовывод"
+  "auto_withdraw":"автовывод",
+  "external-id":"Внешний Id",
+  "external-key":"Внешний ключ"
 }

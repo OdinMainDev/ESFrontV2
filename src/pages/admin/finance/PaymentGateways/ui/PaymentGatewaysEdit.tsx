@@ -23,13 +23,6 @@ const PaymentGatewaysEdit = () => {
       required: true,
     },
     {
-      name: 'enable',
-      placeholder: 'enable',
-      type: 'switch',
-      label: t('enable'),
-      required: true,
-    },
-    {
       name: 'image',
       placeholder: 'image',
       type: 'image',
@@ -37,10 +30,31 @@ const PaymentGatewaysEdit = () => {
       required: true,
     },
     {
+      name: 'enable',
+      placeholder: 'enable',
+      type: 'switch',
+      label: t('enable'),
+      required: true,
+    },
+    {
+      name: 'currency',
+      placeholder: 'currency',
+      type: 'select',
+      label: t('currency'),
+      required: true,
+    },
+    {
       name: 'api_name',
       placeholder: 'api_name',
       type: 'select',
       label: t('api-name'),
+      required: true,
+    },
+    {
+      name: 'compensate_commission',
+      placeholder: 'compensate_commission',
+      type: 'switch',
+      label: t('compensate-commission'),
       required: true,
     },
     {
@@ -58,17 +72,17 @@ const PaymentGatewaysEdit = () => {
       required: true,
     },
     {
-      name: 'compensate_commission',
-      placeholder: 'compensate_commission',
-      type: 'switch',
-      label: t('compensate-commission'),
+      name: 'recalculate_fee_percent',
+      placeholder: 'recalculate_fee_percent',
+      type: 'number',
+      label: t('recalculate_fee_percent'),
       required: true,
     },
     {
-      name: 'currency',
-      placeholder: 'currency',
-      type: 'select',
-      label: t('currency'),
+      name: 'recalculate_fee_fixed',
+      placeholder: 'recalculate_fee_fixed',
+      type: 'number',
+      label: t('recalculate_fee_fixed'),
       required: true,
     },
     {
@@ -121,52 +135,38 @@ const PaymentGatewaysEdit = () => {
       required: true,
     },
     {
-      name: 'verifications',
+      name: 'verifications[]',
       placeholder: 'verifications',
       type: 'multiSelect',
       label: t('verifications'),
       required: true,
     },
     {
-      name: 'blocked_countries',
+      name: 'blocked_countries[]',
       placeholder: 'blocked_countries',
       type: 'multiSelect',
       label: t('blocked_countries'),
       required: true,
     },
     {
-      name: 'allowed_countries',
+      name: 'allowed_countries[]',
       placeholder: 'allowed_countries',
       type: 'multiSelect',
       label: t('allowed_countries'),
       required: true,
     },
     {
-      name: 'api_currency',
-      placeholder: 'api_currency',
-      type: 'select',
-      label: t('api_currency'),
+      name: 'allowed_countries[]',
+      placeholder: 'allowed_countries',
+      type: 'multiSelect',
+      label: t('allowed_countries'),
       required: true,
     },
     {
-      name: 'key',
-      placeholder: 'key',
-      type: 'text',
-      label: t('key'),
-      required: true,
-    },
-    {
-      name: 'value',
-      placeholder: 'value',
-      type: 'text',
-      label: t('value'),
-      required: true,
-    },
-    {
-      name: 'button',
-      placeholder: 'button',
-      type: 'text',
-      label: t('button'),
+      name: 'texts',
+      placeholder: 'texts',
+      type: 'texts',
+      label: t('texts'),
       required: true,
     },
   ]);
@@ -273,6 +273,13 @@ const PaymentGatewaysEdit = () => {
         api={dataEditApi()}
         id={Number(id)}
         formItems={formData}
+        withTabs
+        tabs={[
+          { name: t('info'), eventKey: 'info', start: 0, end: 3 },
+          { name: t('provider'), eventKey: 'provider', start: 3, end: 13 },
+          { name: t('conditions'), eventKey: 'conditions', start: 13, end: 20 },
+          { name: t('texts'), eventKey: 'texts', start: formData.length - 1, end: formData.length },
+        ]}
       />
     </ContentLayout>
   );

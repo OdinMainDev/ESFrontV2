@@ -7,6 +7,9 @@ import { useParams } from 'react-router-dom';
 import { IData } from '../models/interfaces';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { getCountriesApi } from '@/shared/api/countriesApi';
+import { getGamesList } from '@/shared/api/gamesList';
+import { getGamesProviderList } from '@/shared/api/gamesProvider';
 
 const CategoriesEdit = () => {
   const { t } = useTranslation();
@@ -17,6 +20,13 @@ const CategoriesEdit = () => {
       name: 'name',
       placeholder: 'name',
       label: t('name'),
+      required: true,
+    },
+    {
+      name: 'image',
+      placeholder: 'image',
+      label: t('image'),
+      type: 'image',
       required: true,
     },
     {
@@ -40,8 +50,82 @@ const CategoriesEdit = () => {
       type: 'text',
       required: true,
     },
+    {
+      name: 'blocked_countries[]',
+      placeholder: 'blocked_countries',
+      type: 'multiSelect',
+      label: t('blocked_countries'),
+      required: true,
+    },
+    {
+      name: 'allowed_countries[]',
+      placeholder: 'allowed_countries',
+      type: 'multiSelect',
+      label: t('allowed_countries'),
+      required: true,
+    },
+    {
+      name: 'game_ids[]',
+      placeholder: 'games',
+      type: 'multiSelect',
+      label: t('games'),
+      required: true,
+    },
+    {
+      name: 'game_providers[]',
+      placeholder: 'games',
+      type: 'multiSelect',
+      label: t('game-provider'),
+      required: true,
+    },
+    {
+      name: 'texts',
+      placeholder: 'texts',
+      type: 'texts',
+      label: t('texts'),
+      required: true,
+    },
   ]);
+
   useEffect(() => {
+    const getDatas = async () => {
+      const countriesList = await getCountriesApi();
+      const gamesProviderList = await getGamesProviderList();
+      const gamesList = await getGamesList();
+      setData((prev) =>
+        prev.map((data) => {
+          if (data.name.includes('countries')) {
+            return {
+              ...data,
+              options: countriesList.map((item) => ({
+                value: item,
+                label: item,
+              })),
+            };
+          }
+          if (data.name === 'game_ids[]') {
+            return {
+              ...data,
+              options: gamesList.map((item) => ({
+                value: `${item.id}`,
+                label: `${item.id}(${item.api_name}):${item.name}`,
+              })),
+            };
+          }
+          if (data.name === 'game_providers[]') {
+            return {
+              ...data,
+              options: gamesProviderList.map((item) => ({
+                value: item,
+                label: item,
+              })),
+            };
+          }
+          return data;
+        }),
+      );
+    };
+
     const getData = async () => {
       try {
         const { data } = await axios.get<{ data: IData }>(getDataByIdApi(Number(id)), {
@@ -64,8 +148,8 @@ const CategoriesEdit = () => {
     };
 
     void getData();
+    void getDatas();
   }, []);
-
   return (
     <ContentLayout title={t('categories-edit') + ` ${title}`}>
       <FormGenerator
@@ -73,6 +157,11 @@ const CategoriesEdit = () => {
         navigateTo="admin/games/categories/edit/"
         api={dataEditApi()}
         formItems={data}
+        withTabs
+        tabs={[
+          { name: t('info'), eventKey: 'info', start: 0, end: 9 },
+          { name: t('texts'), eventKey: 'texts', start: data.length - 1, end: data.length },
+        ]}
       />
     </ContentLayout>
   );

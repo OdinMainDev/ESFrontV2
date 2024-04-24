@@ -19,20 +19,6 @@ const WithdrawalGatewaysAdd = () => {
       required: true,
     },
     {
-      name: 'enable',
-      placeholder: 'enable',
-      type: 'switch',
-      label: t('enable'),
-      required: true,
-    },
-    {
-      name: 'auto_withdraw',
-      placeholder: 'auto_withdraw',
-      type: 'switch',
-      label: t('auto_withdraw'),
-      required: true,
-    },
-    {
       name: 'image',
       placeholder: 'image',
       type: 'image',
@@ -40,10 +26,38 @@ const WithdrawalGatewaysAdd = () => {
       required: true,
     },
     {
+      name: 'enable',
+      placeholder: 'enable',
+      type: 'switch',
+      label: t('enable'),
+      required: true,
+    },
+    {
+      name: 'currency',
+      placeholder: 'currency',
+      type: 'select',
+      label: t('currency'),
+      required: true,
+    },
+    {
       name: 'api_name',
       placeholder: 'api_name',
       type: 'select',
       label: t('api-name'),
+      required: true,
+    },
+    {
+      name: 'compensate_commission',
+      placeholder: 'compensate_commission',
+      type: 'switch',
+      label: t('compensate-commission'),
+      required: true,
+    },
+    {
+      name: 'auto_withdraw',
+      placeholder: 'auto_withdraw',
+      type: 'switch',
+      label: t('auto_withdraw'),
       required: true,
     },
     {
@@ -58,27 +72,6 @@ const WithdrawalGatewaysAdd = () => {
       placeholder: 'fee_fixed',
       type: 'number',
       label: t('fee_fixed'),
-      required: true,
-    },
-    {
-      name: 'compensate_commission',
-      placeholder: 'compensate_commission',
-      type: 'switch',
-      label: t('compensate-commission'),
-      required: true,
-    },
-    {
-      name: 'currency',
-      placeholder: 'currency',
-      type: 'select',
-      label: t('currency'),
-      required: true,
-    },
-    {
-      name: 'without_bonus_wager',
-      placeholder: 'without_bonus_wager',
-      type: 'number',
-      label: t('without_bonus_wager'),
       required: true,
     },
     {
@@ -124,6 +117,20 @@ const WithdrawalGatewaysAdd = () => {
       required: true,
     },
     {
+      name: 'minimum_transactions_payments',
+      placeholder: 'minimum_transactions_payments',
+      type: 'number',
+      label: t('minimum_transactions_payments'),
+      required: true,
+    },
+    {
+      name: 'maximum_transactions_payments',
+      placeholder: 'maximum_transactions_payments',
+      type: 'number',
+      label: t('maximum_transactions_payments'),
+      required: true,
+    },
+    {
       name: 'verifications[]',
       placeholder: 'verifications',
       type: 'multiSelect',
@@ -145,31 +152,10 @@ const WithdrawalGatewaysAdd = () => {
       required: true,
     },
     {
-      name: 'api_currency',
-      placeholder: 'api_currency',
-      type: 'select',
-      label: t('api_currency'),
-      required: true,
-    },
-    {
-      name: 'key',
-      placeholder: 'key',
-      type: 'text',
-      label: t('key'),
-      required: true,
-    },
-    {
-      name: 'value',
-      placeholder: 'value',
-      type: 'text',
-      label: t('value'),
-      required: true,
-    },
-    {
-      name: 'button',
-      placeholder: 'button',
-      type: 'text',
-      label: t('button'),
+      name: 'texts',
+      placeholder: 'texts',
+      type: 'texts',
+      label: t('texts'),
       required: true,
     },
   ]);
@@ -255,6 +241,13 @@ const WithdrawalGatewaysAdd = () => {
         api={dataEditApi()}
         id={0}
         formItems={data}
+        withTabs
+        tabs={[
+          { name: t('info'), eventKey: 'info', start: 0, end: 3 },
+          { name: t('provider'), eventKey: 'provider', start: 3, end: 11 },
+          { name: t('conditions'), eventKey: 'conditions', start: 11, end: 20 },
+          { name: t('texts'), eventKey: 'texts', start: data.length - 1, end: data.length },
+        ]}
       />
     </ContentLayout>
   );

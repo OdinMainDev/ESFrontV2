@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { dataEditApi } from '../api/api';
 import { getCountriesApi } from '@/shared/api/countriesApi';
-import { getGamesApi } from '@/shared/api/gamesApi';
-import { getAllGamesApi } from '@/shared/api/allGamesApi';
+import { getGamesProviderList } from '@/shared/api/gamesProvider';
+import { getGamesList } from '@/shared/api/gamesList';
 
 const ProvidersAdd = () => {
   const { t } = useTranslation();
@@ -17,17 +17,17 @@ const ProvidersAdd = () => {
       required: true,
     },
     {
-      name: 'enable',
-      placeholder: 'enable',
-      label: t('enable'),
-      type: 'switch',
-      required: true,
-    },
-    {
       name: 'image',
       placeholder: 'image',
       label: t('image'),
       type: 'image',
+      required: true,
+    },
+    {
+      name: 'enable',
+      placeholder: 'enable',
+      label: t('enable'),
+      type: 'switch',
       required: true,
     },
     {
@@ -59,18 +59,33 @@ const ProvidersAdd = () => {
       required: true,
     },
     {
-      name: 'games[]',
+      name: 'game_ids[]',
       placeholder: 'games',
       type: 'multiSelect',
       label: t('games'),
       required: true,
     },
+    {
+      name: 'game_providers[]',
+      placeholder: 'games',
+      type: 'multiSelect',
+      label: t('game-provider'),
+      required: true,
+    },
+    {
+      name: 'texts',
+      placeholder: 'texts',
+      type: 'texts',
+      label: t('texts'),
+      required: true,
+    },
   ]);
 
   useEffect(() => {
-    const getCurrency = async () => {
+    const getDatas = async () => {
       const countriesList = await getCountriesApi();
-      const gamesList = await getAllGamesApi();
+      const gamesProviderList = await getGamesProviderList();
+      const gamesList = await getGamesList();
       setData((prev) =>
         prev.map((data) => {
           if (data.name.includes('countries')) {
@@ -82,21 +97,31 @@ const ProvidersAdd = () => {
               })),
             };
           }
-          if (data.placeholder === 'games') {
+          if (data.name === 'game_ids[]') {
             return {
               ...data,
               options: gamesList.map((item) => ({
-                value: item.name,
-                label: item.name,
+                value: `${item.id}`,
+                label: `${item.id}(${item.api_name}):${item.name}`,
               })),
             };
           }
+          if (data.name === 'game_providers[]') {
+            return {
+              ...data,
+              options: gamesProviderList.map((item) => ({
+                value: item,
+                label: item,
+              })),
+            };
+          }
+
           return data;
         }),
       );
     };
 
-    void getCurrency();
+    void getDatas();
   }, []);
 
   return (
@@ -106,6 +131,11 @@ const ProvidersAdd = () => {
         navigateTo="admin/games/providers/edit/"
         api={dataEditApi()}
         formItems={data}
+        withTabs
+        tabs={[
+          { name: t('info'), eventKey: 'info', start: 0, end: 9 },
+          { name: t('texts'), eventKey: 'texts', start: data.length - 1, end: data.length },
+        ]}
       />
     </ContentLayout>
   );

@@ -17,3 +17,5 @@ export const getDataByIdApi = (id:number): string => {
 export const deleteDataById = (id: number): string => {
   return `${import.meta.env.VITE_APP_BASE_URL}/api/games/providers/delete/${id}`;
 };
+
+

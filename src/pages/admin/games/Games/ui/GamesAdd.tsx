@@ -41,11 +41,28 @@ const GamesAdd = () => {
       type: 'switch',
       required: true,
     },
+    {
+      name: 'texts',
+      placeholder: 'texts',
+      type: 'texts',
+      label: t('texts'),
+      required: true,
+    },
   ]);
 
   return (
     <ContentLayout title={t('games-add')}>
-      <FormGenerator id={0} navigateTo="admin/games/edit/" api={dataEditApi()} formItems={data} />
+      <FormGenerator
+        id={0}
+        navigateTo="admin/games/edit/"
+        api={dataEditApi()}
+        formItems={data}
+        withTabs
+        tabs={[
+          { name: t('info'), eventKey: 'info', start: 0, end: 5 },
+          { name: t('texts'), eventKey: 'texts', start: data.length - 1, end: data.length },
+        ]}
+      />
     </ContentLayout>
   );
 };

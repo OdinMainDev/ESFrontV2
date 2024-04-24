@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { IFormItem } from '../models/interfaces';
 import Button from '@/shared/ui/Button';
-import { FloatingLabel, Form } from 'react-bootstrap';
+import { FloatingLabel, Form, Tab, Tabs } from 'react-bootstrap';
 import styles from './FormGenerator.module.scss';
 import Input from '@/shared/ui/Input';
 import axios, { AxiosError } from 'axios';
@@ -12,7 +12,6 @@ import { MultiSelect } from 'react-multi-select-component';
 import { IOption } from '@/shared/models/interfaces/select';
 import { useTranslation } from 'react-i18next';
 import { convertFormDataToObject } from '../helpers/convertValueByType';
-import { ImageUpload } from '@/entities/ImageUpload';
 
 interface IItemProps {
   invalidData: string[];
@@ -82,10 +81,6 @@ const ItemByType = ({ invalidData, formItem }: IItemProps) => {
     );
   }
 
-  if (formItem.type === 'image') {
-    return <ImageUpload size="3xl" src="" onChange={setValue} />;
-  }
-
   return (
     <Input
       controlId={formItem.name}
@@ -107,9 +102,26 @@ interface IProps {
   id: number;
   title?: string;
   isFormData?: boolean;
+  withTabs?: boolean;
+  tabs?: ITab[];
+}
+interface ITab {
+  name: string;
+  eventKey: string;
+  start: number;
+  end: number;
 }
 
-const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IProps) => {
+const FormGenerator = ({
+  formItems,
+  api,
+  title,
+  navigateTo,
+  id,
+  isFormData,
+  withTabs,
+  tabs,
+}: IProps) => {
   const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState(false);
   const router = useRouter();
@@ -154,9 +166,25 @@ const FormGenerator = ({ formItems, api, title, navigateTo, id, isFormData }: IP
       onSubmit={(e) => void submitHandler(e)}
     >
       {title && <div className={styles.title}>{title}</div>}
-      {formItems.map((item, index) => (
-        <ItemByType key={index} formItem={item} invalidData={invalidData} />
-      ))}
+      {withTabs ? (
+        <Tabs variant="underline">
+          {tabs &&
+            tabs.map((tab) => (
+              <Tab eventKey={tab.eventKey} title={tab.name}>
+                <div className="grid gap-3">
+                  {formItems.slice(tab.start, tab.end).map((item, index) => (
+                    <ItemByType key={index} formItem={item} invalidData={invalidData} />
+                  ))}
+                </div>
+              </Tab>
+            ))}
+        </Tabs>
+      ) : (
+        formItems.map((item, index) => (
+          <ItemByType key={index} formItem={item} invalidData={invalidData} />
+        ))
+      )}
+
       <Button
         variant="primary"
         className="w-[100%] mt-[20px]"

@@ -7,6 +7,7 @@ import { IData } from '../models/interfaces';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useParams } from 'react-router-dom';
+import { getApiProviderListApi } from '@/shared/api/allGamesApi';
 
 const VendorsEdit = () => {
   const { id } = useParams();
@@ -27,21 +28,47 @@ const VendorsEdit = () => {
       required: true,
     },
     {
-      name: 'position',
-      placeholder: 'position',
-      label: t('position'),
-      type: 'number',
+      name: 'api_name',
+      placeholder: 'api_name',
+      label: t('api-name'),
+      type: 'select',
       required: true,
     },
     {
-      name: 'url',
-      placeholder: 'url',
-      label: t('url'),
-      type: 'text',
+      name: 'external_id',
+      placeholder: 'external_id',
+      label: t('external-id'),
+      type: 'select',
+      required: true,
+    },
+    {
+      name: 'external_key',
+      placeholder: 'external_key',
+      label: t('external-key'),
+      type: 'select',
       required: true,
     },
   ]);
   useEffect(() => {
+    const getApi = async () => {
+      const apisList = await getApiProviderListApi();
+      console.log(apisList);
+      setData((prev) =>
+        prev.map((data) => {
+          if (data.name === 'api_name') {
+            return {
+              ...data,
+              options: apisList.map((item) => ({
+                value: item,
+                label: item,
+              })),
+            };
+          }
+
+          return data;
+        }),
+      );
+    };
     const getData = async () => {
       try {
         const { data } = await axios.get<{ data: IData }>(getDataByIdApi(Number(id)), {
@@ -62,7 +89,7 @@ const VendorsEdit = () => {
         console.log(e);
       }
     };
-
+    void getApi();
     void getData();
   }, []);
 

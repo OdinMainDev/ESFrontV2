@@ -47,7 +47,15 @@ const GamesEdit = () => {
       type: 'switch',
       required: true,
     },
+    {
+      name: 'texts',
+      placeholder: 'texts',
+      type: 'texts',
+      label: t('texts'),
+      required: true,
+    },
   ]);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -80,6 +88,11 @@ const GamesEdit = () => {
         navigateTo="admin/games/edit/"
         api={dataEditApi()}
         formItems={data}
+        withTabs
+        tabs={[
+          { name: t('info'), eventKey: 'info', start: 0, end: 5 },
+          { name: t('texts'), eventKey: 'texts', start: data.length - 1, end: data.length },
+        ]}
       />
     </ContentLayout>
   );

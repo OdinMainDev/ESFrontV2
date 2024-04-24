@@ -1,13 +1,13 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { IGame } from '../models/interfaces/games';
-import { allGamesListApi} from './dev/gamesApi';
+
+import {  gameApiProviderListApi} from './dev/gamesApi';
 
 
 
-export const getAllGamesApi = async (): Promise<IGame[]> => {
+export const getApiProviderListApi = async (): Promise<string[]> => {
   try {
-    const { data } = await axios.get<{ data: IGame[] }>(allGamesListApi(), {
+    const { data } = await axios.get<{ data: string[] }>(gameApiProviderListApi(), {
       headers: {
         Authorization: 'Bearer ' + Cookies.get('token'),
       },

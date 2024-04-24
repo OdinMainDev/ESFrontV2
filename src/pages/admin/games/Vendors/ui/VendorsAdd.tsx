@@ -1,11 +1,13 @@
 import { FormGenerator, IFormItem } from '@/features/FormGenerator';
 import ContentLayout from '@/shared/layout/ContentLayout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { dataEditApi } from '../api/api';
+import { getApiProviderListApi } from '@/shared/api/allGamesApi';
+
 const VendorsAdd = () => {
   const { t } = useTranslation();
-  const [data] = useState<IFormItem[]>([
+  const [data, setData] = useState<IFormItem[]>([
     {
       name: 'name',
       placeholder: 'name',
@@ -20,20 +22,51 @@ const VendorsAdd = () => {
       required: true,
     },
     {
-      name: 'position',
-      placeholder: 'position',
-      label: t('position'),
-      type: 'number',
+      name: 'api_name',
+      placeholder: 'api_name',
+      label: t('api-name'),
+      type: 'select',
       required: true,
     },
     {
-      name: 'url',
-      placeholder: 'url',
-      label: t('url'),
+      name: 'external_id',
+      placeholder: 'external_id',
+      label: t('external-id'),
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'external_key',
+      placeholder: 'external_key',
+      label: t('external-key'),
       type: 'text',
       required: true,
     },
   ]);
+
+  useEffect(() => {
+    const getApi = async () => {
+      const apisList = await getApiProviderListApi();
+      console.log(apisList);
+      setData((prev) =>
+        prev.map((data) => {
+          if (data.name === 'api_name') {
+            return {
+              ...data,
+              options: apisList.map((item) => ({
+                value: item,
+                label: item,
+              })),
+            };
+          }
+
+          return data;
+        }),
+      );
+    };
+
+    void getApi();
+  }, []);
 
   return (
     <ContentLayout title={t('vendors-add')}>
