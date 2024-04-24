@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { IData } from '../models/interfaces';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { getCountriesApi } from '@/shared/api/countriesApi';
+import { mapperData } from '../helpers/dataMapper';
 
 const SliderEdit = () => {
   const { t } = useTranslation();
@@ -14,10 +16,10 @@ const SliderEdit = () => {
   const [title, setTitle] = useState('');
   const [data, setData] = useState<IFormItem[]>([
     {
-      name: 'url',
-      placeholder: 'url',
-      label: t('url'),
-      type: 'text',
+      name: 'image',
+      placeholder: 'image',
+      label: t('image'),
+      type: 'image',
       required: true,
     },
     {
@@ -28,6 +30,13 @@ const SliderEdit = () => {
       required: true,
     },
     {
+      name: 'url',
+      placeholder: 'url',
+      label: t('url'),
+      type: 'text',
+      required: true,
+    },
+    {
       name: 'position',
       placeholder: 'position',
       label: t('position'),
@@ -35,10 +44,16 @@ const SliderEdit = () => {
       required: true,
     },
     {
-      name: 'image',
-      placeholder: 'image',
-      label: t('image'),
-      type: 'text',
+      name: 'blocked_countries[]',
+      label: 'Выберите заблокированные страны',
+      type: 'multiSelect',
+      required: true,
+    },
+    {
+      name: 'allowed_countries[]',
+      label: 'Выберите разрешенные страны',
+      type: 'multiSelect',
+      options: [],
       required: true,
     },
   ]);
@@ -52,9 +67,20 @@ const SliderEdit = () => {
         });
         setData((prev) =>
           prev.map((item) => {
+            const value = mapperData(data.data);
+            const array = value[
+              item.name.replace(/\[\]/g, '') as keyof IData
+            ] as unknown as string[];
             return {
               ...item,
-              value: data.data[item.name as keyof IData] as string,
+              value: item.type !== 'multiSelect' ? (value[item.name as keyof IData] as string) : '',
+              selectedOption:
+                item.type === 'multiSelect'
+                  ? array.map((item) => ({
+                      value: item,
+                      label: item,
+                    }))
+                  : [],
             };
           }),
         );
@@ -64,6 +90,24 @@ const SliderEdit = () => {
       }
     };
 
+    const getCountries = async () => {
+      const countriesList = await getCountriesApi();
+      setData((prev) =>
+        prev.map((data) => {
+          if (data.type === 'multiSelect') {
+            return {
+              ...data,
+              options: countriesList.map((item) => ({
+                value: item,
+                label: item,
+              })),
+            };
+          }
+          return data;
+        }),
+      );
+    };
+    void getCountries();
     void getData();
   }, []);
 

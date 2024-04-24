@@ -80,7 +80,6 @@ const CasinoUrlEdit = () => {
     };
 
     void getData();
-
     void getCountries();
   }, []);
   return (

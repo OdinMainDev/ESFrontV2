@@ -182,6 +182,15 @@ const ItemByType = ({ invalidData, formItem, texts, setTexts }: IItemProps) => {
     );
   }
 
+  if (formItem.type === 'image') {
+    return (
+      <>
+        <ImageUpload size="5xl" src={value} onChange={setValue} />
+        <input name={formItem.name} value={value} style={{ display: 'none' }} />
+      </>
+    );
+  }
+  
   return (
     <Input
       controlId={formItem.name}
@@ -203,6 +212,7 @@ interface IProps {
   id: number;
   title?: string;
   isFormData?: boolean;
+  withoutButton?: boolean;
   withTabs?: boolean;
   tabs?: ITab[];
 }
@@ -211,6 +221,7 @@ interface ITab {
   eventKey: string;
   start: number;
   end: number;
+
 }
 
 const FormGenerator = ({
@@ -222,6 +233,7 @@ const FormGenerator = ({
   isFormData,
   withTabs,
   tabs,
+  withoutButton,
 }: IProps) => {
   const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState(false);
@@ -260,7 +272,6 @@ const FormGenerator = ({
       setLoading(false);
     }
   };
-
   return (
     <Form
       noValidate
@@ -299,17 +310,18 @@ const FormGenerator = ({
           />
         ))
       )}
-
-      <Button
-        variant="primary"
-        className="w-[100%] mt-[20px]"
-        loadingPosition="start"
-        loading={loading}
-        disabled={loading}
-        type="submit"
-      >
-        {t('submit')}
-      </Button>
+      {!withoutButton && (
+        <Button
+          variant="primary"
+          className="w-[100%] mt-[20px]"
+          loadingPosition="start"
+          loading={loading}
+          disabled={loading}
+          type="submit"
+        >
+          {t('submit')}
+        </Button>
+      )}
     </Form>
   );
 };
