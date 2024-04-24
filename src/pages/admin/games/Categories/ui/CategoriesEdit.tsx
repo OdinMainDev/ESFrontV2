@@ -83,7 +83,7 @@ const CategoriesEdit = () => {
       placeholder: 'texts',
       type: 'texts',
       label: t('texts'),
-      required: true,
+      required: false,
     },
   ]);
 

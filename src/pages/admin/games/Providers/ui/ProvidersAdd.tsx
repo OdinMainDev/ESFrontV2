@@ -77,7 +77,7 @@ const ProvidersAdd = () => {
       placeholder: 'texts',
       type: 'texts',
       label: t('texts'),
-      required: true,
+      required: false,
     },
   ]);
 
@@ -101,7 +101,7 @@ const ProvidersAdd = () => {
             return {
               ...data,
               options: gamesList.map((item) => ({
-                value: `${item.id}`,
+                value: item.id,
                 label: `${item.id}(${item.api_name}):${item.name}`,
               })),
             };
@@ -115,7 +115,6 @@ const ProvidersAdd = () => {
               })),
             };
           }
-
           return data;
         }),
       );

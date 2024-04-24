@@ -75,6 +75,13 @@ const WithdrawalGatewaysAdd = () => {
       required: true,
     },
     {
+      name: 'api_currency',
+      placeholder: 'api_currency',
+      type: 'select',
+      label: t('api_currency'),
+      required: true,
+    },
+    {
       name: 'api_key',
       placeholder: 'api_key',
       type: 'text',
@@ -156,7 +163,7 @@ const WithdrawalGatewaysAdd = () => {
       placeholder: 'texts',
       type: 'texts',
       label: t('texts'),
-      required: true,
+      required: false,
     },
   ]);
 
@@ -244,8 +251,8 @@ const WithdrawalGatewaysAdd = () => {
         withTabs
         tabs={[
           { name: t('info'), eventKey: 'info', start: 0, end: 3 },
-          { name: t('provider'), eventKey: 'provider', start: 3, end: 11 },
-          { name: t('conditions'), eventKey: 'conditions', start: 11, end: 20 },
+          { name: t('provider'), eventKey: 'provider', start: 3, end: 12 },
+          { name: t('conditions'), eventKey: 'conditions', start: 12, end: 21 },
           { name: t('texts'), eventKey: 'texts', start: data.length - 1, end: data.length },
         ]}
       />

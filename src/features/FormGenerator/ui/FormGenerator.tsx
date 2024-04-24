@@ -12,15 +12,26 @@ import { MultiSelect } from 'react-multi-select-component';
 import { IOption } from '@/shared/models/interfaces/select';
 import { useTranslation } from 'react-i18next';
 import { convertFormDataToObject } from '../helpers/convertValueByType';
+import { getLanguagesList } from '@/shared/api/languagesApi';
 
 interface IItemProps {
   invalidData: string[];
   formItem: IFormItem;
+  texts: IText[];
+  setTexts: (texts: IText[]) => void;
 }
 
-const ItemByType = ({ invalidData, formItem }: IItemProps) => {
+export interface IText {
+  language: string;
+  key: string;
+  value: string;
+}
+
+const ItemByType = ({ invalidData, formItem, texts, setTexts }: IItemProps) => {
+  const { t } = useTranslation();
   const [value, setValue] = useState<string>(formItem.value as string);
   const [options, setOptions] = useState<IOption[]>(formItem.selectedOption || []);
+
   useEffect(() => {
     setValue(formItem.value as string);
     setOptions(formItem.selectedOption || []);
@@ -57,6 +68,96 @@ const ItemByType = ({ invalidData, formItem }: IItemProps) => {
             ))}
         </Form.Select>
       </FloatingLabel>
+    );
+  }
+
+  if (formItem.type === 'texts') {
+    const [languageList, setLanguageList] = useState<string[]>();
+
+    useEffect(() => {
+      const getLangs = async () => {
+        const res = await getLanguagesList();
+        setLanguageList(res);
+      };
+      getLangs();
+    }, []);
+    const types = ['title', 'description', 'seo_title', 'seo_keywords', 'seo_description'];
+    const addField = () => {
+      setTexts([...texts, { language: 'RU', key: 'title', value: '' }]);
+    };
+
+    const deleteField = (index: number) => {
+      setTexts(texts.filter((_, i) => i !== index));
+    };
+
+    const handleTextChange = (index: number, key: string, value: string) => {
+      const updatedTexts = [...texts];
+      updatedTexts[index] = { ...updatedTexts[index], key, value };
+      setTexts(updatedTexts);
+    };
+
+    const handleLanguageChange = (index: number, language: string) => {
+      const updatedTexts = [...texts];
+      updatedTexts[index] = { ...updatedTexts[index], language };
+      setTexts(updatedTexts);
+    };
+    return (
+      <div>
+        <div className=" flex flex-col gap-3">
+          {texts.map((text, index) => (
+            <div className=" flex flex-row justify-between items-center gap-3" key={index}>
+              <FloatingLabel
+                controlId={`language-${index}`}
+                label={t('language')}
+                className=" w-[30%]"
+              >
+                <Form.Select
+                  name={'language'}
+                  value={text.language}
+                  onChange={(e) => handleLanguageChange(index, e.target.value)}
+                >
+                  {languageList &&
+                    languageList.map((item, index) => (
+                      <option value={item} key={index}>
+                        {item}
+                      </option>
+                    ))}
+                </Form.Select>
+              </FloatingLabel>
+              <FloatingLabel controlId={`key-${index}`} label={t('key')} className=" w-[30%]">
+                <Form.Select
+                  name={'key'}
+                  value={text.key}
+                  onChange={(e) => handleTextChange(index, e.target.value, text.value)}
+                >
+                  {types.map((item, index) => (
+                    <option value={item} key={index}>
+                      {item}
+                    </option>
+                  ))}
+                </Form.Select>
+              </FloatingLabel>
+              <FloatingLabel controlId={`value-${index}`} label={t('value')} className=" w-[30%]">
+                <Form.Control
+                  name={'value'}
+                  value={text.value}
+                  onChange={(e) => handleTextChange(index, text.key, e.target.value)}
+                />
+              </FloatingLabel>
+              {texts.length > 1 ? (
+                <Button variant="danger" onClick={() => deleteField(index)}>
+                  {t('delete')}
+                </Button>
+              ) : (
+                ''
+              )}
+            </div>
+          ))}
+        </div>
+        <Button onClick={addField} variant="primary" className="w-[100%] mt-[20px]" type="button">
+          Add
+        </Button>
+      </div>
     );
   }
 
@@ -127,6 +228,7 @@ const FormGenerator = ({
   const router = useRouter();
   const [invalidData, setInvalidData] = useState<string[]>([]);
   const { t } = useTranslation();
+  const [texts, setTexts] = useState<IText[]>([{ language: 'RU', key: 'title', value: '' }]);
 
   const sendData = async (formData: FormData | object) => {
     const { data } = await axios.post<{ data: { id: number } }>(api, formData, {
@@ -146,6 +248,7 @@ const FormGenerator = ({
       const formData = new FormData(event.currentTarget);
       formData.append('id', id.toString());
       const formDataObj = convertFormDataToObject(formData, formItems);
+
       const data = await sendData(isFormData ? formData : { ...formDataObj, id: Number(id) });
       if (navigateTo && data.id) {
         router.push(navigateTo + data.id);
@@ -173,7 +276,13 @@ const FormGenerator = ({
               <Tab eventKey={tab.eventKey} title={tab.name}>
                 <div className="grid gap-3">
                   {formItems.slice(tab.start, tab.end).map((item, index) => (
-                    <ItemByType key={index} formItem={item} invalidData={invalidData} />
+                    <ItemByType
+                      texts={texts}
+                      setTexts={setTexts}
+                      key={index}
+                      formItem={item}
+                      invalidData={invalidData}
+                    />
                   ))}
                 </div>
               </Tab>
@@ -181,7 +290,13 @@ const FormGenerator = ({
         </Tabs>
       ) : (
         formItems.map((item, index) => (
-          <ItemByType key={index} formItem={item} invalidData={invalidData} />
+          <ItemByType
+            texts={texts}
+            setTexts={setTexts}
+            key={index}
+            formItem={item}
+            invalidData={invalidData}
+          />
         ))
       )}
 
